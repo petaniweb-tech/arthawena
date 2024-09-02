@@ -3,8 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 // Import Components //
-import Navbar from "@/components/navbar";
-import NavbarTest from "@/components/navbar-test";
+import Navbar from "@/components/molecules/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`scroll-smooth ${inter.className}`}>
       <body className="bg-background">
-        {/* <Navbar /> */}
-        <NavbarTest />
+        <Navbar />
         {children}
       </body>
     </html>

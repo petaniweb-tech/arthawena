@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       padding: {
-        "content-padding-sm": "28px",
+        "content-padding-sm": "30px",
         "content-padding-lg": "100px",
         "content-padding-2xl": "140px",
       },

@@ -7,23 +7,20 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { NavItemType } from "@/types/nav-item-type";
 
 // Import Icons //
 import { TriangleDownIcon } from "@radix-ui/react-icons";
 
 interface DropdownNavItemProps {
-  text: string;
-  path: string;
-  subMenus: { text: string; path: string }[];
+  navItem: NavItemType;
   isOpen: boolean;
   handleMouseEnter: () => void;
   handleMouseLeave: () => void;
 }
 
 const DropdownNavItem = ({
-  text,
-  path,
-  subMenus,
+  navItem,
   isOpen,
   handleMouseEnter,
   handleMouseLeave,
@@ -39,7 +36,7 @@ const DropdownNavItem = ({
           isOpen ? "text-primary" : "text-charcoal"
         } `}
       >
-        {text}
+        {navItem.title}
         <TriangleDownIcon
           className={`text-charcoal h-[17px] w-[17px] transition-transform duration-300 ${
             isOpen ? "rotate-180" : "rotate-0"
@@ -50,15 +47,16 @@ const DropdownNavItem = ({
       <DropdownMenuContent
         align="center"
         className="z-50"
+        sideOffset={0}
         style={{
           transition: "opacity 1s ease, transform 1s ease",
           opacity: isOpen ? 1 : 0,
           transform: isOpen ? "translateY(0)" : "translateY(-10px)",
         }}
       >
-        {subMenus.map((submenu, index) => (
+        {navItem.subMenuItems?.map((submenu, index) => (
           <DropdownMenuItem key={index}>
-            <Link href={submenu.path}>{submenu.text}</Link>
+            <Link href={submenu.path}>{submenu.title}</Link>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
