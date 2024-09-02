@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 // Import Components //
-import DropdownNavItem from "../atoms/dropdown-navitem";
+import DropdownNavItem from "../atoms/dropdown-nav-item";
 import { NAV_ITEMS } from "@/constants/nav-item";
 
 // Import Icons //
