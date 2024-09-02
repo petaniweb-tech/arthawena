@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        "aeonik-regular": ["var(--font-aeonik-regular)", "sans-serif"],
+        "aeonik-medium": ["var(--font-aeonik-medium)", "sans-serif"],
+      },
       padding: {
         "content-padding-sm": "30px",
         "content-padding-lg": "100px",
