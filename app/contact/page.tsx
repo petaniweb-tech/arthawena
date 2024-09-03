@@ -35,7 +35,7 @@ export default function Contact() {
     <div className="flex flex-col w-full mx-auto">
 
       <div className="relative p-6 flex items-center justify-center mx-auto w-full">
-        {/* <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0">
           <Image
             src={BgContact}
             alt="Descriptive text for screen readers"
@@ -45,7 +45,7 @@ export default function Contact() {
           />
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-white to-transparent z-10"></div> */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white to-transparent z-10"></div>
 
         <div className="relative z-20 pt-28 max-w-lg w-full">
           <h1 className="md:text-center text-3xl text-primary mb-6">Contact</h1>

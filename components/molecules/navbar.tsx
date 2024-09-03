@@ -54,7 +54,7 @@ function Navbar() {
   return (
     <>
       {/* <-- ==== Navbar Mobile Start ==== --> */}
-      <nav className="bg-white fixed w-full block lg:hidden">
+      <nav className="bg-white fixed w-full block lg:hidden z-50">
         <div className="flex items-center justify-between w-full py-[22px] bg-white px-content-padding-sm">
           <Link href="/">
             <Image
@@ -153,7 +153,7 @@ function Navbar() {
       {/* <-- ==== Navbar Mobile End ==== --> */}
 
       {/* <-- ==== Navbar Desktop Start ==== --> */}
-      <nav className="hidden lg:flex fixed items-center justify-between z-40 w-full py-[22px] bg-white px-content-padding-lg 2xl:px-content-padding-2xl">
+      <nav className="hidden lg:flex fixed items-center justify-between z-50 w-full py-[22px] bg-white px-content-padding-lg 2xl:px-content-padding-2xl">
         <Link href="/">
           <Image
             src={logo}
