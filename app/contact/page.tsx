@@ -1,57 +1,137 @@
-'use client'
+"use client"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { formSchema } from "@/lib/form-schema"
 import { PhoneIcon } from "lucide-react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import BgContact from "@/assets/images/img-contact.png";
+import Image from "next/image";
+
+
 
 export default function Contact() {
-  return (
-    <div className="flex flex-col w-full mx-auto pt-32">
-      
-      <div className="p-6 mx-auto w-full">
-        
-        <h1 className="text-center text-3xl font-bold text-orange-500 mb-6">Contact</h1>
-        <form className="space-y-4">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Your Name*</label>
-            <Input id="name" className="w-full" required />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email*</label>
-            <Input id="email" type="email" className="w-full" required />
-          </div>
-          <div>
-            <label htmlFor="telephone" className="block text-sm font-medium text-gray-700">Telephone*</label>
-            <Input id="telephone" type="tel" className="w-full" required />
-          </div>
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message*</label>
-            <Textarea id="message" className="w-full h-32" required />
-          </div>
-          <Button type="submit" className="bg-orange-500 hover:bg-orange-600 text-white">Submit</Button>
-        </form>
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  })
 
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
+  }
+
+  return (
+    <div className="flex flex-col w-full mx-auto">
+
+      <div className="relative p-6 flex items-center justify-center mx-auto w-full">
+        {/* <div className="absolute inset-0 z-0">
+          <Image
+            src={BgContact}
+            alt="Descriptive text for screen readers"
+            layout="fill"
+            objectFit="cover"
+            className="pointer-events-none"
+          />
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-b from-white to-transparent z-10"></div> */}
+
+        <div className="relative z-20 pt-28 max-w-lg w-full">
+          <h1 className="md:text-center text-3xl text-primary mb-6">Contact</h1>
+
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-charcoal">Your Name <span className="text-red-500">*</span></FormLabel>
+                    <FormControl>
+                      <Input className="ring-0 border-0 focus-visible:ring-offset-0 focus-visible:ring-0" placeholder="" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-charcoal">Email<span className="text-red-500">*</span></FormLabel>
+                    <FormControl>
+                      <Input className="ring-0 border-0 focus-visible:ring-offset-0 focus-visible:ring-0" placeholder="" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-charcoal">Telephone <span className="text-red-500">*</span></FormLabel>
+                    <FormControl>
+                      <Input className="ring-0 border-0 focus-visible:ring-offset-0 focus-visible:ring-0" placeholder="" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="message"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-charcoal">Message <span className="text-red-500">*</span></FormLabel>
+                    <FormControl>
+                      <Textarea className="ring-0 border-0 focus-visible:ring-offset-0 focus-visible:ring-0" placeholder="" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button className="bg-primary" type="submit">Submit</Button>
+            </form>
+          </Form>
+
+        </div>
       </div>
 
-      <div className="w-full md:flex items-center justify-between bg-orange-500 text-white p-6">
+      <div className="w-full md:flex items-center justify-evenly bg-primary-gradient text-white p-6">
         <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-2">HEAD OFFICE</h2>
-          <p className="mb-2">Jalan Raya Kartanegara No.85, Ngambon,</p>
-          <p className="mb-2">Girimayo, Kec. Karang Ploso, Malang,</p>
-          <p className="mb-2">Jawa Timur 65152</p>
-          <div className="flex items-center mt-2">
+          <h2 className="font-semibold mb-4 mt-8">HEAD OFFICE</h2>
+          <p>Jalan Raya Kartanegara No.85, Ngambon,</p>
+          <p>Girimayo, Kec. Karang Ploso, Malang,</p>
+          <p>Jawa Timur 65152</p>
+          <div className="flex items-center mt-4">
             <PhoneIcon className="mr-2" size={18} />
             <span>(0341) 468500</span>
           </div>
         </div>
         <div>
-          <h2 className="text-xl font-semibold mb-2">PLANT TANGERANG</h2>
-          <p className="mb-2">JI. Raya serang Km. 12, Kampung Cirewed</p>
-          <p className="mb-2">RT.3 RW.2, Desa Sukadamai, Cikupa,</p>
-          <p className="mb-2">Sukadamai, Kec. Cikupa, Tangerang,</p>
-          <p className="mb-2">Banten 15710</p>
-          <div className="flex items-center mt-2">
+          <h2 className="font-semibold mb-4 mt-8">PLANT TANGERANG</h2>
+          <p>JI. Raya serang Km. 12, Kampung Cirewed</p>
+          <p>RT.3 RW.2, Desa Sukadamai, Cikupa,</p>
+          <p>Sukadamai, Kec. Cikupa, Tangerang,</p>
+          <p>Banten 15710</p>
+          <div className="flex items-center mt-4">
             <PhoneIcon className="mr-2" size={18} />
             <span>(021) 5960599</span>
           </div>

@@ -40,6 +40,7 @@ const config = {
         "green-gradient": "linear-gradient(to right, #A3CF44, #6ABF31)",
         "blue-gradient": "linear-gradient(to right, #2B55B2, #7D7FB8)",
         "yellow-gradient": "linear-gradient(to right, #E3B524, #E6D624)",
+        "contact-gradient-bg": "linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.5))",
       },
       keyframes: {
         "accordion-down": {
