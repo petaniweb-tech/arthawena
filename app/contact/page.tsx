@@ -132,12 +132,13 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="w-full md:flex items-center justify-evenly bg-primary-gradient text-white p-10">
+      <div className="w-full md:flex items-start justify-evenly bg-primary-gradient text-white p-10">
         <div className="mb-8">
           <h2 className="font-semibold mb-4 mt-8">HEAD OFFICE</h2>
           <p>Jalan Raya Kartanegara No.85, Ngambon,</p>
           <p>Girimayo, Kec. Karang Ploso, Malang,</p>
           <p>Jawa Timur 65152</p>
+          <br />
           <div className="flex items-center mt-4">
             <PhoneIcon className="mr-2" size={18} />
             <span>(0341) 468500</span>
@@ -155,6 +156,7 @@ export default function Contact() {
           </div>
         </div>
       </div>
+
     </div>
   )
 }
