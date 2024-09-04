@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config = {
+  mode: "jit",
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -23,9 +24,15 @@ const config = {
         "aeonik-medium": ["var(--font-aeonik-medium)", "sans-serif"],
       },
       padding: {
-        "content-padding-sm": "30px",
-        "content-padding-lg": "100px",
-        "content-padding-2xl": "140px",
+        // Padding X Classes
+        "content-padding-sm": "40px",
+        "content-padding-lg": "50px",
+        "content-padding-2xl": "90px",
+
+        // Padding Top Classes
+        "content-padding-top-sm": "196px",
+        "content-padding-top-lg": "212px",
+        "content-padding-top-2xl": "214px",
       },
       colors: {
         background: "#F4F4F4",
