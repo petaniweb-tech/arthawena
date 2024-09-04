@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { formSchema } from "@/lib/form-schema"
+import { ContacFormSchema } from "@/lib/form-schema"
 import { PhoneIcon } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -18,17 +18,29 @@ import {
 } from "@/components/ui/form"
 import BgContact from "@/assets/images/img-contact.png";
 import Image from "next/image";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react"
+import { sendEmail } from "../_action"
 
 
 
 export default function Contact() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof ContacFormSchema>>({
+    resolver: zodResolver(ContacFormSchema),
   })
 
+  const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+
+  async function onSubmit(values: z.infer<typeof ContacFormSchema>) {
+    if (!recaptchaValue) {
+      alert("Please complete the reCAPTCHA");
+      return;
+    }
+
+    await sendEmail(values);
+
+    console.log(values);
   }
 
   return (
@@ -48,7 +60,7 @@ export default function Contact() {
         <div className="absolute inset-0 bg-gradient-to-b from-white to-transparent z-10"></div>
 
         <div className="relative z-20 pt-28 max-w-lg w-full">
-          <h1 className="md:text-center text-3xl text-primary mb-6">Contact</h1>
+          <h1 className="aeonik-medium md:text-center text-3xl text-primary mb-6">Contact</h1>
 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -107,14 +119,20 @@ export default function Contact() {
                   </FormItem>
                 )}
               />
-              <Button className="bg-primary" type="submit">Submit</Button>
+
+              <ReCAPTCHA
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!!}
+                onChange={(token: string | null) => setRecaptchaValue(token)}
+              />
+
+              <Button className="bg-primary hover:bg-primary" type="submit">Submit</Button>
             </form>
           </Form>
 
         </div>
       </div>
 
-      <div className="w-full md:flex items-center justify-evenly bg-primary-gradient text-white p-6">
+      <div className="w-full md:flex items-center justify-evenly bg-primary-gradient text-white p-10">
         <div className="mb-8">
           <h2 className="font-semibold mb-4 mt-8">HEAD OFFICE</h2>
           <p>Jalan Raya Kartanegara No.85, Ngambon,</p>

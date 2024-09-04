@@ -26,17 +26,20 @@
     "next-sanity": "^9.4.7",
     "react": "^18",
     "react-dom": "^18",
+    "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.53.0",
     "sanity": "^3.55.0",
     "styled-components": "^6.1.12",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "resend": "^3.5.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-google-recaptcha": "^2.1.9",
     "eslint": "^8",
     "eslint-config-next": "14.2.6",
     "postcss": "^8",
