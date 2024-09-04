@@ -120,7 +120,7 @@ const DynamicBreadcrumb = ({
   return (
     <div
       className={cn(
-        "fixed w-full z-50 px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl py-7 lg:py-[30px] top-[84px] lg:top-[95px] bg-opacity-20 transition-all duration-300",
+        "fixed w-full z-50 px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl py-7 lg:py-[30px] top-[84px] lg:top-[95px] bg-opacity-20 transition-all duration-200",
         scrolled ? backgroundColor : "bg-transparent",
         scrolled
           ? "backdrop-blur-md lg:backdrop-blur-lg"
