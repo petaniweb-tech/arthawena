@@ -22,10 +22,11 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react"
 import { sendEmail } from "../_action"
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
-
+import { useToast } from "@/hooks/use-toast"
 
 
 export default function Contact() {
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof ContacFormSchema>>({
     resolver: zodResolver(ContacFormSchema),
   })
@@ -35,7 +36,9 @@ export default function Contact() {
 
   async function onSubmit(values: z.infer<typeof ContacFormSchema>) {
     if (!recaptchaValue) {
-      alert("Please complete the reCAPTCHA");
+      toast({
+        title: "Please complete the reCAPTCHA",
+      })
       return;
     }
 
@@ -57,9 +60,9 @@ export default function Contact() {
       {/* <-- === Breadcrumb End === --> */}
 
       {/* <-- === The content must be placed right here === --> */}
-      <div className="flex flex-col w-full mx-auto">
+      <div className="flex flex-col w-full">
 
-        <div className="relative p-6 flex items-center justify-center mx-auto w-full">
+        <div className="relative pb-20 flex items-center justify-center w-full">
           <div className="absolute inset-0 z-0">
             <Image
               src={BgContact}
@@ -72,7 +75,7 @@ export default function Contact() {
 
           <div className="absolute inset-0 bg-gradient-to-b from-white to-transparent z-10"></div>
 
-          <div className="relative z-20 pt-28 max-w-lg w-full">
+          <div className="relative z-20 max-w-lg w-full px-content-padding-sm pt-content-padding-top-sm ">
             <h1 className="aeonik-medium md:text-center text-3xl text-primary mb-6">Contact</h1>
 
             <Form {...form}>
@@ -145,13 +148,13 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="w-full md:flex items-start justify-evenly bg-primary-gradient text-white p-10">
+        <div className="w-full md:flex items-start justify-evenly bg-primary-gradient text-white py-10 px-content-padding-sm">
           <div className="mb-8">
-            <h2 className="font-semibold mb-4 mt-8">HEAD OFFICE</h2>
+            <h2 className="font-semibold mb-4 md:mt-8">HEAD OFFICE</h2>
             <p>Jalan Raya Kartanegara No.85, Ngambon,</p>
             <p>Girimayo, Kec. Karang Ploso, Malang,</p>
             <p>Jawa Timur 65152</p>
-            <br />
+            <br className="hidden md:block"/>
             <div className="flex items-center mt-4">
               <PhoneIcon className="mr-2" size={18} />
               <span>(0341) 468500</span>
