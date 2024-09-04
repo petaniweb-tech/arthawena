@@ -71,7 +71,7 @@ function Navbar() {
   return (
     <>
       {/* <-- ==== Navbar Mobile Start ==== --> */}
-      <nav className="fixed w-full z-[100] block lg:hidden">
+      <nav className="fixed top-0 left-0 right-0 w-full z-[100] block lg:hidden">
         <div
           className={cn(
             "flex items-center justify-between w-full py-[22px] z-[90] px-content-padding-sm bg-white transition-all duration-200",
@@ -178,7 +178,7 @@ function Navbar() {
       {/* <-- ==== Navbar Desktop Start ==== --> */}
       <nav
         className={cn(
-          "hidden lg:flex fixed items-center justify-between z-[100] w-full py-[22px] bg-white px-content-padding-lg 2xl:px-content-padding-2xl transition-all duration-200",
+          "hidden lg:flex fixed top-0 left-0 right-0 items-center justify-between z-[100] w-full py-[22px] bg-white px-content-padding-lg 2xl:px-content-padding-2xl transition-all duration-200",
           scrolled ? "bg-opacity-70 backdrop-blur-md" : "bg-opacity-100"
         )}
       >

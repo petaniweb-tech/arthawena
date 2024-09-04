@@ -7,6 +7,7 @@ import "./globals.css";
 // Import Components //
 import Navbar from "@/components/molecules/navbar";
 import { Toaster } from "@/components/ui/toaster";
+import Footer from "@/components/molecules/footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -46,6 +47,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Toaster />
+        <Footer />
       </body>
     </html>
   );
