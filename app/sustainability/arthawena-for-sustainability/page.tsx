@@ -1,7 +1,5 @@
 // Import Components //
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
-import bgtest from "@/assets/images/foto join us.png";
-import Image from "next/image";
 
 export default function ArthawenaForSustainability() {
   return (
