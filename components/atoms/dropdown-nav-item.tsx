@@ -32,7 +32,7 @@ const DropdownNavItem = ({
   >
     <DropdownMenu open={isOpen}>
       <DropdownMenuTrigger
-        className={`text-[13px] font-medium tracking-wide flex gap-[5px] items-center justify-center py-4 focus:outline-none cursor-pointer ${
+        className={`text-sm font-medium tracking-wide flex gap-[5px] items-center justify-center py-4 focus:outline-none cursor-pointer ${
           isOpen ? "text-primary" : "text-charcoal"
         } `}
       >
@@ -47,7 +47,7 @@ const DropdownNavItem = ({
       <DropdownMenuContent
         align="center"
         className="z-50"
-        sideOffset={0}
+        sideOffset={1}
         style={{
           transition: "opacity 1s ease, transform 1s ease",
           opacity: isOpen ? 1 : 0,
