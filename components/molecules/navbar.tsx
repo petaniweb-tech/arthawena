@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 // Import Components //
 import DropdownNavItem from "../atoms/dropdown-nav-item";
@@ -24,6 +25,22 @@ function Navbar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const submenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [dropdownIndex, setDropdownIndex] = useState<number | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Set a threshold for when the background color should appear
+      const threshold = 100; // Adjust this value as needed
+      setScrolled(window.scrollY > threshold);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMenu = (menu: string | null) => {
     setOpenMenu((prevMenu) => (prevMenu === menu ? null : menu));
@@ -54,8 +71,14 @@ function Navbar() {
   return (
     <>
       {/* <-- ==== Navbar Mobile Start ==== --> */}
-      <nav className="bg-white fixed w-full z-[100] block lg:hidden">
-        <div className="flex items-center justify-between w-full py-[22px] bg-white px-content-padding-sm">
+      <nav className="fixed w-full z-[100] block lg:hidden">
+        <div
+          className={cn(
+            "flex items-center justify-between w-full py-[22px] z-[90] px-content-padding-sm bg-white transition-all duration-200",
+            scrolled ? "bg-opacity-70 backdrop-blur-md" : "bg-opacity-100",
+            isOpen && "bg-opacity-100"
+          )}
+        >
           <Link href="/">
             <Image
               src={logo}
@@ -88,7 +111,7 @@ function Navbar() {
         </div>
 
         <div
-          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+          className={`overflow-hidden transition-all duration-500 ease-in-out bg-white ${
             isOpen ? "max-h-screen" : "max-h-0"
           }`}
         >
@@ -153,7 +176,12 @@ function Navbar() {
       {/* <-- ==== Navbar Mobile End ==== --> */}
 
       {/* <-- ==== Navbar Desktop Start ==== --> */}
-      <nav className="hidden lg:flex fixed items-center justify-between z[100] w-full py-[22px] bg-white px-content-padding-lg 2xl:px-content-padding-2xl">
+      <nav
+        className={cn(
+          "hidden lg:flex fixed items-center justify-between z-[100] w-full py-[22px] bg-white px-content-padding-lg 2xl:px-content-padding-2xl transition-all duration-200",
+          scrolled ? "bg-opacity-70 backdrop-blur-md" : "bg-opacity-100"
+        )}
+      >
         <Link href="/">
           <Image
             src={logo}
@@ -164,7 +192,7 @@ function Navbar() {
         </Link>
 
         {/* <-- === Navbar Links Start === --> */}
-        <div className="flex items-center justify-center gap-6 text-[13px] font-medium tracking-wide text-charcoal">
+        <div className="flex items-center justify-center gap-6 text-sm font-medium tracking-wide text-charcoal">
           {NAV_ITEMS.map((navItem, index) =>
             navItem.submenu ? (
               <DropdownNavItem
