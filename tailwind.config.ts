@@ -26,8 +26,8 @@ const config = {
       padding: {
         // Padding X Classes
         "content-padding-sm": "40px",
-        "content-padding-lg": "50px",
-        "content-padding-2xl": "90px",
+        "content-padding-lg": "90px",
+        "content-padding-2xl": "120px",
 
         // Padding Top Classes
         "content-padding-top-sm": "196px",
