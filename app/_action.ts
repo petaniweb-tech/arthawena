@@ -8,18 +8,6 @@ import ContactFormEmail from "@/contact-form-email";
 
 type ContactFormInputs = z.infer<typeof ContacFormSchema>;
 
-export async function addEntry(data: ContactFormInputs) {
-  const result = ContacFormSchema.safeParse(data);
-
-  if (result.success) {
-    return { success: true, data: result.data };
-  }
-
-  if (result.error) {
-    return { success: false, error: result.error.format() };
-  }
-}
-
 const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
 export async function sendEmail(data: ContactFormInputs) {
