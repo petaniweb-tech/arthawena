@@ -1,7 +1,5 @@
 // Import Components //
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
-import bgtest from "@/assets/images/bgtest.jpg";
-import Image from "next/image";
 
 export default function ArthawenaForSustainability() {
   return (
@@ -15,7 +13,6 @@ export default function ArthawenaForSustainability() {
       />
       {/* <-- === Breadcrumb End === --> */}
 
-      <Image src={bgtest} alt="test" className="w-full h-[2000px]" />
       {/* <-- === The content must be placed right here === --> */}
     </>
   );
