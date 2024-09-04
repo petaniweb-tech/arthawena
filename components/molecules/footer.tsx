@@ -22,7 +22,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:hidden gap-5 mt-14 lg:mt-0 text-[15px] lg:text-[13px] text-white font-medium lg:tracking-wide">
+          <div className="grid grid-cols-1 gap-5 mt-14 text-[15px] text-white font-medium">
             <Link href="/about-us/arthawena-at-glance">
               <div className="w-fit pb-1 border-b border-white border-opacity-70">
                 <p>ABOUT US</p>
