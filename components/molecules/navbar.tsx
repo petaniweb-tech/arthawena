@@ -178,7 +178,7 @@ function Navbar() {
       {/* <-- ==== Navbar Desktop Start ==== --> */}
       <nav
         className={cn(
-          "hidden lg:flex fixed top-0 left-0 right-0 items-center justify-between z-[100] w-full py-[22px] bg-white px-content-padding-lg 2xl:px-content-padding-2xl transition-all duration-200",
+          "hidden lg:flex fixed top-0 left-0 right-0 items-center justify-between z-[99] w-full py-[22px] bg-white px-content-padding-lg 2xl:px-content-padding-2xl transition-all duration-200",
           scrolled ? "bg-opacity-70 backdrop-blur-md" : "bg-opacity-100"
         )}
       >

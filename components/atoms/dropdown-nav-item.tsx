@@ -46,7 +46,7 @@ const DropdownNavItem = ({
 
       <DropdownMenuContent
         align="center"
-        className="z-50"
+        className="z-[100]"
         sideOffset={1}
         style={{
           transition: "opacity 1s ease, transform 1s ease",
