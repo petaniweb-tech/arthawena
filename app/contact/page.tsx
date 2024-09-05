@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { ContacFormSchema } from "@/lib/form-schema"
+import { ContactFormSchema } from "@/lib/form-schema"
 import { PhoneIcon } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -28,14 +28,14 @@ import { useToast } from "@/hooks/use-toast"
 
 export default function Contact() {
   const { toast } = useToast();
-  const form = useForm<z.infer<typeof ContacFormSchema>>({
-    resolver: zodResolver(ContacFormSchema),
+  const form = useForm<z.infer<typeof ContactFormSchema>>({
+    resolver: zodResolver(ContactFormSchema),
   })
 
   const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
 
 
-  async function onSubmit(values: z.infer<typeof ContacFormSchema>) {
+  async function onSubmit(values: z.infer<typeof ContactFormSchema>) {
     if (!recaptchaValue) {
       toast({
         title: "Please complete the reCAPTCHA",
@@ -43,12 +43,18 @@ export default function Contact() {
       return;
     }
 
-    await sendEmail(values);
-    toast({
-      title: "Success",
-      description: "Thank you for contacting us. We will get back to you as soon as possible.",
-    })
-    console.log(values);
+    var result = await sendEmail(values);
+    if (result?.success) {
+      toast({
+        title: "Success",
+        description: "Thank you for contacting us. We will get back to you as soon as possible.",
+      })
+    } else {
+      toast({
+        title: "Failed",
+        description: "Failed to send email",
+      })
+    }
   }
 
   return (

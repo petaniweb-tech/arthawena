@@ -3,22 +3,24 @@
 
 import { z } from "zod";
 import { Resend } from "resend";
-import { ContacFormSchema } from './../lib/form-schema';
+import { ContactFormSchema } from './../lib/form-schema';
 import ContactFormEmail from "@/contact-form-email";
 
-type ContactFormInputs = z.infer<typeof ContacFormSchema>;
+type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY);
+const emailFrom = process.env.EMAIL_FROM!!;
+const emailTo = [process.env.PETANIWEB_EMAIL!!];
 
 export async function sendEmail(data: ContactFormInputs) {
-  const result = ContacFormSchema.safeParse(data);
+  const result = ContactFormSchema.safeParse(data);
 
   if (result.success) {
     const { name, email, phone, message } = result.data;
     try {
       const emailData = await resend.emails.send({
-        from: "noreply@petaniweb.com",
-        to: ["tech@petaniweb.com"],
+        from: emailFrom,
+        to: emailTo,
         subject: "New Contact Form Submission",
         text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\Message: ${message}\n`,
         react: ContactFormEmail({
