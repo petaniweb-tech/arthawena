@@ -6,6 +6,7 @@ import "./globals.css";
 
 // Import Components //
 import Navbar from "@/components/molecules/navbar";
+import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/molecules/footer";
 
 const poppins = Poppins({
@@ -45,6 +46,7 @@ export default function RootLayout({
       <body className="bg-background">
         <Navbar />
         {children}
+        <Toaster />
         <Footer />
       </body>
     </html>
