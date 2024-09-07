@@ -10,9 +10,14 @@ export const JoinUsType = defineType({
         defineField({
             name: "address",
             title: "Address",
-            type: "text",
+            type: "array",
+            of: [{
+                type: 'block',
+                marks: {
+                    annotations: [],
+                },
+            }],
             validation: (Rule) => Rule.required(),
-            description: "Enter the full address in HTML format",
         }),
         defineField({
             name: "email",
@@ -30,8 +35,26 @@ export const JoinUsType = defineType({
             name: "link",
             title: "Link",
             type: "url",
-            validation: (Rule) => Rule.required().uri({ allowRelative: false }),
             description: "Enter a valid URL. (example: https://www.google.com)",
+            validation: (Rule) => Rule.required().uri({ allowRelative: false }),
         }),
     ],
+    preview: {
+        select: {
+          title: "email",
+          subtitle: "address",
+        },
+        prepare(selection) {
+          const { title, subtitle } = selection;
+
+          const addressText = subtitle && subtitle[0] && subtitle[0].children
+          ? subtitle[0].children.map((item: { text: any; }) => item.text).join(' ')
+          : 'No address provided';
+
+          return {
+            title: `Section for ${title}`,
+            subtitle: addressText,
+          };
+        },
+      },
 });
