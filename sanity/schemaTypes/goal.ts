@@ -16,7 +16,15 @@ export const GoalType = defineType({
         defineField({
             name: "description",
             title: "Description",
-            type: "text",
+            type: "array",
+            of: [
+                {
+                    type: "block",
+                    marks: {
+                        annotations: [],
+                    },
+                },
+            ],
             validation: (Rule) => Rule.required(),
         }),
         defineField({
@@ -31,14 +39,21 @@ export const GoalType = defineType({
         defineField({
             name: "position",
             title: "Position",
-            type: "string",
-            options: {
-                list: [
-                    { title: "Left", value: "left" },
-                    { title: "Right", value: "right" },
-                ],
-            },
+            type: "number",
             validation: (Rule) => Rule.required(),
         }),
     ],
+    preview: {
+        select: {
+            title: "title",
+            media: "image",
+        },
+        prepare(selection) {
+            const { title, media } = selection;
+            return {
+                title: title.toUpperCase(),
+                media: media,
+            };
+        },
+    },
 });
