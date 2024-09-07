@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ContactFormSchema } from "@/lib/form-schema"
-import { PhoneIcon } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -77,7 +76,7 @@ export default function Contact() {
             <Image
               src={BgContact}
               alt="Descriptive text for screen readers"
-              layout="fill"
+              fill
               objectFit="cover"
               className="pointer-events-none"
             />
