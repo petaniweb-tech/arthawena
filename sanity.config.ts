@@ -21,10 +21,11 @@ export default defineConfig({
       const { type, schemaType } = creationContext;
       if (
         type === "structure" &&
-        ["banners"].includes(schemaType)
+        ["banners", "join-us"].includes(schemaType)
       ) {
         return [];
       }
+
       return prev;
     },
   },
