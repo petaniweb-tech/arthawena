@@ -25,6 +25,14 @@ export default defineConfig({
       ) {
         return [];
       }
+
+      if (
+        type === "structure" &&
+        ["join-us"].includes(schemaType)
+      ) {
+        return [];
+      }
+
       return prev;
     },
   },

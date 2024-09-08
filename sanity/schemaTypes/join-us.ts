@@ -41,20 +41,20 @@ export const JoinUsType = defineType({
     ],
     preview: {
         select: {
-          title: "email",
-          subtitle: "address",
+            title: "email",
+            subtitle: "address",
         },
         prepare(selection) {
-          const { title, subtitle } = selection;
+            const { title, subtitle } = selection;
 
-          const addressText = subtitle && subtitle[0] && subtitle[0].children
-          ? subtitle[0].children.map((item: { text: any; }) => item.text).join(' ')
-          : 'No address provided';
+            const addressText = subtitle && subtitle[0] && subtitle[0].children
+                ? subtitle[0].children.map((item: { text: any; }) => item.text).join(' ')
+                : 'No address provided';
 
-          return {
-            title: `Section for ${title}`,
-            subtitle: addressText,
-          };
+            return {
+                title: `Section for ${title}`,
+                subtitle: addressText,
+            };
         },
-      },
+    },
 });
