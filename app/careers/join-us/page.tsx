@@ -1,8 +1,26 @@
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
 import Image from "next/image";
 import joinUsImage from "@/assets/images/img-join-us.png";
+import { sanityFetch } from "@/sanity/lib/client";
+import portableTextComponents from "@/components/atoms/portable-text";
+import { PortableText } from "next-sanity";
 
-export default function JoinUs() {
+
+export default async function JoinUs() {
+  const query = `*[_type == "join-us"][0]{
+    email,
+    address[],
+    link
+  }`;
+
+
+  const joinUsData = await sanityFetch({
+    query: query,
+    revalidate: 3600,
+  })
+
+  console.log(JSON.stringify(joinUsData, null, 2));
+
   return (
     <>
       {/* <-- === Breadcrumb Start === --> */}
@@ -64,18 +82,17 @@ export default function JoinUs() {
             PT. Arthawenasakti Gemilang
           </p>
 
-          <p className="mb-8">
-            Jl. Kertanegara 85 Grimyoyo Karangploso,
-            <br />
-            Malang, Jawa Timur
-          </p>
+          <div className="mb-8">
+            <PortableText value={joinUsData?.address} components={portableTextComponents} />
+          </div>
 
           <p className="text-sm text-primary font-medium mb-2">
             Or Email:
           </p>
 
           <a href="mailto:recruitment@arthawena.com" className="text-xs lg:text-sm font-medium">
-            recruitment@arthawena.com
+            {/* recruitment@arthawena.com */}
+            {joinUsData?.email}
           </a>
 
           <p className="text-sm text-primary font-medium mt-5 mb-2">Kindly fill in the attached form:</p>
@@ -85,7 +102,8 @@ export default function JoinUs() {
             rel="noopener noreferrer"
             className="block border border-gray-300 w-fit p-2 px-6 text-center font-medium lg:text-start mb-2"
           >
-            https://forms.gle/pBPay3YQqyZNUMvFA
+            {/* https://forms.gle/pBPay3YQqyZNUMvFA */}
+            {joinUsData?.link}
           </a>
         </div>
       </div>
