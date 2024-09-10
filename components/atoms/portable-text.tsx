@@ -4,7 +4,7 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
   types: {
     block: ({ value }: PortableTextTypeComponentProps<any>) => {
       return (
-        <p>
+        <p className="text-charcoal">
           {value.children.map((child: any, index: number) => (
             <span key={index}>
               {child.marks && child.marks.includes('strong') ? (
