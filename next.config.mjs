@@ -2,7 +2,6 @@
 const nextConfig = {
   reactStrictMode: true, // Enable React's Strict Mode
   images: {
-    // domains: ["cdn.sanity.io"],
     remotePatterns: [
       {
         protocol: "https",
