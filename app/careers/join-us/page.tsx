@@ -12,8 +12,6 @@ export default async function JoinUs() {
 
   const joinUsData = await client.fetch(joinUsQuery);
 
-  console.log(JSON.stringify(joinUsData, null, 2));
-
   return (
     <>
       {/* <-- === Breadcrumb Start === --> */}
