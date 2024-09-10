@@ -67,7 +67,7 @@ export default function ArthawenaAtGlance() {
         ></Image>
         <h1 className="text-2xl font-semibold my-7">1998 - Economic Crisis</h1>
         <p className="font-light text-[19px] lg:text-center">During the economic monetary crisis, we expanded by renting another business location to {""}
-        work on Pertamina's tender products. <span className="font-medium">Successfully survived <span className="lg:font-light">the economic crisis and </span></span>
+        work on Pertamina&apos;s tender products. <span className="font-medium">Successfully survived <span className="lg:font-light">the economic crisis and </span></span>
         <span className="font-medium text-[19px]">became stronger in its field</span>.</p>
         <p className="font-medium text-[19px] mt-7 lg:font-light">Number of employees : around 250</p>
       </div>
