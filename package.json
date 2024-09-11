@@ -32,7 +32,9 @@
     "react-hook-form": "^7.53.0",
     "resend": "^3.5.0",
     "sanity": "^3.55.0",
+    "sharp": "^0.33.5",
     "styled-components": "^6.1.12",
+    "swiper": "^11.1.12",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"

@@ -26,8 +26,8 @@ const config = {
       padding: {
         // Padding X Classes
         "content-padding-sm": "40px",
-        "content-padding-lg": "90px",
-        "content-padding-2xl": "120px",
+        "content-padding-lg": "140px",
+        "content-padding-2xl": "160px",
 
         // Padding Top Classes
         "content-padding-top-sm": "196px",
@@ -47,6 +47,9 @@ const config = {
         "green-gradient": "linear-gradient(to right, #A3CF44, #6ABF31)",
         "blue-gradient": "linear-gradient(to right, #2B55B2, #7D7FB8)",
         "yellow-gradient": "linear-gradient(to right, #E3B524, #E6D624)",
+
+        "who-we-are-mobile": "url('../assets/images/home/bg-mobile.webp')",
+        "who-we-are-desktop": "url('../assets/images/home/bg-desktop.webp')",
       },
       keyframes: {
         "accordion-down": {
