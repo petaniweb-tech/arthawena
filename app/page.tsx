@@ -323,7 +323,7 @@ export default async function Home() {
       {/* <-- ==== Location End ==== --> */}
 
       {/* <-- ==== CTA Start ==== --> */}
-      <section className="mt-28">
+      <section className="mt-28 lg:mt-10">
         <div className="block lg:hidden">
           <ShowcaseCarousel />
         </div>
