@@ -1,8 +1,6 @@
-import React from "react"; // Import React
 import { defineField, defineType } from "sanity";
 import { DocumentIcon } from "@sanity/icons";
 import { ValidationContext } from "@sanity/types";
-import { Box } from "@sanity/ui";
 
 export const CertificationType = defineType({
   name: "certification",
