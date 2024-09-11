@@ -27,7 +27,7 @@ export const CertificationType = defineType({
               const documentID = document?._id;
               if (!documentID) throw new Error("Document not found!");
 
-              const query = `!defined(*[_type == "projects" && !(_id in [$id, $draftID]) && position == $position][0]._id)`;
+              const query = `!defined(*[_type == "certification" && !(_id in [$id, $draftID]) && position == $position][0]._id)`;
               const isUnique = await client.fetch(query, {
                 position: value,
                 id: documentID?.replace("drafts.", "") || documentID,
