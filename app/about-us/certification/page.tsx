@@ -50,7 +50,7 @@ export default async function Certification() {
         <section className="grid grid-cols-1 lg:grid-cols-4 gap-6 px-10 lg:px-0 mt-20 lg:mt-32">
           {certificationData.map((certification) => (
             <div
-              key={`certification-${certification.title}`}
+              key={`certification-${certification.title}.`}
               className="w-full flex flex-col items-center justify-center gap-3 px-3 min-h-36 lg:min-h-40 max-h-40 lg:max-h-44"
               style={{ backgroundColor: certification.backgroundColor }}
             >
