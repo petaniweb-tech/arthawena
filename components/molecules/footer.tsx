@@ -8,7 +8,7 @@ import logosymbol from "@/assets/images/img-white-logo-symbol.png";
 export default function Footer() {
   return (
     <>
-      <main className="bg-arsenic px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl pt-12 lg:pt-14 pb-[60px] lg:pb-12">
+      <main className="bg-arsenic w-full px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl pt-12 lg:pt-14 pb-[60px] lg:pb-12">
         {/* <-- === Footer Mobile Start === --> */}
         <section className="flex flex-col lg:hidden">
           <div className="block lg:hidden w-auto">
