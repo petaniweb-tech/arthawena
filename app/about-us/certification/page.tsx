@@ -2,21 +2,14 @@
 import { client } from "@/sanity/lib/client";
 import { certificationQuery } from "@/sanity/services/certification-query";
 import { PortableText } from "next-sanity";
+import { CertificationType } from "@/types/certification-type";
 
 // Import Components //
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
 import portableTextComponents from "@/components/atoms/portable-text";
 
-type Certification = {
-  title: string;
-  description?: any[]; // Updated to reflect the Sanity Portable Text type
-  backgroundColor: string;
-  _createdAt: string;
-  _updatedAt: string;
-};
-
 export default async function Certification() {
-  const certificationData: Certification[] =
+  const certificationData: CertificationType[] =
     await client.fetch(certificationQuery);
 
   return (
@@ -55,18 +48,21 @@ export default async function Certification() {
         </section>
 
         <section className="grid grid-cols-1 lg:grid-cols-4 gap-6 px-10 lg:px-0 mt-20 lg:mt-32">
-          {certificationData.map((certification, index) => (
+          {certificationData.map((certification) => (
             <div
-              key={index}
+              key={`certification-${certification.title}`}
               className="w-full flex flex-col items-center justify-center gap-3 px-3 min-h-36 lg:min-h-40 max-h-40 lg:max-h-44"
               style={{ backgroundColor: certification.backgroundColor }}
             >
-              <div className="text-white text-sm font-semibold text-center whitespace-pre-line">
-                <PortableText
-                  value={certification.description}
-                  components={portableTextComponents}
-                />
-              </div>
+              {/* Only render description if it's not null or undefined */}
+              {certification.description && (
+                <div className="text-white text-sm font-semibold text-center whitespace-pre-line">
+                  <PortableText
+                    value={certification.description}
+                    components={portableTextComponents}
+                  />
+                </div>
+              )}
               <p className="text-[28px] lg:text-[32px] font-aeonik-medium text-white text-center pb-1">
                 {certification.title}
               </p>
