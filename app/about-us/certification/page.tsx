@@ -1,7 +1,7 @@
 // Importing Data //
 import { client } from "@/sanity/lib/client";
 import { certificationQuery } from "@/sanity/services/certification-query";
-import { PortableText } from "next-sanity";
+import { PortableText } from "@portabletext/react";
 import { CertificationType } from "@/types/certification-type";
 
 // Import Components //
@@ -55,14 +55,15 @@ export default async function Certification() {
               style={{ backgroundColor: certification.backgroundColor }}
             >
               {/* Only render description if it's not null or undefined */}
-              {certification.description && (
-                <div className="text-white text-sm font-semibold text-center whitespace-pre-line">
-                  <PortableText
-                    value={certification.description}
-                    components={portableTextComponents}
-                  />
-                </div>
-              )}
+              {certification.description &&
+                Array.isArray(certification.description) && (
+                  <div className="text-white text-sm text-center whitespace-pre-line">
+                    <PortableText
+                      value={certification.description}
+                      components={portableTextComponents}
+                    />
+                  </div>
+                )}
               <p className="text-[28px] lg:text-[32px] font-aeonik-medium text-white text-center pb-1">
                 {certification.title}
               </p>

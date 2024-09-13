@@ -2,12 +2,7 @@ export const certificationQuery = `
   *[_type == "certification"]{
     title,
     position,
-    description[] {
-      ...,
-      children[]{
-        text
-      }
-    },
+    description[],
     "backgroundColor": backgroundColor.hex,
     _createdAt,
     _updatedAt
