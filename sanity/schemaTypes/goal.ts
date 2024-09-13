@@ -1,11 +1,11 @@
 import { defineField, defineType } from "sanity";
-import { BlockElementIcon } from "@sanity/icons";
+import { DiamondIcon } from "@sanity/icons";
 
 export const GoalType = defineType({
     name: "goals",
     title: "Goals",
     type: "document",
-    icon: BlockElementIcon,
+    icon: DiamondIcon,
     fields: [
         defineField({
             name: "title",

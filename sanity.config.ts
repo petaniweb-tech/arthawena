@@ -2,6 +2,7 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schema } from "./sanity/schemaTypes";
+import { colorInput } from "@sanity/color-input";
 
 export default defineConfig({
   name: "default",
@@ -10,7 +11,7 @@ export default defineConfig({
   projectId: "ezpddyb6",
   dataset: "production",
 
-  plugins: [structureTool(), visionTool()],
+  plugins: [structureTool(), visionTool(), colorInput()],
 
   schema: {
     types: schema.types,
@@ -19,12 +20,10 @@ export default defineConfig({
   document: {
     newDocumentOptions: (prev, { currentUser, creationContext }) => {
       const { type, schemaType } = creationContext;
-      if (
-        type === "structure" &&
-        ["banners"].includes(schemaType)
-      ) {
+      if (type === "structure" && ["banners", "join-us"].includes(schemaType)) {
         return [];
       }
+
       return prev;
     },
   },
