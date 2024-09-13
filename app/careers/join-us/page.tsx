@@ -73,7 +73,7 @@ export default async function JoinUs() {
             PT. Arthawenasakti Gemilang
           </p>
  
-          <div className="mb-8">
+          <div className="mb-8 text-charcoal">
             <PortableText value={joinUsData?.address} components={portableTextComponents} />
           </div>
 
