@@ -13,7 +13,7 @@ import ourproducticon from "@/assets/images/home/our-product-icon.webp";
 
 export default function Showcase() {
   return (
-    <main className="w-screen lg:h-[520px] 2xl:h-[560px] block">
+    <main className="w-full lg:h-[520px] 2xl:h-[560px] block">
       <div className="w-full h-full gap-2 flex items-center justify-center">
         <div className="group flex relative w-full h-full object-cover object-center overflow-hidden">
           <Image

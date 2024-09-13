@@ -41,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${poppins.className} ${aeonikRegular.variable} ${aeonikMedium.variable}`}
+      className={`scroll-smooth overflow-y-scroll ${poppins.className} ${aeonikRegular.variable} ${aeonikMedium.variable}`}
     >
       <body className="bg-background">
         <Navbar />
