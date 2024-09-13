@@ -81,7 +81,7 @@ export default async function JoinUs() {
             Or Email :
           </p>
 
-          <a href="mailto:recruitment@arthawena.com" className="text-[15px] lg:text-lg font-medium">
+          <a href={`mailto:${joinUsData?.email}`} className="text-[15px] lg:text-lg font-medium">
             {joinUsData?.email}
           </a>
 
