@@ -4,7 +4,7 @@ import { ValidationContext } from "@sanity/types";
 
 export const ProductType = defineType({
   name: "product",
-  title: "Product",
+  title: "Our Product",
   type: "document",
   icon: PackageIcon,
   fields: [

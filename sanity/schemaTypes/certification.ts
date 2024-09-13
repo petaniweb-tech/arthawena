@@ -53,6 +53,11 @@ export const CertificationType = defineType({
         {
           type: "block",
           marks: {
+            decorators: [
+              { title: "Bold", value: "strong" },
+              { title: "Italic", value: "em" },
+              { title: "Underline", value: "underline" },
+            ],
             annotations: [],
           },
         },
