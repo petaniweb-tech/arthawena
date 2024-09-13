@@ -10,7 +10,7 @@ import IcWeCare from "@/assets/icons/sustainability/ic-we-care.webp";
 import IcCo2 from "@/assets/icons/sustainability/ic-co2.webp";
 import IcReuse from "@/assets/icons/sustainability/ic-reuse.webp";
 import IcTech from "@/assets/icons/sustainability/ic-tech.webp";
-import IcMinimizaWaste from "@/assets/icons/sustainability/ic-minimize-waste.webp";
+import IcMinimizeWaste from "@/assets/icons/sustainability/ic-minimize-waste.webp";
 import IcGreener from "@/assets/icons/sustainability/ic-greener.webp";
 import IcCorporate from "@/assets/icons/sustainability/ic-corporate.webp";
 
@@ -81,16 +81,16 @@ export default function ArthawenaForSustainability() {
           {/* Metrics Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
-              <Image src={IcCo2} alt="CO2 Icon" width={80} height={80} className="mx-auto mb-4" />
+              <Image src={IcCo2} alt="CO2 Icon" width={120} height={120} className="mx-auto mb-4" />
               <h4 className="text-lg mb-4">REDUCE GHG EMISSION <br /> INTENSITY 0.005 in 2023</h4>
               <p className="text-sm text-charcoal">in Tons CO₂eq / 1000 pcs</p>
             </div>
             <div>
-              <Image src={IcReuse} alt="Reuse Icon" width={80} height={80} className="mx-auto mb-4" />
+              <Image src={IcReuse} alt="Reuse Icon" width={120} height={120} className="mx-auto mb-4" />
               <h4 className="text-lg mb-4">REUSE ACTIVITY ON <br /> AVERAGE RATE 96%</h4>
             </div>
             <div>
-              <Image src={IcTech} alt="Technology Icon" width={80} height={80} className="mx-auto mb-4" />
+              <Image src={IcTech} alt="Technology Icon" width={120} height={120} className="mx-auto mb-4" />
               <h4 className="text-lg mb-4">NEWEST TECHNOLOGY <br /> ENABLE TO USE 10-14% <br /> LESS MATERIAL </h4>
               <p className="text-sm text-charcoal">Without compromising <br /> their initial quality</p>
             </div>
@@ -99,7 +99,7 @@ export default function ArthawenaForSustainability() {
       </section>
 
       {/* <-- === Content Section (We Evolve) === --> */}
-      <section className="bg-white py-16">
+      <section className="bg-white">
         <div className="px-content-padding-sm">
 
           <div className="w-full h-0.5 bg-primary mb-14"></div>
@@ -107,7 +107,7 @@ export default function ArthawenaForSustainability() {
           <div className="text-left mb-12">
             <h2 className="text-sm text-charcoal">WE EVOLVE</h2>
             <h3 className="text-2xl font-medium text-primary mt-4">Service</h3>
-            <p className="text-lg text-charcoal mt-4">
+            <p className="text-lg text-charcoal mt-8">
               Realizing the importance of a strong team, we prioritize building a supportive and skilled community.
               <span className="font-semibold"> Our team members are our greatest asset and we invest in their training and education to provide the best services possible. </span>
               Prioritizing Employee Health and Safety measures at work, we design our work environment with ergonomic considerations to enhance comforts that lead to improved productivity and efficiency.
@@ -133,6 +133,57 @@ export default function ArthawenaForSustainability() {
           </div>
 
           <div className="w-full h-0.5 bg-primary mt-14"></div>
+        </div>
+      </section>
+
+      {/* <-- === Content Section (We Care - Accountability) === --> */}
+      <section className="bg-white py-16">
+        <div className="px-content-padding-sm">
+          <div className="text-left mb-12">
+            <h2 className="text-sm text-charcoal">WE CARE</h2>
+            <h3 className="text-2xl font-medium text-primary mt-4">Accountability</h3>
+            <p className="text-lg text-charcoal mt-8">
+              We are known for our accountability to provide high-quality, reliable products for over 30 years with a dedicated team of staff, working together safely towards a greener future, one step at a time.
+            </p>
+            <p className="text-lg text-charcoal mt-4">
+              We have made consistent efforts to decrease our greenhouse gas emissions over time. <span className="font-semibold">Our main goal has been to minimize waste, encourage recycling, and engage in responsible reuse practices.</span> This involves managing liquid waste through the distillation process and reusing wastewater.
+            </p>
+            <p className="text-lg text-charcoal mt-4">
+              Renewable clean energy has been everyone&#39;s sustainability agenda. In Arthawena, our team works with local partners to reduce electricity and fuel consumption by installing solar panels and seeking other renewable energy sources going forward.
+            </p>
+            <p className="text-lg text-charcoal mt-4">
+              <span className="font-semibold">We took it a step further by reducing air pollutants through incineration machines</span>, and we also build new, one-step-further futures through corporate social responsibility initiatives across Indonesia.
+            </p>
+          </div>
+
+          <div className="text-start">
+            <a href="#!" className="inline-block text-primary border border-orange-500 py-1 px-4 rounded-full">
+              READ CSR PROGRAMS
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* <-- === Icon Section (Minimize Waste, Greener, CSR) === --> */}
+      <section className="bg-white py-16">
+        <div className="px-content-padding-sm grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          {/* Minimize Waste */}
+          <div>
+            <Image src={IcMinimizeWaste} alt="Minimize Waste Icon" width={120} height={120} className="mx-auto mb-4" />
+            <h4 className="text-lg font-medium mb-2">Minimize Waste</h4>
+          </div>
+
+          {/* Greener */}
+          <div>
+            <Image src={IcGreener} alt="Greener Icon" width={120} height={120} className="mx-auto mb-4" />
+            <h4 className="text-lg font-medium mb-2">Greener</h4>
+          </div>
+
+          {/* Corporate Social Responsibility */}
+          <div>
+            <Image src={IcCorporate} alt="Corporate Social Responsibility Icon" width={120} height={120} className="mx-auto mb-4" />
+            <h4 className="text-lg font-medium mb-2">Corporate Social <br /> Responsibility</h4>
+          </div>
         </div>
       </section>
     </>
