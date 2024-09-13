@@ -21,34 +21,38 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
         case "h6":
           return <h6 className="text-base font-normal">{value.children}</h6>;
         default:
+          // Handle paragraphs (default text blocks)
           return (
             <p>
-              {value.children.map((child: any, index: number) => (
-                <span key={index}>
-                  {child.marks && child.marks.includes("strong") ? (
-                    <strong>{child.text}</strong>
-                  ) : child.marks && child.marks.includes("em") ? (
-                    <em>{child.text}</em>
-                  ) : child.marks && child.marks.includes("strike-through") ? (
-                    <s>{child.text}</s>
-                  ) : child.marks && child.marks.includes("code") ? (
-                    <code className="bg-gray-200 text-red-600 p-1 rounded">
-                      {child.text}
-                    </code>
-                  ) : (
-                    child.text
-                  )}
-                </span>
-              ))}
+              {value.children.map((child: any, index: number) => {
+                if (typeof child === "string") {
+                  return <span key={index}>{child}</span>;
+                }
+                return (
+                  <span key={index}>
+                    {child.marks && child.marks.includes("strong") ? (
+                      <strong>{child.text}</strong>
+                    ) : child.marks && child.marks.includes("em") ? (
+                      <em>{child.text}</em>
+                    ) : child.marks && child.marks.includes("underline") ? (
+                      <u>{child.text}</u> // Underline support here
+                    ) : child.marks &&
+                      child.marks.includes("strike-through") ? (
+                      <s>{child.text}</s>
+                    ) : child.marks && child.marks.includes("code") ? (
+                      <code className="bg-gray-200 text-red-600 p-1 rounded">
+                        {child.text}
+                      </code>
+                    ) : (
+                      child.text
+                    )}
+                  </span>
+                );
+              })}
             </p>
           );
       }
     },
-    listItem: ({ value }: PortableTextTypeComponentProps<any>) => (
-      <li className="ml-4 list-disc">
-        {value.children.map((child: any, index: number) => child.text)}
-      </li>
-    ),
   },
   list: {
     bullet: ({ children }: any) => (
@@ -61,6 +65,9 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
     ),
     em: ({ children }: PortableTextMarkComponentProps<any>) => (
       <em className="italic">{children}</em>
+    ),
+    underline: ({ children }: PortableTextMarkComponentProps<any>) => (
+      <u className="underline">{children}</u> // Underline support added here
     ),
     strikeThrough: ({ children }: PortableTextMarkComponentProps<any>) => (
       <s>{children}</s>
