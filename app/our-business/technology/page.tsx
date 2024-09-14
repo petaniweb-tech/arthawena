@@ -14,12 +14,7 @@ import { PortableText } from "@portabletext/react";
 import portableTextComponents from "@/components/atoms/portable-text";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperNavigation from "@/components/atoms/swiper-navigation";
-import {
-  Autoplay,
-  EffectCreative,
-  Navigation,
-  Pagination,
-} from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-creative";
 import "swiper/css/navigation";
@@ -29,7 +24,6 @@ export default function Technology() {
   const [technologyData, setTechnologyData] = useState<TechnologyType[]>([]);
 
   useEffect(() => {
-    // Fetch data from Sanity
     const fetchTechnologyData = async () => {
       const data = await client.fetch(technologyQuery);
       setTechnologyData(data);
