@@ -88,7 +88,7 @@ export default function Technology() {
                     </div>
 
                     {/* Technology Description */}
-                    <p className="text-[15px] lg:text-base lg:w-full text-charcoal leading-relaxed text-opacity-80 lg:leading-[1.75]">
+                    <p className="text-[15px] lg:text-base lg:w-full text-charcoal leading-relaxed text-opacity-80 lg:leading-[1.75] whitespace-pre-line">
                       <PortableText
                         value={technology.description}
                         components={portableTextComponents}
