@@ -1,5 +1,6 @@
 import { defineField, defineType, ValidationContext } from "sanity";
 import { BlockElementIcon } from "@sanity/icons";
+import { positionValidation } from "../lib/position-validation";
 
 export const CSRType = defineType({
     name: "csr",
@@ -48,37 +49,10 @@ export const CSRType = defineType({
             title: "Position",
             type: "number",
             description: "The position of content",
-            validation: (Rule: any) =>
-                Rule.positive().custom(
-                    async (value: number, context: ValidationContext) => {
-                        try {
-                            if (!value) return true;
+            validation: (Rule: any) => Rule.positive().custom((value: number, context: ValidationContext) => {
+                return positionValidation("csr", value, context);
+            }),
 
-                            const { document, getClient } = context;
-
-                            const client = getClient({ apiVersion: "vX" });
-                            if (!client) throw new Error("Sanity client is not available");
-
-                            const documentID = document?._id;
-                            if (!documentID) throw new Error("Document not found!");
-
-                            const query = `!defined(*[_type == "csr" && !(_id in [$id, $draftID]) && position == $csr][0]._id)`;
-                            const isUnique = await client.fetch(query, {
-                                position: value,
-                                id: documentID?.replace("drafts.", "") || documentID,
-                                draftID: documentID,
-                            });
-
-                            if (isUnique) {
-                                return true;
-                            }
-
-                            throw new Error("Position must be unique");
-                        } catch (error: any) {
-                            return error.message;
-                        }
-                    }
-                ),
         }),
     ],
     preview: {
