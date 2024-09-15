@@ -2,6 +2,6 @@ export const goal = `*[_type == "goals"]{
     _id,
     title,
     description,
-    image,
+    "imageUrl": image.asset->url,
     position
   }`;

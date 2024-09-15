@@ -1,5 +1,6 @@
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, ValidationContext } from "sanity";
 import { DiamondIcon } from "@sanity/icons";
+import { positionValidation } from "../lib/position-validation";
 
 export const GoalType = defineType({
     name: "goals",
@@ -40,20 +41,33 @@ export const GoalType = defineType({
             name: "position",
             title: "Position",
             type: "number",
-            validation: (Rule) => Rule.required(),
+            description: "The position of content",
+            validation: (Rule: any) => Rule.positive().custom((value: number, context: ValidationContext) => {
+                return positionValidation("goals", value, context);
+            }),
+
         }),
     ],
     preview: {
         select: {
             title: "title",
             media: "image",
+            position: "position",
         },
         prepare(selection) {
-            const { title, media } = selection;
+            const { title, position, media } = selection;
             return {
                 title: title.toUpperCase(),
+                subtitle: `Position: ${position ? position : "-"}`,
                 media: media,
             };
         },
     },
+    orderings: [
+        {
+            title: "Position",
+            name: "positionDesc",
+            by: [{ field: "position", direction: "asc" }],
+        },
+    ],
 });
