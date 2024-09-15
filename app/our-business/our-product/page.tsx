@@ -55,6 +55,7 @@ export default async function OurProduct() {
                 priority={true}
                 width={1000}
                 height={1000}
+                quality={100}
                 className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 flex items-end p-8">
