@@ -61,7 +61,7 @@ export default function ArthawenaForSustainability() {
       {/* <-- === Content Section === --> */}
       <section className="mt-16">
         <div className="px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl">
-          <div className="text-left mb-12 lg:flex lg:space-x-12 lg:justify-between">
+          <div className="text-left mb-12 lg:mb-20 lg:flex lg:space-x-12 lg:justify-between">
             {/* Left Column: Title */}
             <div className="lg:w-1/3 lg:mt-8">
               <h2 className="text-sm lg:text-lg text-charcoal uppercase">We Grow</h2>
@@ -83,16 +83,16 @@ export default function ArthawenaForSustainability() {
           {/* Metrics Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div>
-              <Image src={IcCo2} alt="CO2 Icon" width={120} height={120} className="mx-auto mb-4" />
+              <Image src={IcCo2} alt="CO2 Icon" width={120} height={120} className="mx-auto mb-4 lg:mb-8" />
               <h4 className="text-lg mb-4">REDUCE GHG EMISSION <br /> INTENSITY 0.005 in 2023</h4>
               <p className="text-sm text-charcoal">in Tons CO₂eq / 1000 pcs</p>
             </div>
             <div>
-              <Image src={IcReuse} alt="Reuse Icon" width={120} height={120} className="mx-auto mb-4" />
+              <Image src={IcReuse} alt="Reuse Icon" width={120} height={120} className="mx-auto mb-4 lg:mb-8" />
               <h4 className="text-lg mb-4">REUSE ACTIVITY ON <br /> AVERAGE RATE 96%</h4>
             </div>
             <div>
-              <Image src={IcTech} alt="Technology Icon" width={120} height={120} className="mx-auto mb-4" />
+              <Image src={IcTech} alt="Technology Icon" width={120} height={120} className="mx-auto mb-4 lg:mb-8" />
               <h4 className="text-lg mb-4">NEWEST TECHNOLOGY <br /> ENABLE TO USE 10-14% <br /> LESS MATERIAL </h4>
               <p className="text-sm text-charcoal">Without compromising <br /> their initial quality</p>
             </div>
@@ -104,36 +104,40 @@ export default function ArthawenaForSustainability() {
 
       {/* <-- === Content Section (We Evolve) === --> */}
       <section>
-        <div className="px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl lg:flex lg:space-x-12">
+        <div className="px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl">
 
-          {/* Left Column: Title and Subtitle */}
-          <div className="lg:w-1/2 mb-8 lg:mb-0">
-            <h2 className="text-sm lg:text-lg text-charcoal uppercase">We Evolve</h2>
-            <h3 className="text-4xl lg:text-7xl font-aeonik-regular font-bold lg:font-normal text-primary mt-2 mb-8 lg:mt-2">Service</h3>
-          </div>
+          <div className="text-left mb-12 lg:flex lg:space-x-12 lg:justify-between">
+            {/* Left Column: Title and Subtitle */}
+            <div className="lg:w-1/2 mb-8 lg:mb-0">
+              <h2 className="text-sm lg:text-lg text-charcoal uppercase">We Evolve</h2>
+              <h3 className="text-4xl lg:text-7xl font-aeonik-regular font-bold lg:font-normal text-primary mt-2 mb-8 lg:mt-2">Service</h3>
+            </div>
 
-          {/* Right Column: Description and Button */}
-          <div className="lg:w-1/2">
-            <p className="text-lg text-charcoal mt-8 leading-relaxed font-light">
-              Realizing the importance of a strong team, we prioritize building a supportive and skilled community.
-              <span className="font-medium"> Our team members are our greatest asset and we invest in their training and education to provide the best services possible. </span>
-              Prioritizing Employee Health and Safety measures at work, we design our work environment with ergonomic considerations to enhance comforts that lead to improved productivity and efficiency.
-            </p>
-            <p className="text-lg text-charcoal mt-4">
-              <span className="font-semibold"> Our company prioritizes career development and promotes ethical conduct amongst our people and partners. </span>
-              Practice for transparency, non-discrimination, ethics, and gender equality are constantly emphasised in our workplace, while also valuing diversity to allow us to work towards the same goals. With well-equipped and thoughtfully designed facilities, our employees work safely, comfortably, and efficiently.
-            </p>
+            {/* Right Column: Description and Button */}
+            <div className="lg:w-1/2">
+              <p className="text-lg text-charcoal mt-8 leading-relaxed font-light">
+                Realizing the importance of a strong team, we prioritize building a supportive and skilled community.
+                <span className="font-medium"> Our team members are our greatest asset and we invest in their training and education to provide the best services possible. </span>
+                Prioritizing Employee Health and Safety measures at work, we design our work environment with ergonomic considerations to enhance comforts that lead to improved productivity and efficiency.
+              </p>
+              <p className="text-lg text-charcoal mt-4">
+                <span className="font-semibold"> Our company prioritizes career development and promotes ethical conduct amongst our people and partners. </span>
+                Practice for transparency, non-discrimination, ethics, and gender equality are constantly emphasised in our workplace, while also valuing diversity to allow us to work towards the same goals. With well-equipped and thoughtfully designed facilities, our employees work safely, comfortably, and efficiently.
+              </p>
 
-            {/* Button */}
-            <div className="mt-8 mb-14">
-              <a href="#!" className="inline-block text-primary border border-primary py-1 px-4 rounded-full hover:bg-primary hover:text-white transition duration-300">
-                READ OUR CULTURE
-              </a>
+              {/* Button */}
+              <div className="mt-8 mb-14">
+                <a href="#!" className="inline-block text-primary border border-primary py-1 px-4 rounded-full hover:bg-primary hover:text-white transition duration-300">
+                  READ OUR CULTURE
+                </a>
+              </div>
             </div>
           </div>
 
-        </div>
+          <div className="w-full h-0.5 bg-primary mb-16"></div>
 
+
+        </div>
 
       </section>
 
@@ -141,7 +145,6 @@ export default function ArthawenaForSustainability() {
       <section>
 
         <div className="px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl lg:flex lg:space-x-12">
-          <div className="w-full h-0.5 bg-primary mb-16"></div>
 
           {/* Left Column: Title and Subtitle */}
           <div className="lg:w-1/2 mb-8 lg:mb-0">
