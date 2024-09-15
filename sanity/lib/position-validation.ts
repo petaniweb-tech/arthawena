@@ -12,7 +12,7 @@ export const positionValidation = async (collectionName: string, value: number, 
       const documentID = document?._id;
       if (!documentID) throw new Error("Document not found!");
   
-      const query = `!defined(*[_type == "${collectionName}" && !(_id in [$id, $draftID]) && position == $"${collectionName}"][0]._id)`;
+      const query = `!defined(*[_type == "${collectionName}" && !(_id in [$id, $draftID]) && position == $${collectionName}][0]._id)`;
   
       const isUnique = await client.fetch(query, {
         position: value,
