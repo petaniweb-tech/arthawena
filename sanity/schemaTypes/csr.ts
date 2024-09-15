@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, ValidationContext } from "sanity";
 import { BlockElementIcon } from "@sanity/icons";
 
 export const CSRType = defineType({
@@ -38,36 +38,69 @@ export const CSRType = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
-            name: "images",
-            title: "Images",
-            type: "array",
-            of: [{ type: "image" }],
-            options: {
-                layout: "grid",
-            },
-            validation: (Rule) => Rule.required(),
+            name: "image",
+            title: "Image",
+            type: "image",
+            validation: (Rule: any) => Rule.required(), // Requires only one image
         }),
         defineField({
             name: "position",
             title: "Position",
             type: "number",
-            validation: (Rule) => Rule.required(),
+            description: "The position of content",
+            validation: (Rule: any) =>
+                Rule.positive().custom(
+                    async (value: number, context: ValidationContext) => {
+                        try {
+                            if (!value) return true;
+
+                            const { document, getClient } = context;
+
+                            const client = getClient({ apiVersion: "vX" });
+                            if (!client) throw new Error("Sanity client is not available");
+
+                            const documentID = document?._id;
+                            if (!documentID) throw new Error("Document not found!");
+
+                            const query = `!defined(*[_type == "csr" && !(_id in [$id, $draftID]) && position == $csr][0]._id)`;
+                            const isUnique = await client.fetch(query, {
+                                position: value,
+                                id: documentID?.replace("drafts.", "") || documentID,
+                                draftID: documentID,
+                            });
+
+                            if (isUnique) {
+                                return true;
+                            }
+
+                            throw new Error("Position must be unique");
+                        } catch (error: any) {
+                            return error.message;
+                        }
+                    }
+                ),
         }),
     ],
     preview: {
         select: {
             title: "title",
-            subtitle: "subtitle",
             media: "images",
+            position: "position",
         },
         prepare(selection) {
-            const { title, subtitle, media } = selection;
-            const firstImage = media.find((m: any) => m._type === "image");
+            const { title, position, media } = selection;
             return {
                 title: title.toUpperCase(),
-                subtitle: subtitle,
-                media: firstImage,
+                subtitle: `Position: ${position ? position : "-"}`,
+                media: media,
             };
         },
     },
+    orderings: [
+        {
+            title: "Position",
+            name: "positionDesc",
+            by: [{ field: "position", direction: "asc" }],
+        },
+    ],
 });

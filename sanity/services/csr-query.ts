@@ -4,6 +4,6 @@ export const csrQuery = `*[_type == "csr"]{
     titleColor,
     subtitle,
     description,
-    images,
+    "imageUrl": image.asset->url,
     position
   }`;
