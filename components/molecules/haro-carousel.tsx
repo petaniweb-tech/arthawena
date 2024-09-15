@@ -16,6 +16,7 @@ import { bannerQuery } from "@/sanity/services/banner-query";
 
 // Import Components //
 import VideoPlayer from "../atoms/video-player";
+import SwiperNavigation from "../atoms/swiper-navigation";
 
 interface BannerItem {
   type: string;
@@ -59,19 +60,10 @@ export default function HeroCarousel() {
   return (
     <Swiper
       ref={swiperRef}
+      speed={700}
       grabCursor={false}
-      modules={[Autoplay, EffectCreative]}
+      modules={[Autoplay]}
       loop={true}
-      effect={"creative"}
-      creativeEffect={{
-        prev: {
-          shadow: true,
-          translate: ["-20%", 0, -1],
-        },
-        next: {
-          translate: ["100%", 0, 0],
-        },
-      }}
       onSlideChange={(swiper) => {
         if (timeoutRef.current) {
           clearTimeout(timeoutRef.current);
@@ -109,6 +101,7 @@ export default function HeroCarousel() {
       }}
       className="w-full h-screen"
     >
+      <SwiperNavigation />
       {banners.map((banner, index) => {
         if (!banner?.url) {
           return "";
