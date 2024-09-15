@@ -3,7 +3,7 @@ import { BookIcon } from '@sanity/icons'
 import { ValidationContext } from "@sanity/types";
 
 export const ArthawenaAtGlanceType = defineType({
-  name: "arthawena-at-glance",
+  name: "arthawenaAtGlance",
   title: "Arthawena at Glance",
   type: "document",
   icon: BookIcon,
@@ -27,7 +27,7 @@ export const ArthawenaAtGlanceType = defineType({
               const documentID = document?._id;
               if (!documentID) throw new Error("Document not found!");
 
-              const query = `!defined(*[_type == "arthawena-at-glance" && !(_id in [$id, $draftID]) && position == $position][0]._id)`;
+              const query = `!defined(*[_type == "arthawenaAtGlance" && !(_id in [$id, $draftID]) && position == $position][0]._id)`;
               const isUnique = await client.fetch(query, {
                 position: value,
                 id: documentID?.replace("drafts.", "") || documentID,
