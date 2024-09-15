@@ -6,6 +6,7 @@ import { ProductType } from "./product";
 import { ArthawenaAtGlanceType } from "./arthawena-at-glance";
 import { TechnologyType } from "./technology";
 import { CSRType } from "./csr";
+import { GoalType } from "./goal";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -16,5 +17,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ArthawenaAtGlanceType,
     TechnologyType,
     CSRType,
+    GoalType,
   ],
 };
