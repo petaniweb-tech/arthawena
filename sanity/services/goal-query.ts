@@ -1,4 +1,4 @@
-export const goal = `*[_type == "goals"]{
+export const goalQuery = `*[_type == "goals"]{
     _id,
     title,
     description,
