@@ -14,20 +14,20 @@ export const heroSustainType = [
       imageSrc: IcWeGrow,
       altText: "We Grow Icon",
       description: "Excellent",
-      titlePosition: TitlePosition.LEFT,
+      isReversed: false,
     },
     {
       title: "We Evolve",
       imageSrc: IcWeEvolve,
       altText: "We Evolve Icon",
       description: "Service",
-      titlePosition: TitlePosition.RIGHT,
+      isReversed: true,
     },
     {
       title: "We Care",
       imageSrc: IcWeCare,
       altText: "We Care Icon",
       description: "Accountability",
-      titlePosition: TitlePosition.LEFT,
+      isReversed: false,
     },
   ];
