@@ -1,12 +1,7 @@
 export const arthawenaAtGlanceQuery = `*[_type == "arthawena-at-glance"]{
     title,
     position,
-    description[] {
-      ...,
-      children[]{
-        text
-      }
-    },
+    description[],
     employee,
     location,
     "imageUrl": image.asset->url,

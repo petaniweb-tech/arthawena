@@ -1,9 +1,17 @@
+// Import Data //
+import { client } from "@/sanity/lib/client";
+import { PortableText } from "@portabletext/react";
+import { arthawenaAtGlanceQuery } from "@/sanity/services/arthawena-at-glance-query"
+import { ArthawenaAtGlanceType } from "@/types/arthawena-at-glance-type"
+
 // Import Components //
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
-import Image from "next/image"
-import { Images } from "./images";
+import Image from "next/image";
+import portableTextComponents from "@/components/atoms/portable-text";
 
-export default function ArthawenaAtGlance() {
+
+export default async function ArthawenaAtGlance() {
+  const arthawenaAtGlanceData: ArthawenaAtGlanceType[] = await client.fetch(arthawenaAtGlanceQuery);
   return (
     <>
       {/* <-- === Breadcrumb Start === --> */}
@@ -17,7 +25,7 @@ export default function ArthawenaAtGlance() {
       {/* <-- === Breadcrumb End === --> */}
 
       {/* <-- === The content must be placed right here === --> */}
-      <main className="px-content-padding-sm pt-content-padding-top-sm lg:pt-content-padding-top-lg 2xl:pt-content-padding-top-2xl lg:px-content-padding-lg 2xl:px-content-padding-2xl">
+      <main className="px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl pt-content-padding-top-sm lg:pt-content-padding-top-lg 2xl:pt-content-padding-top-2xl mb-40 lg:mb-48">
 
       {/* section at glance */}
       <section className="flex flex-col gap-8 lg:items-center justify-center">
@@ -27,192 +35,45 @@ export default function ArthawenaAtGlance() {
         <br className="hidden lg:block" />towards endless possibilities in harmony with the world.</p>
         <div className="lg:w-full lg:h-1 lg:bg-primary"></div>
       </section>
-    
-      
-      <section className="flex flex-col mt-20 gap-20 lg:items-center lg:justify-center lg:w-auto">
-      { /* section A1 1975 the beginning */}
-      <div className="text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image 
-        src={Images.asset1}
-        alt="A1 1975 - The Beginning"
-        priority={true}
-        className="w-[78px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">1975 - The Beginning</h1>
-        <p className="font-light text-21 lg-text-center">CV. Benteng Mas. Has a food processing unit and corned beef packaging processing unit.</p>
-        <p className="font-light text-21 mt-7"><span className="font-medium">Number of employees : 10</span>
-        <br />Malang, East Java</p>
-      </div>
 
-      {/* section 1991 - Expanding Focus */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image
-          src={Images.asset2}
-          alt="Arthawena 1991 Expanding Focus"
-          priority={true}
-          className="w-[230px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">1991 - Expanding Focus</h1>
-        <p className="font-light text-21 lg:text-center"><span className="mt-6 font-medium">Changed company name to PT Arthawenasakti Gemilang, </span>engaged in can packaging for 
-        general products, such as paint, chemicals, varnish, and others.</p>
-      </div>
+      <section className="flex flex-col mt-20 gap-16 lg:items-center lg:justify-center lg:w-auto">
+      {arthawenaAtGlanceData.map((arthawenaAtGlance) => (
+      <div key={`arthawena-at-glance-${arthawenaAtGlance.title}`} className="text-charcoal flex flex-col lg:justify-center lg:items-center lg:w-[70%]">
+        <div className="w-fit block object-center">
+                <Image
+                  src={arthawenaAtGlance.imageUrl}
+                  alt={arthawenaAtGlance.title}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  priority={true}
+                  quality={100}
+                  className="w-auto h-20 lg:[70px]"
+                ></Image>
+              </div>
+              <h1 className="text-2xl font-semibold my-7 lg:mt-12">
+                {arthawenaAtGlance.title}
+              </h1>
 
-      {/* section 1998 - Economic Crisis */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image
-          src={Images.asset3}
-          alt="Arthawena 1998 Economic Crisis"
-          priority={true}
-          className="w-[90px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">1998 - Economic Crisis</h1>
-        <p className="font-light text-21 lg:text-center">During the economic monetary crisis, we expanded by renting another business location to {""}
-        work on Pertamina&apos;s tender products. <span className="font-medium">Successfully survived <span className="lg:font-light">the economic crisis and </span></span>
-        <span className="font-medium text-21">became stronger in its field</span>.</p>
-        <p className="font-medium text-21 mt-7 lg:font-light">Number of employees : around 250</p>
-      </div>
+        {/* Description Section */}
+        {arthawenaAtGlance.description &&
+          Array.isArray(arthawenaAtGlance.description) && (
+        <div className="text-opacity-80 text-base leading-relaxed lg:text-center whitespace-pre-line">
+          <PortableText 
+          value={arthawenaAtGlance.description}
+          components={portableTextComponents}
+          />
+        </div>
+        )}
 
-      {/* 2004 - Business Expansion */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-      <Image
-        src={Images.asset4}
-        alt="2004 - Business Expansion"
-        priority={true}
-        className="w-[260px] h-auto"
-      ></Image>
-      <h1 className="text-2xl font-semibold my-7">2004 Business Expansion</h1>
-      <p className="font-light text-21 lg:text-center"><span className="font-medium lg:font-light">Completed construction of the new plant on Jl. Kertanegara 85 Girimoyo Karangploso, Kab. Malang. </span>
-      <span className="lg:font-medium">Moving the previous business location</span> to a new factory in plant A2.</p>
-      <p className="font-medium text-21 mt-7 lg:hidden">Number of employees : 400</p>
+        {/* Employee and Location Section */}
+        <div>
+        <p className="text-opacity-80 text-base font-medium mt-6 lg:text-center">{arthawenaAtGlance.employee}</p>
+        <p className="text-opacity-80 text-base font-medium lg:text-center">{arthawenaAtGlance.location}</p>
+        </div>
       </div>
-
-      {/* 2005 - First Certification */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image
-          src={Images.asset5}
-          alt="2005 - First Certification"
-          priority={true}
-          className="w-[180px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">2005 - First Certification</h1>
-        <p className="font-light text-21 lg:text-center"><span className="font-medium lg:font-light">Implementation of ISO 9001:2000,</span>{" "}a proud
-        achievement for the company with the <span className="lg:font-medium">first ISO certification obtained by PT Arthawena</span>, as a commitment to producing goods with consistent 
-        and guaranteed quality.</p>
-      </div>
-
-      {/* 2006 - New Location */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image
-          src={Images.asset6}
-          alt="2006 - New Location"
-          priority={true}
-          className="w-[290px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">2006 - New Location</h1>
-        <p className="font-light text-21 lg:text-center"><span className="font-medium"><span className="lg:font-light">Inauguration of </span>a new plant in the Tangerang </span>
-        <span className="lg:font-medium">area </span>as an effort to get closer to customers in the Jabodetabek area, and to be more competitive in terms of quality and service.</p>
-      </div>
-
-      {/* 2008 - Renovation */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image
-          src={Images.asset7}
-          alt="2008 - Renovation"
-          priority={true}
-          className="w-[120px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">2008 - Renovation</h1>
-        <p className="font-light text-21 lg:text-center"><span className="font-medium">Renovation and expansion of the A1 Malang factory, <span className="lg:font-light">becoming a raw material warehouse & raw material cutting process unit to support the core plant in Malang. </span></span>
-        Implementation of an integrated HR management system, such as Talent Management, Performance Assessment and competency-based remuneration.</p>
-      </div>
-
-      {/* 2010 - Advanced Certification */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image
-          src={Images.asset8}
-          alt="2010 - Advanced Certification"
-          priority={true}
-          className="w-[260px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">2010 - Advanced Certification</h1>
-        <p className="font-light text-21 lg:text-center"><span className="font-medium">Successfully passed ISO 9001:2008 certification, </span>as proof of our commitment to continuously improving product quality and continuous improvement of our internal systems.</p>
-      </div>
-
-      {/* 2012-2013 - Plant Expansion */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image
-          src={Images.asset9}
-          alt="2012-2013 - Plant Expansion"
-          priority={true}
-          className="w-[130px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">2012-2013 - Plant Expansion</h1>
-        <p className="font-light text-21 lg:text-center"><span className="font-medium lg:font-light">Expansion, construction of several finished product warehouses and additional printing units at the Plant at A2 in Malang. </span>
-        With the <span className="lg:font-medium">increase in the number of sales and customers, </span>we have made quite a large investment to increase existing capacity.</p>
-      </div>
-
-      {/* div 2014 - New Plant */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image
-          src={Images.asset10}
-          alt="2014 - New Plant"
-          priority={true}
-          className="w-[220px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">2014 - New Plant</h1>
-        <p className="font-light text-21 lg:text-center"><span className="font-medium lg:font-light">Inauguration of the <span className="lg:font-medium">new operational Plant in Tangerang Cikupa, </span></span>
-        in response to demands of customer and market expansion that existed at that time.</p>
-      </div>
-
-      {/* div 2015 - Acquire */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image
-          src={Images.asset11}
-          alt="2015 - Acquire"
-          priority={true}
-          className="w-[220px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">2015 - Acquire</h1>
-        <p className="font-light text-21 lg:text-center"><span className="font-medium">Pt. Arthawena acquire can company PT Jasa Lestari in Bogor, </span>to increase production capacity and gain more market share.</p>
-      </div>
-
-      {/* 2017 - Achieved New Certification */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image
-          src={Images.asset12}
-          alt="2017 - Achieved New Certification"
-          priority={true}
-          className="w-[230px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">2017 - Achieved New Certification</h1>
-        <p className="font-light text-21 lg:text-center"><span className="font-medium">Successfully achieved ISO 9001:2015 <span className="lg:font-light">certification</span></span>, 
-        as a sign of our success in achieving an internal control and documentation system that has been tested and recognized by standard our international customers.</p>
-      </div>
-
-      {/* 2018 - New Speed */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%]">
-        <Image
-          src={Images.asset13}
-          alt="2018 - New Speed"
-          priority={true}
-          className="w-[120px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">2018 - New Speed</h1>
-        <p className="font-light text-21 lg:text-center">We entered <span className="font-medium"><span className="lg:font-light">a new </span>aerosol production line, </span>adding product categories and larger customers.</p>
-      </div>
-
-      {/* 2023 - FSSC Certification */}
-      <div className=" text-charcoal flex flex-col lg:items-center lg:w-[59%] mb-32">
-        <Image
-          src={Images.asset14}
-          alt="2023 - FSSC Certification"
-          priority={true}
-          className="w-[170px] h-auto"
-        ></Image>
-        <h1 className="text-2xl font-semibold my-7">2023 - FSSC Certification</h1>
-        <p className="font-light text-21 lg:text-center"><span className="font-medium"><span className="lg:font-light">We expand into the sardine market and </span>successfully achieve FSSC 22000 certification, </span>
-        which means we have the right to produce various food products healthily and safely.</p>
-      </div>
+      ))
+      }
       </section>
     </main>
     </>
