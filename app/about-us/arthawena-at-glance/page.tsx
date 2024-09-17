@@ -41,7 +41,7 @@ export default async function ArthawenaAtGlance() {
           <div className="lg:w-full lg:h-1 lg:bg-primary"></div>
         </section>
 
-        <section className="flex flex-col mt-16 gap-20 lg:items-center lg:justify-center lg:w-auto px-2">
+        <section className="flex flex-col mt-16 lg:mt-20 gap-20 lg:items-center lg:justify-center lg:w-auto px-2">
           {arthawenaAtGlanceData.map((arthawenaAtGlance) => (
             <div
               key={`arthawena-at-glance-${arthawenaAtGlance.title}`}
