@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   PortableTextReactComponents,
   PortableTextMarkComponentProps,
@@ -26,7 +28,16 @@ const portableTextComponents: Partial<PortableTextReactComponents> = {
             <p>
               {value.children.map((child: any, index: number) => {
                 if (typeof child === "string") {
-                  return <span key={index}>{child}</span>;
+                  return (
+                    <span key={index}>
+                      {child.split("\n").map((text: string, i: number) => (
+                        <React.Fragment key={i}>
+                          {i > 0 && <br />}
+                          {text}
+                        </React.Fragment>
+                      ))}
+                    </span>
+                  );
                 }
                 return (
                   <span key={index}>

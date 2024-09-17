@@ -79,21 +79,21 @@ export default function Technology() {
                   <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-7 mt-9 lg:mt-14">
                     <div className="block lg:w-full">
                       {/* Technology Specification */}
-                      <p className="text-[15px] lg:text-base text-charcoal text-opacity-85 whitespace-pre-line leading-[1.7] lg:leading-[1.75]">
+                      <div className="text-[15px] lg:text-base text-charcoal text-opacity-85 whitespace-pre-line leading-[1.7] lg:leading-[1.75]">
                         <PortableText
                           value={technology.specification}
                           components={portableTextComponents}
                         />
-                      </p>
+                      </div>
                     </div>
 
                     {/* Technology Description */}
-                    <p className="text-[15px] lg:text-base lg:w-full text-charcoal leading-relaxed text-opacity-80 lg:leading-[1.75] whitespace-pre-line">
+                    <div className="text-[15px] lg:text-base lg:w-full text-charcoal leading-relaxed text-opacity-80 lg:leading-[1.75] whitespace-pre-line">
                       <PortableText
                         value={technology.description}
                         components={portableTextComponents}
                       />
-                    </p>
+                    </div>
                   </div>
                 </div>
 
