@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils";
-import { TitlePosition } from "@/types/sustainability";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 
@@ -13,7 +11,7 @@ interface HeroItemProps {
 
 export const HeroItem = ({ title, imageSrc, altText, description, isReversed }: HeroItemProps) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center text-center lg:space-x-10 lg:space-y-0" dir={isReversed ? 'rtl' : 'ltr'}>
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center text-center lg:space-x-10 lg:space-y-2" dir={isReversed ? 'rtl' : 'ltr'}>
       {/* Title */}
       <h1 className={`font-aeonik-regular text-4xl mb-4 lg:mb-0 ${isReversed ? 'lg:ml-10' : 'ml-0'}`}>
         {title}
