@@ -130,7 +130,6 @@ export default function HeroCarousel() {
                   alt={`Slide ${index}`}
                   priority={true}
                   sizes="100vw"
-                  objectFit="cover"
                   width={100}
                   height={100}
                   className="w-full h-screen object-cover object-center"
