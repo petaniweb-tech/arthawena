@@ -1,8 +1,8 @@
 // Import Components //
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
 import Image from "next/image";
-import HeroBackground from "@/assets/images/sustainability/img-hero-background.webp";
-import Hao from "@/assets/images/sustainability/img-goal-mobile.webp";
+import MobileBackground from "@/assets/images/sustainability/img-goal-mobile.webp";
+import DesktopBackground from "@/assets/images/sustainability/img-goal-desktop.webp";
 import GoalItem from "../components/atoms/goal-item";
 import { client } from "@/sanity/lib/client";
 import { goalQuery } from "@/sanity/services/goal-query";
@@ -30,16 +30,31 @@ export default async function Arthawena2030Goals() {
       <div className="pt-[83px]">
         {/* Hero background image */}
         <Image
-          src={Hao}
+          src={MobileBackground}
           alt="Hero Background"
           priority
+          className="lg:hidden"
+        />
+
+        <Image
+          src={DesktopBackground}
+          alt="Hero Background"
+          priority
+          className="lg:block hidden"
         />
       </div>
 
       {/* <-- === New Content Section === --> */}
-      <section className="px-content-padding-sm py-16 lg:py-24 lg:px-24 bg-white">
-        {goalData.map((item, index) => (<GoalItem key={index} title={item.title} description={item.description ?? []} image={item.imageUrl} />))}
-
+      <section className="px-content-padding-sm lg:px-64 py-16 lg:py-24 bg-white">
+        {goalData.map((item, index) => (
+          <GoalItem
+            key={index}
+            title={item.title}
+            description={item.description ?? []}
+            image={item.imageUrl}
+            index={index}
+          />
+        ))}
       </section>
     </>
   );

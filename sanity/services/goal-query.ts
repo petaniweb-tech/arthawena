@@ -4,4 +4,4 @@ export const goalQuery = `*[_type == "goals"]{
     description,
     "imageUrl": image.asset->url,
     position
-  }`;
+  } | order(position asc)`;

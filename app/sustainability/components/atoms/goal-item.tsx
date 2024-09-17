@@ -9,19 +9,17 @@ interface GoalItemProps {
     title: string;
     image: string | StaticImport;
     description: any[];
+    index: number;
 }
 
-const GoalItem = ({ title, description, image }: GoalItemProps) => {
+const GoalItem = ({ title, description, image, index }: GoalItemProps) => {
     return (
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8" dir="rtl">
             {/* Text Content */}
             <div className="flex flex-col justify-center">
                 <h2 className="text-3xl lg:text-4xl text-orange-600 mb-6">
                     {title}
                 </h2>
-                {/* <p className="text-lg text-charcoal">
-                 {description}
-                </p> */}
 
                 {description &&
                     Array.isArray(description) && (
@@ -38,7 +36,7 @@ const GoalItem = ({ title, description, image }: GoalItemProps) => {
             <Image
                 src={image}
                 alt="2030 Goals"
-                className="rounded-lg shadow-lg w-full h-auto max-w-[500px] max-h-[300px]"
+                className="rounded-lg shadow-lg w-full h-auto max-w-[500px] max-h-[300px] mb-16"
                 objectFit="cover"
                 width={500}
                 height={300}
