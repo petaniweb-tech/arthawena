@@ -12,8 +12,6 @@ export default async function Arthawena2030Goals() {
 
   const goalData: GoalType[] = await client.fetch(goalQuery);
 
-  console.log(goalData);
-
   return (
     <>
       {/* <-- === Breadcrumb Start === --> */}
