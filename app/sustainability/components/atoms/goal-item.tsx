@@ -22,7 +22,7 @@ const GoalItem = ({ title, description, image, index }: GoalItemProps) => {
         <h2 className="text-3xl lg:text-4xl text-orange-600 mb-6">{title}</h2>
 
         {description && Array.isArray(description) && (
-          <div className="text-charcoal">
+          <div className="text-charcoal whitespace-pre-line">
             <PortableText
               value={description}
               components={portableTextComponents}
