@@ -15,15 +15,15 @@ const poppins = Poppins({
 });
 
 const aeonikRegular = localFont({
-  src: "./aeonik-regular.otf",
+  src: "./fonts/aeonik-regular.otf",
   weight: "400",
   style: "normal",
   variable: "--font-aeonik-regular",
 });
 
 const aeonikMedium = localFont({
-  src: "./aeonik-medium.otf",
-  weight: "700",
+  src: "./fonts/aeonik-medium.otf",
+  weight: "500",
   style: "normal",
   variable: "--font-aeonik-medium",
 });
