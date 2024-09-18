@@ -1,7 +1,7 @@
 import Link from "next/link";
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
 import Image from "next/image";
-import joinUsImage from "@/assets/images/img-join-us.png";
+import joinUsImage from "@/assets/images/img-join-us.webp";
 import { client } from "@/sanity/lib/client";
 import portableTextComponents from "@/components/atoms/portable-text";
 import { PortableText } from "next-sanity";
@@ -28,9 +28,9 @@ export default async function JoinUs() {
           src={joinUsImage}
           alt="Join Us"
           layout="fill"
+          priority={true}
           objectFit="cover"
           quality={100}
-          placeholder="blur"
         />
         <div className="absolute inset-0 flex flex-col justify-end lg:justify-start items-start text-white px-content-padding-sm lg:px-0 pb-28">
           <div className="lg:bg-background lg:w-full lg:px-content-padding-lg 2xl:px-content-padding-2xl">
