@@ -83,9 +83,11 @@ export default function Footer() {
 
             <div className="flex items-center justify-between w-full">
               <div className="flex flex-col items-start justify-center gap-4">
-                <p className="text-[13px] text-white font-medium">
-                  arthawena.com
-                </p>
+                <Link href="/">
+                  <p className="text-[13px] text-white font-medium">
+                    arthawena.com
+                  </p>
+                </Link>
                 <h4 className="text-4xl leading-tight text-white font-aeonik-medium">
                   Arthawena, The Reliable Partner
                   <br />
