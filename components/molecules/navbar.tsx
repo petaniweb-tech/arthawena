@@ -79,7 +79,7 @@ function Navbar() {
             isOpen && "bg-opacity-100"
           )}
         >
-          <Link href="/">
+          <Link href="/" onClick={closeMenu}>
             <Image
               src={logo}
               alt="Arthawena Logo"
