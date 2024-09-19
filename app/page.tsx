@@ -29,7 +29,7 @@ export default async function Home() {
             THE MOST RELIABLE TIN CAN SUPPLIER IN INDONESIA
           </h4>
 
-          <div className="flex items-center w-fit text-xs lg:text-[17px] tracking-wider font-semibold lg:font-aeonik-medium text-white justify-center py-[6px] lg:pt-3 lg:pb-[14px] px-5 lg:px-6 rounded-full bg-white bg-opacity-10 lg:bg-opacity-0 border border-white border-opacity-40 lg:border-opacity-65 mt-2 lg:mt-4">
+          <div className="flex items-center w-fit text-xs lg:text-[17px] tracking-wider font-semibold lg:font-aeonik-regular text-white justify-center py-[6px] lg:pt-3 lg:pb-[14px] px-5 lg:px-6 rounded-full bg-white bg-opacity-10 lg:bg-opacity-0 border border-white border-opacity-40 lg:border-opacity-65 mt-2 lg:mt-4">
             SINCE 1991
           </div>
         </div>
