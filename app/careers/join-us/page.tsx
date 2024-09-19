@@ -31,6 +31,7 @@ export default async function JoinUs() {
           priority={true}
           objectFit="cover"
           quality={100}
+          className="brightness-[.85] lg:brightness-100"
         />
         <div className="absolute inset-0 flex flex-col justify-end lg:justify-start items-start text-white px-content-padding-sm lg:px-0 pb-28">
           <div className="lg:bg-background lg:w-full lg:px-content-padding-lg 2xl:px-content-padding-2xl">
