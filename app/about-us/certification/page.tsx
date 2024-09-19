@@ -64,7 +64,7 @@ export default async function Certification() {
                     />
                   </div>
                 )}
-              <p className="text-[28px] lg:text-[32px] font-aeonik-medium text-white text-center pb-1">
+              <p className="text-[28px] lg:text-[32px] font-aeonik-medium text-white text-center pb-1 tracking-[.05em]">
                 {certification.title}
               </p>
             </div>
