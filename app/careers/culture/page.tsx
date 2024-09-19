@@ -1,6 +1,7 @@
 // Import Components //
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
 import Image from "next/image";
+import cultureImageMobile from "@/assets/images/culture/img-culture-mobile.webp";
 import cultureImage from "@/assets/images/culture/img-culture.webp";
 import asset1 from "@/assets/images/culture/Asset1.webp";
 import asset2 from "@/assets/images/culture/Asset2.webp";
@@ -26,15 +27,23 @@ export default function Culture() {
       <div className="relative w-full h-screen lg:h-[500px] lg:mt-52">
         <div>
           <Image
+            src={cultureImageMobile}
+            alt="Culture"
+            layout="fill"
+            objectFit="cover"
+            quality={100}
+            className="object-cover object-right block lg:hidden"
+          />
+          <Image
             src={cultureImage}
             alt="Culture"
             layout="fill"
             objectFit="cover"
             quality={100}
-            className="object-cover object-right"
+            className="object-cover object-right hidden lg:block"
           />
         </div>
-        <div className="absolute inset-0 flex flex-col justify-start lg:w-full lg:items-start h-fit bg-gradient-to-b from-white via-white to-transparent pt-content-padding-top-sm lg:pt-0 lg:bg-none lg:justify-start items-start px-content-padding-sm lg:px-0 pb-[120px]">
+        <div className="absolute inset-0 flex flex-col justify-start lg:w-full lg:items-start h-fit bg-gradient-to-b from-white via-white via-70% to-transparent pt-content-padding-top-sm lg:pt-0 lg:bg-none lg:justify-start items-start px-content-padding-sm lg:px-0 pb-[110px]">
           <div className="lg:bg-background lg:w-full lg:px-content-padding-lg 2xl:px-content-padding-2xl">
             <h1 className="font-aeonik-medium text-5xl text-primary mb-8">
               Culture
