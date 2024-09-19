@@ -47,15 +47,15 @@ export default function CsrPrograms() {
       {/* <-- === Breadcrumb End === --> */}
 
       {/* <-- === CSR Programs Section === --> */}
-      <section className="relative pt-content-padding-top-sm lg:text-left">
+      <section className="relative pt-content-padding-top-sm lg:pt-content-padding-top-lg 2xl:pt-content-padding-top-2xl">
         <div className="px-content-padding-sm">
           {/* Title */}
-          <h1 className="font-aeonik-medium text-4xl lg:text-5xl  text-orange-600 mb-8">CSR Programs</h1>
+          <h1 className="font-aeonik-medium text-[50px] lg:text-center lg:text-6xl  text-primary mb-7">CSR Programs</h1>
 
           {/* Description */}
-          <p className="text-[15px] font-light lg:text-xl text-charcoal mb-8">
-            We believe in taking action to create a positive impact on the communities and world around us.
-            Through CSR initiatives, we strive to make a difference and create a better future for all.
+          <p className="text-[15px] font-light lg:text-center lg:text-[17px] text-charcoal mb-8">
+            We believe in taking action to create a positive impact on the <br className="hidden lg:block" />communities and world around us.
+            Through CSR initiatives, we strive <br className="hidden lg:block" />to make a difference and create a better future for all.
           </p>
         </div>
 
@@ -65,108 +65,112 @@ export default function CsrPrograms() {
         {/* Map Background */}
         <div className="relative">
 
-          <div className="absolute top-0 right-10">
+          <div className="absolute top-0 right-10 lg:left-48 lg:top-0 object-cover object-center">
             <Image
               src={ImageFlag}
               alt="Indonesian Flag"
-              width={30}
-              height={30}
-              className="object-contain"
+              width={50}
+              height={50}
+              objectFit="cover"
             />
           </div>
+
 
           <Image
             src={ImageBackground}
             alt="Map Background"
             width={1024}
             height={1980}
-            className="h-[180px] w-full"
+            className="h-[180px] lg:h-auto w-full object-cover object-center"
           />
 
+
+
           {/* Legend for Sponsors */}
-          <div className="absolute bottom-8 right-8 bg-white p-6 rounded-lg shadow-lg w-[250px]">
+          {/* <div className="absolute bottom-8 right-8  lg:-bottom-24 lg:right-80 p-6 shadow-lg w-fit bg-white">
             <ul className="text-left space-y-4 text-[13px]">
               <li className="flex items-center">
-                <span className="block w-4 h-4 bg-yellow-500 mr-3 rounded-full"></span> Habitat for Humanity Indonesia
+                <span className="block w-4 h-4 bg-yellow-500 rounded-full" />
+                <span className="mx-2">:</span>
+                <span>Habitat for Humanity Indonesia</span>
               </li>
               <li className="flex items-center">
-                <span className="block w-4 h-4 bg-blue-500 mr-3 rounded-full"></span> Wahana Visi Indonesia
+                <span className="block w-4 h-4 bg-blue-500 rounded-full" />
+                <span className="mx-2">:</span>
+                <span>Wahana Visi Indonesia</span>
               </li>
               <li className="flex items-center">
-                <span className="block w-4 h-4 bg-green-500 mr-3 rounded-full"></span> Oxfam Foundation
+                <span className="block w-4 h-4 bg-green-500 rounded-full" />
+                <span className="mx-2">:</span>
+                <span>Oxfam Foundation</span>
               </li>
               <li className="flex items-center">
-                <span className="block w-4 h-4 bg-red-500 mr-3 rounded-full"></span> Direct Emergency Assistance
+                <span className="block w-4 h-4 bg-red-500 rounded-full" />
+                <span className="mx-2">:</span>
+                <span>Direct Emergency Assistance</span>
               </li>
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* Sponsors Logos */}
-        <div className="mt-10 flex justify-center space-x-6 mb-24">
-          <Image src={ImageSponsor} alt="Sponsor Logos" width={300} height={50} />
+        <div className="mt-32 flex justify-center px-content-padding-sm mb-10 lg:px-content-padding-lg 2xl:px-content-padding-2xl object-center object-cover">
+          <Image src={ImageSponsor} alt="Sponsor Logos" width={1000} height={50} className="lg:h-auto lg:w-[95%]" />
         </div>
       </section>
 
       {/* New CSR Section */}
-      <section className="px-content-padding-sm lg:px-content-padding-lg py-16 lg:py-24 bg-white">
+      <section className="lg:flex lg:flex-col lg:gap-24 px-content-padding-sm lg:px-content-padding-lg pt-16 lg:py-24 pb-[10px] lg:pb-14">
         {csrData.map((csr, index) => (
           <div key={index} className="mb-10">
             {/* Title */}
-            <h2 className="text-2xl font-aeonik-medium lg:text-3xl mb-4" style={{ color: csr.titleColor }}>
+            <h2 className="text-4xl font-aeonik-regular lg:font-aeonik-medium lg:text-center lg:text-5xl mb-4 lg:mb-7" style={{ color: csr.titleColor }}>
               {csr.title}
             </h2>
 
             {/* Subtitle */}
-            <p className="text-charcoal font-medium mb-6">{csr.subtitle}</p>
+            <p className="text-charcoal text-opacity-80 lg:text-center text-[15px] lg:text-[17px] font-medium mb-10 lg:mb-24 tracking-wider">{csr.subtitle}</p>
 
-            {/* Image */}
-            {/* {csr.images[0] && (
-              <div className="mb-6">
-                <Image
-                  src={csr.images[0].url}
-                  alt={csr.title}
-                  width={500}
-                  height={300}
-                  className="rounded-lg"
-                />
-              </div>
-            )} */}
-            <Swiper
-              modules={[Autoplay]}
-              loop={true}
-              speed={700}
-              autoplay={{
-                delay: 7000,
-                disableOnInteraction: false,
-                waitForTransition: true,
-              }}
-              className="h-[280px] w-full lg:aspect-video object-cover object-center mt-11 lg:mt-16"
-            >
-              {/* Navigation component */}
-              <SwiperNavigation />
-              {csr.images?.map((image: CsrImageType, imgIndex: number) => (
-                <SwiperSlide
-                  key={imgIndex}
-                  className="w-full h-full object-cover object-center"
+            <div className="flex flex-col lg:flex-row lg:items-center w-full lg:h-fit lg:gap-20">
+              {/* Image */}
+              {csr.images != null && (
+                <Swiper
+                  modules={[Autoplay]}
+                  loop={true}
+                  speed={700}
+                  autoplay={{
+                    delay: 7000,
+                    disableOnInteraction: false,
+                    waitForTransition: true,
+                  }}
+                  className="h-[280px] w-full lg:w-[50%] lg:h-[250px] object-cover object-center rounded-xl mb-10 lg:mb-0"
                 >
-                  <Image
-                    src={image.url}
-                    alt={`Carousel-${imgIndex}`}
-                    priority={true}
-                    className="w-full h-full object-cover object-center rounded-lg"
-                    width={500}
-                    height={300}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  {csr.images?.map((image: CsrImageType, imgIndex: number) => (
+                    <SwiperSlide
+                      key={imgIndex}
+                      className="w-full h-full object-cover object-center"
+                    >
+                      <Image
+                        src={image.url}
+                        alt={`Carousel-${imgIndex}`}
+                        priority={true}
+                        className="w-full h-full object-cover object-center"
+                        width={500}
+                        height={300}
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              )}
 
 
-            {/* Description */}
-            <div className="text-charcoal whitespace-pre-line mt-10">
-              <PortableText value={csr.description} components={portableTextComponents} />
+
+              {/* Description */}
+              <div className={`text-charcoal text-opacity-80 whitespace-pre-line mb-14 lg:mb-0 lg:w-full ${csr.images == null ? 'lg:px-64' : ''}`}>
+                <PortableText value={csr.description} components={portableTextComponents} />
+              </div>
             </div>
+
           </div>
         ))}
       </section>
