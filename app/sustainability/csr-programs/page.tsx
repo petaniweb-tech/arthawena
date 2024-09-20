@@ -66,7 +66,7 @@ export default function CsrPrograms() {
 
         {/* Map Background */}
         <div className="relative">
-          <div className="absolute top-0 right-8 z-20 lg:left-44 object-cover object-center">
+          <div className="absolute top-0 right-8 z-20 lg:left-44 lg:top-16 object-cover object-center">
             <Image
               src={ImageFlag}
               alt="Indonesian Flag"
@@ -77,20 +77,20 @@ export default function CsrPrograms() {
             />
           </div>
 
-          <div className="overflow-hidden relative">
+          <div className="overflow-hidden overscroll-none relative">
             <Image
               src={ImageBackground}
               alt="Map Background"
               width={1024}
               height={1980}
-              className="h-auto scale-150 lg:scale-125 translate-x-7 lg:translate-x-32 pt-6 lg:pt-16 w-full object-cover object-center"
+              className="h-auto pt-10 pb-10 scale-150 lg:scale-125 translate-x-7 lg:translate-x-32  lg:pt-16 w-full object-cover object-center"
             />
 
             <div className="absolute inset-0 bg-gradient-to-b from-background to-transparent z-10 opacity-70"></div>
           </div>
 
           {/* Legend for Sponsors */}
-          <div className="absolute -bottom-16 right-6  lg:-bottom-24 lg:right-40 lg:p-4 p-2 drop-shadow-md w-fit bg-white">
+          <div className="absolute -bottom-10 right-5 lg:-bottom-20 lg:right-20 lg:p-4 p-2 drop-shadow-md w-fit bg-white">
             <ul className="text-left space-y-1 lg:space-y-3 text-[7px] lg:text-sm">
               <li className="flex items-center">
                 <span className="block w-2 h-2 lg:w-3 lg:h-3  bg-[#57B948] rounded-full" />
