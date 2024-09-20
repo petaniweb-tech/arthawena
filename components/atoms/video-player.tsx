@@ -73,7 +73,7 @@ export default function VideoPlayer({
         playsInline
         className="object-cover object-center h-full w-full"
       >
-        <source src={videoSrc} type="video/mp4" />
+        <source src={videoSrc} type="video/webm" />
       </video>
 
       <div className="absolute inset-0 flex items-center justify-center">
