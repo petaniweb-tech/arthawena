@@ -86,22 +86,22 @@ export default function CsrPrograms() {
           <div className="absolute -bottom-16 right-6  lg:-bottom-24 lg:right-72 lg:p-4 p-2 shadow-lg w-fit bg-white">
             <ul className="text-left space-y-1 lg:space-y-3 text-[7px] lg:text-sm">
               <li className="flex items-center">
-                <span className="block w-2 h-2 lg:w-3 lg:h-3  bg-green-500 rounded-full" />
+                <span className="block w-2 h-2 lg:w-3 lg:h-3  bg-[#57B948] rounded-full" />
                 <span className="mx-2">:</span>
                 <span>Habitat for Humanity Indonesia</span>
               </li>
               <li className="flex items-center">
-                <span className="block w-2 h-2 lg:w-3 lg:h-3 bg-yellow-500 rounded-full" />
+                <span className="block w-2 h-2 lg:w-3 lg:h-3 bg-primary rounded-full" />
                 <span className="mx-2">:</span>
                 <span>Wahana Visi Indonesia</span>
               </li>
               <li className="flex items-center">
-                <span className="block w-2 h-2 lg:w-3 lg:h-3 bg-blue-500  rounded-full" />
+                <span className="block w-2 h-2 lg:w-3 lg:h-3 bg-[#2B55B2]  rounded-full" />
                 <span className="mx-2">:</span>
                 <span>Oxfam Foundation</span>
               </li>
               <li className="flex items-center">
-                <span className="block w-2 h-2 lg:w-3 lg:h-3 bg-yellow-200 rounded-full" />
+                <span className="block w-2 h-2 lg:w-3 lg:h-3 bg-[#F2E823] rounded-full" />
                 <span className="mx-2">:</span>
                 <span>Direct Emergency Assistance</span>
               </li>
