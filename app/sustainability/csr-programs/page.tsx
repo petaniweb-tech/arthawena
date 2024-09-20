@@ -64,8 +64,7 @@ export default function CsrPrograms() {
 
         {/* Map Background */}
         <div className="relative">
-
-          <div className="absolute top-0 right-10 lg:left-48 lg:top-0 object-cover object-center">
+          <div className="absolute top-0 right-8 lg:left-48 lg:top-0 object-cover object-center">
             <Image
               src={ImageFlag}
               alt="Indonesian Flag"
@@ -75,7 +74,6 @@ export default function CsrPrograms() {
             />
           </div>
 
-
           <Image
             src={ImageBackground}
             alt="Map Background"
@@ -83,34 +81,32 @@ export default function CsrPrograms() {
             height={1980}
             className="h-[180px] lg:h-auto w-full object-cover object-center"
           />
-
-
-
+          
           {/* Legend for Sponsors */}
-          {/* <div className="absolute bottom-8 right-8  lg:-bottom-24 lg:right-80 p-6 shadow-lg w-fit bg-white">
-            <ul className="text-left space-y-4 text-[13px]">
+          <div className="absolute -bottom-16 right-6  lg:-bottom-24 lg:right-72 lg:p-4 p-2 shadow-lg w-fit bg-white">
+            <ul className="text-left space-y-1 lg:space-y-3 text-[7px] lg:text-sm">
               <li className="flex items-center">
-                <span className="block w-4 h-4 bg-yellow-500 rounded-full" />
+                <span className="block w-2 h-2 lg:w-3 lg:h-3  bg-green-500 rounded-full" />
                 <span className="mx-2">:</span>
                 <span>Habitat for Humanity Indonesia</span>
               </li>
               <li className="flex items-center">
-                <span className="block w-4 h-4 bg-blue-500 rounded-full" />
+                <span className="block w-2 h-2 lg:w-3 lg:h-3 bg-yellow-500 rounded-full" />
                 <span className="mx-2">:</span>
                 <span>Wahana Visi Indonesia</span>
               </li>
               <li className="flex items-center">
-                <span className="block w-4 h-4 bg-green-500 rounded-full" />
+                <span className="block w-2 h-2 lg:w-3 lg:h-3 bg-blue-500  rounded-full" />
                 <span className="mx-2">:</span>
                 <span>Oxfam Foundation</span>
               </li>
               <li className="flex items-center">
-                <span className="block w-4 h-4 bg-red-500 rounded-full" />
+                <span className="block w-2 h-2 lg:w-3 lg:h-3 bg-yellow-200 rounded-full" />
                 <span className="mx-2">:</span>
                 <span>Direct Emergency Assistance</span>
               </li>
             </ul>
-          </div> */}
+          </div>
         </div>
 
         {/* Sponsors Logos */}
