@@ -6,63 +6,68 @@ import {
   PortableTextTypeComponentProps,
 } from "@portabletext/react";
 
+interface PortableTextValue {
+  style: keyof JSX.IntrinsicElements;
+  children: string | string[];
+}
+
+const headingStyles: Record<string, string> = {
+  h1: "text-4xl font-bold",
+  h2: "text-3xl font-semibold",
+  h3: "text-2xl font-medium",
+  h4: "text-xl font-normal",
+  h5: "text-lg font-normal",
+  h6: "text-base font-normal",
+};
+
+const isHeading = (style: PortableTextValue["style"]): boolean =>
+  style in headingStyles;
+const renderHeading = (value: PortableTextValue) => {
+  const Tag = value.style;
+  return <Tag className={headingStyles[value.style]}>{value.children}</Tag>;
+};
+
+const renderParagraph = (children: string[]) => (
+  <p>
+    {children.map((child: string, index: number) => renderChild(child, index))}
+  </p>
+);
+
+const renderChild = (child: string | Record<string, any>, index: number) => {
+  if (typeof child === "string") {
+    return renderTextWithLineBreaks(child, index);
+  }
+  return renderMarkComponent(child, index);
+};
+
+const renderTextWithLineBreaks = (text: string, index: number) =>
+  text.split("\n").map((line: string, i: number) => (
+    <React.Fragment key={`${index}-${i}`}>
+      {i > 0 && <br />}
+      {line}
+    </React.Fragment>
+  ));
+
+const renderMarkComponent = (child: Record<string, any>, index: number) => {
+  const markComponents: Record<string, React.JSX.Element> = {
+    strong: <strong>{child.text}</strong>,
+    em: <em>{child.text}</em>,
+    underline: <u>{child.text}</u>,
+    "strike-through": <s>{child.text}</s>,
+    code: (
+      <code className="bg-gray-200 text-red-600 p-1 rounded">{child.text}</code>
+    ),
+  };
+  const Mark = child.marks?.[0] && markComponents[child.marks[0]];
+  return <span key={index}>{Mark || child.text}</span>;
+};
+
 const portableTextComponents: Partial<PortableTextReactComponents> = {
   types: {
-    block: ({ value }: PortableTextTypeComponentProps<any>) => {
-      switch (value.style) {
-        case "h1":
-          return <h1 className="text-4xl font-bold">{value.children}</h1>;
-        case "h2":
-          return <h2 className="text-3xl font-semibold">{value.children}</h2>;
-        case "h3":
-          return <h3 className="text-2xl font-medium">{value.children}</h3>;
-        case "h4":
-          return <h4 className="text-xl font-normal">{value.children}</h4>;
-        case "h5":
-          return <h5 className="text-lg font-normal">{value.children}</h5>;
-        case "h6":
-          return <h6 className="text-base font-normal">{value.children}</h6>;
-        default:
-          // Handle paragraphs (default text blocks)
-          return (
-            <p>
-              {value.children.map((child: any, index: number) => {
-                if (typeof child === "string") {
-                  return (
-                    <span key={index}>
-                      {child.split("\n").map((text: string, i: number) => (
-                        <React.Fragment key={i}>
-                          {i > 0 && <br />}
-                          {text}
-                        </React.Fragment>
-                      ))}
-                    </span>
-                  );
-                }
-                return (
-                  <span key={index}>
-                    {child.marks && child.marks.includes("strong") ? (
-                      <strong>{child.text}</strong>
-                    ) : child.marks && child.marks.includes("em") ? (
-                      <em>{child.text}</em>
-                    ) : child.marks && child.marks.includes("underline") ? (
-                      <u>{child.text}</u> // Underline support here
-                    ) : child.marks &&
-                      child.marks.includes("strike-through") ? (
-                      <s>{child.text}</s>
-                    ) : child.marks && child.marks.includes("code") ? (
-                      <code className="bg-gray-200 text-red-600 p-1 rounded">
-                        {child.text}
-                      </code>
-                    ) : (
-                      child.text
-                    )}
-                  </span>
-                );
-              })}
-            </p>
-          );
-      }
+    block: ({ value }: PortableTextTypeComponentProps<PortableTextValue>) => {
+      if (isHeading(value.style)) return renderHeading(value);
+
+      return renderParagraph(value.children as string[]);
     },
   },
   list: {
