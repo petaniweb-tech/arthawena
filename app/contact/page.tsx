@@ -189,26 +189,25 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="w-full md:flex items-start justify-evenly bg-primary-gradient text-white lg:py-20 py-11 px-content-padding-sm">
-          <div className="">
+        <div className="flex flex-col lg:flex-row w-full md:flex items-start justify-evenly bg-primary-gradient text-white lg:py-20 py-11 px-content-padding-sm">
+          <div className="w-full">
             <h2 className="font-semibold mb-4">PLANT MALANG</h2>
-            <p>Jalan Raya Kartanegara No.85, Ngambon,</p>
-            <p>Girimayo, Kec. Karang Ploso, Malang,</p>
-            <p>Jawa Timur 65152</p>
-            <br className="hidden md:block" />
+            <p>
+              Jl Raya Kartanegara No.85, Ngambon, Girimoyo, Kec. Karangploso,
+              Malang, Jawa Timur 65152
+            </p>
+            {/* <br className="hidden md:block" /> */}
             <div className="flex items-center mt-4">
               <Image src={IcPhone} alt="phone icon" className="mr-3 h-6 w-6" />
               <span>(0341) 468500</span>
             </div>
           </div>
-          <div>
-            <h2 className="font-semibold mb-4 mt-14 lg:mt-0">
-              PLANT TANGERANG
-            </h2>
-            <p>JI. Raya serang Km. 12, Kampung Cirewed</p>
-            <p>RT.3 RW.2, Desa Sukadamai, Cikupa,</p>
-            <p>Sukadamai, Kec. Cikupa, Tangerang,</p>
-            <p>Banten 15710</p>
+          <div className="w-full mt-6 lg:mt-0">
+            <h2 className="font-semibold mb-4 lg:mt-0">PLANT TANGERANG</h2>
+            <p>
+              JL Raya serang Km. 12, Kampung Cirewed RT.3 RW.2, Desa Sukadamai,
+              Cikupa, Sukadamai, Kec. Cikupa, Tangerang, Banten 15710
+            </p>
             <div className="flex items-center mt-4">
               <Image src={IcPhone} alt="phone icon" className="mr-3 h-6 w-6" />
               <span>(021) 5960599</span>
