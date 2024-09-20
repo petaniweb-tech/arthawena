@@ -9,7 +9,6 @@ import { goalQuery } from "@/sanity/services/goal-query";
 import { GoalType } from "@/types/sustainability";
 
 export default async function Arthawena2030Goals() {
-
   const goalData: GoalType[] = await client.fetch(goalQuery);
 
   return (
@@ -23,7 +22,6 @@ export default async function Arthawena2030Goals() {
       />
       {/* <-- === Breadcrumb End === --> */}
 
-      {/* <-- === The content must be placed right here === --> */}
       {/* <-- === Hero Section === --> */}
       <div className="pt-[83px]">
         {/* Hero background image */}
@@ -31,7 +29,7 @@ export default async function Arthawena2030Goals() {
           src={MobileBackground}
           alt="Hero Background"
           priority
-          className="lg:hidden"
+          className="lg:hidden block"
         />
 
         <Image
@@ -43,15 +41,17 @@ export default async function Arthawena2030Goals() {
       </div>
 
       {/* <-- === New Content Section === --> */}
-      <section className="px-content-padding-sm lg:px-64 py-16 lg:py-24 bg-white">
+      <section className="px-content-padding-sm lg:px-64 2xl:px-52 pt-12 pb-11 lg:pt-32 lg:pb-16">
         {goalData.map((item, index) => (
-          <GoalItem
-            key={index}
-            title={item.title}
-            description={item.description ?? []}
-            image={item.imageUrl}
-            index={index}
-          />
+          <div key={`goals-${item.title}`} className="lg:mb-40">
+            <GoalItem
+              key={index}
+              title={item.title}
+              description={item.description ?? []}
+              imageUrl={item.imageUrl}
+              index={index}
+            />
+          </div>
         ))}
       </section>
     </>
