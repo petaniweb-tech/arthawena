@@ -9,15 +9,26 @@ interface HeroItemProps {
   isReversed?: boolean;
 }
 
-export const HeroItem = ({ title, imageSrc, altText, description, isReversed }: HeroItemProps) => {
+export const HeroItem = ({
+  title,
+  imageSrc,
+  altText,
+  description,
+  isReversed,
+}: HeroItemProps) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] items-center text-center lg:space-x-20 lg:space-y-2" dir={isReversed ? 'rtl' : 'ltr'}>
+    <div
+      className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] lg:w-full items-center text-center lg:space-y-2"
+      dir={isReversed ? "rtl" : "ltr"}
+    >
       {/* Title */}
-      <h1 className={`font-aeonik-regular text-4xl lg:text-7xl mb-4 lg:mb-0 ${isReversed ? 'lg:ml-10' : 'ml-0'}`}>
+      <h1
+        className={`font-aeonik-regular lg:w-full text-4xl lg:text-7xl mb-4 lg:mb-0 ${isReversed ? "lg:text-left" : "lg:text-right"}`}
+      >
         {title}
       </h1>
 
-      <div className="flex justify-center lg:justify-center">
+      <div className="flex justify-center lg:w-full lg:justify-center lg:px-14">
         <Image
           src={imageSrc}
           alt={altText}
@@ -26,7 +37,7 @@ export const HeroItem = ({ title, imageSrc, altText, description, isReversed }: 
       </div>
 
       {/* Description */}
-      <p className="font-light lg:text-xl mt-4 lg:mt-0 lg:text-start">
+      <p className="font-light text-[15px] lg:w-full lg:text-xl mt-4 lg:mt-0 lg:text-start">
         {description}
       </p>
     </div>
