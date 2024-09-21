@@ -127,8 +127,9 @@ export default function Technology() {
                           alt={`Carousel-${imgIndex}`}
                           priority={true}
                           className="w-full h-full object-cover object-center"
-                          width={800}
-                          height={600}
+                          width={1536}
+                          height={1536}
+                          quality={100}
                         />
                       </SwiperSlide>
                     )

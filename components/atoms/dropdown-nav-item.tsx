@@ -55,9 +55,9 @@ const DropdownNavItem = ({
         }}
       >
         {navItem.subMenuItems?.map((submenu, index) => (
-          <DropdownMenuItem key={index}>
-            <Link href={submenu.path}>{submenu.title}</Link>
-          </DropdownMenuItem>
+          <Link key={index} href={submenu.path}>
+            <DropdownMenuItem>{submenu.title}</DropdownMenuItem>
+          </Link>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>

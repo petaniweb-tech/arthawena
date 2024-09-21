@@ -4,16 +4,13 @@ import Image from "next/image";
 import HeroBackground from "@/assets/images/sustainability/img-hero-background.webp";
 
 // Import Icons
-import IcWeGrow from "@/assets/icons/sustainability/ic-we-grow.webp";
-import IcWeEvolve from "@/assets/icons/sustainability/ic-we-evolve.webp";
-import IcWeCare from "@/assets/icons/sustainability/ic-we-care.webp";
+
 import IcCo2 from "@/assets/icons/sustainability/ic-co2.webp";
 import IcReuse from "@/assets/icons/sustainability/ic-reuse.webp";
 import IcTech from "@/assets/icons/sustainability/ic-tech.webp";
 import IcMinimizeWaste from "@/assets/icons/sustainability/ic-minimize-waste.webp";
 import IcGreener from "@/assets/icons/sustainability/ic-greener.webp";
 import IcCorporate from "@/assets/icons/sustainability/ic-corporate.webp";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { heroSustainType } from "@/types/sustainability";
 import { HeroItem } from "../components/atoms/hero-item";
 
@@ -31,18 +28,19 @@ export default function ArthawenaForSustainability() {
       {/* <-- === Breadcrumb End === --> */}
 
       {/* <-- === Hero Section === --> */}
-      <div className="relative h-screen pt-content-padding-2xl">
+      <div className="relative h-auto pt-[210px] pb-32 lg:pt-[300px] mb-20 lg:pb-44">
         {/* Hero background image */}
         <Image
           src={HeroBackground}
           alt="Hero Background"
           layout="fill"
           objectFit="cover"
+          className="h-full object-cover object-center"
           objectPosition="center"
           priority
         />
         {/* Content overlay */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full space-y-10 text-white">
+        <div className="relative z-10 inset-0 flex flex-col items-center justify-center h-full space-y-12 lg:space-y-28 text-white">
           {heroSustainType.map((section, index) => (
             <HeroItem
               key={index}

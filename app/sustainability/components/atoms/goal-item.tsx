@@ -1,28 +1,29 @@
 import Image from "next/image";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { PortableText } from "next-sanity";
 import portableTextComponents from "@/components/atoms/portable-text";
 
 interface GoalItemProps {
   title: string;
-  image: string | StaticImport;
+  imageUrl: string;
   description: any[];
   index: number;
 }
 
-const GoalItem = ({ title, description, image, index }: GoalItemProps) => {
+const GoalItem = ({ title, description, imageUrl, index }: GoalItemProps) => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 items-center lg:items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-2 items-center w-full lg:justify-between">
       {/* Text Content */}
       <div
-        className={`flex flex-col justify-center lg:w-[450px] mb-8 lg:mb-0 ${
-          index % 2 !== 0 ? "lg:order-2" : ""
+        className={`flex flex-col justify-center items-start w-full lg:w-[80%] mb-8 lg:mb-0 ${
+          index % 2 !== 0 ? "lg:order-2 justify-self-end" : ""
         }`}
       >
-        <h2 className="text-3xl lg:text-4xl text-orange-600 mb-6">{title}</h2>
+        <h2 className="text-3xl lg:text-4xl text-primary font-aeonik-medium mb-[26px]">
+          {title}
+        </h2>
 
         {description && Array.isArray(description) && (
-          <div className="text-charcoal whitespace-pre-line">
+          <div className="text-charcoal text-[15px] leading-relaxed whitespace-pre-line text-opacity-80">
             <PortableText
               value={description}
               components={portableTextComponents}
@@ -32,15 +33,17 @@ const GoalItem = ({ title, description, image, index }: GoalItemProps) => {
       </div>
 
       {/* Image */}
-      {/* <div className={`flex ${index % 2 !== 0 ? "lg:justify-start" : "lg:justify-start"}`}> */}
-      <div className="flex lg:justify-start">
+      <div
+        className={`flex object-cover object-center w-full h-[250px] lg:w-[80%] lg:h-[300px] mb-16 lg:mb-0
+        ${index % 2 !== 0 ? "" : "lg:justify-self-end"}`}
+      >
         <Image
-          src={image}
+          src={imageUrl}
           alt="2030 Goals"
-          className="rounded-lg shadow-lg w-full h-[250px] lg:w-[450px] lg:h-[300px] mb-16"
-          objectFit="cover"
-          width={500}
-          height={300}
+          className="rounded-lg object-cover object-center"
+          width={600}
+          height={600}
+          priority={true}
         />
       </div>
     </div>
