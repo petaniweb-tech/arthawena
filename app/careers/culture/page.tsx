@@ -45,7 +45,7 @@ export default function Culture() {
         </div>
         <div className="absolute inset-0 flex flex-col justify-start lg:w-full lg:items-start h-fit bg-gradient-to-b from-white via-white via-70% to-transparent pt-content-padding-top-sm lg:pt-0 lg:bg-none lg:justify-start items-start px-content-padding-sm lg:px-0 pb-[110px]">
           <div className="lg:bg-background lg:w-full lg:px-content-padding-lg 2xl:px-content-padding-2xl">
-            <h1 className="font-aeonik-medium text-5xl text-primary mb-8">
+            <h1 className="font-aeonik-medium text-[50px] text-primary mb-8">
               Culture
             </h1>
           </div>
@@ -64,24 +64,24 @@ export default function Culture() {
       </div>
 
       {/* <!-- === Culture Content === --> */}
-      <div className="px-content-padding-sm lg:px-[200px] 2xl:px-[200px] pt-16 mb-40 lg:mb-48">
-        <section className="flex flex-col lg:flex-row-reverse gap-12 lg:gap-0 lg:w-auto">
-          <div className="flex lg:justify-center lg:items-start lg:pt-10 lg:w-full">
+      <div className="px-content-padding-sm lg:px-[220px] 2xl:px-[230px] pt-16 lg:pt-32 pb-28 flex flex-col w-full gap-[70px] lg:gap-44 lg:pb-48">
+        <section className="flex flex-col lg:flex-row-reverse gap-8 lg:gap-0 w-full">
+          <div className="flex lg:justify-center lg:items-start lg:pt-12 lg:w-full">
             <Image
               src={asset1}
               alt="Code of Conduct Training"
               priority={true}
-              className="w-24 h-auto lg:w-32"
+              className="w-[70px] h-auto lg:w-32"
             ></Image>
           </div>
-          <div className="flex flex-col items-start lg:h-auto lg:w-full gap-5">
-            <h1 className="text-primary text-3xl lg:text-4xl font-medium lg:pb-4">
+          <div className="flex flex-col gap-8 w-full">
+            <h1 className="text-primary text-3xl lg:text-4xl font-aeonik-medium lg:pb-4">
               Code of Conduct
               <br />
               Training
             </h1>
-            <div className="flex flex-col text-charcoal text-[15px] gap-5">
-              <p>
+            <div className="flex flex-col gap-5">
+              <p className="text-charcoal text-[15px] leading-relaxed text-opacity-90">
                 PT. Arthawenasakti Gemilang has established a Business Ethics
                 and Code of Conduct {"("}code of conduct{")"} that serves as a
                 guideline and applies to all personnel of PT. Arthawenasakti
@@ -89,7 +89,7 @@ export default function Culture() {
                 work and interactions with fellow employees and external
                 stakeholders.
               </p>
-              <p>
+              <p className="text-charcoal text-[15px] leading-relaxed text-opacity-90">
                 To ensure that the code of conduct is understood and followed by
                 all employees, PT. Arthawenasakti Gemilang has conducted
                 socialization in the form of Code of Conduct training. After the
@@ -101,21 +101,21 @@ export default function Culture() {
           </div>
         </section>
 
-        <section className="flex flex-col lg:flex-row gap-12 pt-16 lg:pt-32 lg:gap-0 lg:w-auto">
-          <div className="flex lg:justify-center lg:items-start lg:pt-10 lg:w-full">
+        <section className="flex flex-col lg:flex-row gap-8 lg:gap-0 w-full">
+          <div className="flex lg:justify-center lg:items-center lg:w-full">
             <Image
               src={asset2}
               alt="Code of Conduct Training"
               priority={true}
-              className="w-24 h-auto lg:w-32"
+              className="w-[70px] h-auto lg:w-32"
             ></Image>
           </div>
-          <div className="flex flex-col items-start lg:h-auto lg:w-full gap-5">
-            <h1 className="text-primary text-3xl lg:text-4xl font-medium lg:pb-4">
+          <div className="flex flex-col gap-8 w-full">
+            <h1 className="text-primary text-3xl lg:text-4xl font-aeonik-medium lg:pb-4">
               Safety Training
             </h1>
-            <div className="flex flex-col text-charcoal text-[15px] gap-5">
-              <p>
+            <div className="flex">
+              <p className="text-charcoal text-[15px] leading-relaxed text-opacity-90">
                 Training covering various occupational safety topics, including
                 identifying potential hazards in the workplace, implementing a
                 5S culture, hazard identification methods, accident reporting
@@ -126,21 +126,21 @@ export default function Culture() {
           </div>
         </section>
 
-        <section className="flex flex-col lg:flex-row-reverse gap-12 pt-16 lg:pt-32 lg:gap-0 lg:w-auto">
-          <div className="flex lg:justify-center lg:items-start lg:pt-10 lg:w-full">
+        <section className="flex flex-col lg:flex-row-reverse gap-8 lg:gap-0 w-full">
+          <div className="flex lg:justify-center lg:items-center lg:w-full">
             <Image
               src={asset3}
               alt="Code of Conduct Training"
               priority={true}
-              className="w-24 h-auto lg:w-32"
+              className="w-[70px] h-auto lg:w-32"
             ></Image>
           </div>
-          <div className="flex flex-col items-start lg:h-auto lg:w-full gap-5">
-            <h1 className="text-primary text-3xl lg:text-4xl font-medium lg:pb-4">
+          <div className="flex flex-col gap-8 w-full">
+            <h1 className="text-primary text-3xl lg:text-4xl font-aeonik-medium lg:pb-4">
               Safety Talk
             </h1>
-            <div className="flex flex-col text-charcoal text-[15px] gap-5">
-              <p>
+            <div className="flex">
+              <p className="text-charcoal text-[15px] leading-relaxed text-opacity-90">
                 A routine 5-10 minute briefing at the start of the workday, led
                 by the team leader, aimed at reminding all team members to
                 prioritize workplace safety.
@@ -149,21 +149,21 @@ export default function Culture() {
           </div>
         </section>
 
-        <section className="flex flex-col lg:flex-row gap-12 pt-16 lg:pt-32 lg:gap-0 lg:w-auto">
-          <div className="flex lg:justify-center lg:items-start lg:pt-10 lg:w-full">
+        <section className="flex flex-col lg:flex-row gap-8 lg:gap-0 w-full">
+          <div className="flex lg:justify-center lg:items-center lg:w-full">
             <Image
               src={asset4}
               alt="Code of Conduct Training"
               priority={true}
-              className="w-24 h-auto lg:w-32"
+              className="w-[70px] h-auto lg:w-32"
             ></Image>
           </div>
-          <div className="flex flex-col items-start lg:h-auto lg:w-full gap-5">
-            <h1 className="text-primary text-3xl lg:text-4xl font-medium lg:pb-4">
+          <div className="flex flex-col gap-8 w-full">
+            <h1 className="text-primary text-3xl lg:text-4xl font-aeonik-medium lg:pb-4">
               Performance Management System (PMS)
             </h1>
-            <div className="flex flex-col text-charcoal text-[15px] gap-5">
-              <p>
+            <div className="flex">
+              <p className="text-charcoal text-[15px] leading-relaxed text-opacity-90">
                 PMS evaluation serves as a platform for setting work targets
                 (Maintaining Plan) and skill matrices (Improvement Plan) that
                 employees must master, which are then evaluated by their
@@ -176,22 +176,22 @@ export default function Culture() {
           </div>
         </section>
 
-        <section className="flex flex-col lg:flex-row-reverse gap-12 pt-16 lg:pt-32 lg:gap-0 lg:w-auto">
-          <div className="flex lg:justify-center lg:items-start lg:pt-10 lg:w-full">
+        <section className="flex flex-col lg:flex-row-reverse gap-8 lg:gap-0 w-full">
+          <div className="flex lg:justify-center lg:items-center lg:w-full">
             <Image
               src={asset5}
               alt="Code of Conduct Training"
               priority={true}
-              className="w-24 h-auto lg:w-32"
+              className="w-[70px] h-auto lg:w-32"
             ></Image>
           </div>
-          <div className="flex flex-col items-start lg:h-auto lg:w-full gap-5">
-            <h1 className="text-primary text-3xl lg:text-4xl font-medium lg:pb-4">
+          <div className="flex flex-col gap-8 w-full">
+            <h1 className="text-primary text-3xl lg:text-4xl font-aeonik-medium lg:pb-4">
               GKM
             </h1>
-            <div className="flex flex-col text-charcoal text-[15px] gap-5">
-              <p>
-                Gugus Kendali Mutu, it’s a forum held by each department to
+            <div className="flex">
+              <p className="text-charcoal text-[15px] leading-relaxed text-opacity-90">
+                Gugus Kendali Mutu, it&apos;s a forum held by each department to
                 discuss various issues faced by the team, with the goal of
                 finding solutions and supporting their implementation.
               </p>
@@ -199,21 +199,21 @@ export default function Culture() {
           </div>
         </section>
 
-        <section className="flex flex-col lg:flex-row gap-12 pt-16 lg:pt-32 lg:gap-0 lg:w-auto">
-          <div className="flex lg:justify-center lg:items-start lg:pt-10 lg:w-full">
+        <section className="flex flex-col lg:flex-row gap-8 lg:gap-0 w-full">
+          <div className="flex lg:justify-center lg:items-center lg:w-full">
             <Image
               src={asset6}
               alt="Code of Conduct Training"
               priority={true}
-              className="w-24 h-auto lg:w-32"
+              className="w-[70px] h-auto lg:w-32"
             ></Image>
           </div>
-          <div className="flex flex-col items-start lg:h-auto lg:w-full gap-5">
-            <h1 className="text-primary text-3xl lg:text-4xl font-medium lg:pb-4">
+          <div className="flex flex-col gap-8 w-full">
+            <h1 className="text-primary text-3xl lg:text-4xl font-aeonik-medium lg:pb-4">
               Ergonomics
             </h1>
-            <div className="flex flex-col text-charcoal text-[15px] gap-5">
-              <p>
+            <div className="flex">
+              <p className="text-charcoal text-[15px] leading-relaxed text-opacity-90">
                 An integral study of workers, tasks, tools, workplace, and work
                 environment aimed at creating a safe and comfortable work
                 environment. The goal is to enhance work effectiveness and
