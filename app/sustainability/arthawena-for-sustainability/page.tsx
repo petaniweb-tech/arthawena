@@ -4,16 +4,13 @@ import Image from "next/image";
 import HeroBackground from "@/assets/images/sustainability/img-hero-background.webp";
 
 // Import Icons
-import IcWeGrow from "@/assets/icons/sustainability/ic-we-grow.webp";
-import IcWeEvolve from "@/assets/icons/sustainability/ic-we-evolve.webp";
-import IcWeCare from "@/assets/icons/sustainability/ic-we-care.webp";
+
 import IcCo2 from "@/assets/icons/sustainability/ic-co2.webp";
 import IcReuse from "@/assets/icons/sustainability/ic-reuse.webp";
 import IcTech from "@/assets/icons/sustainability/ic-tech.webp";
 import IcMinimizeWaste from "@/assets/icons/sustainability/ic-minimize-waste.webp";
 import IcGreener from "@/assets/icons/sustainability/ic-greener.webp";
 import IcCorporate from "@/assets/icons/sustainability/ic-corporate.webp";
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import { heroSustainType } from "@/types/sustainability";
 import { HeroItem } from "../components/atoms/hero-item";
 
