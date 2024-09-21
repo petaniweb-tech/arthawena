@@ -41,7 +41,7 @@ export default async function Arthawena2030Goals() {
       </div>
 
       {/* <-- === New Content Section === --> */}
-      <section className="px-content-padding-sm lg:px-64 2xl:px-52 pt-12 pb-11 lg:pt-32 lg:pb-16">
+      <section className="px-content-padding-sm lg:px-64 2xl:px-72 pt-12 pb-11 lg:pt-32 lg:pb-16">
         {goalData.map((item, index) => (
           <div key={`goals-${item.title}`} className="lg:mb-40">
             <GoalItem
