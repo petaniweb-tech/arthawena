@@ -39,12 +39,6 @@ export const CSRType = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
-            name: "image",
-            title: "Image",
-            type: "image",
-            validation: (Rule: any) => Rule.required(), // Requires only one image
-        }),
-        defineField({
             name: "position",
             title: "Position",
             type: "number",
@@ -54,19 +48,30 @@ export const CSRType = defineType({
             }),
 
         }),
+        defineField({
+            name: "images",
+            title: "Assets",
+            type: "array",
+            of: [
+                {
+                    type: "image",
+                    title: "Image",
+                },
+            ],
+        }),
+
     ],
     preview: {
         select: {
             title: "title",
-            media: "images",
             position: "position",
         },
         prepare(selection) {
-            const { title, position, media } = selection;
+            const { title, position } = selection;
             return {
                 title: title.toUpperCase(),
                 subtitle: `Position: ${position ? position : "-"}`,
-                media: media,
+
             };
         },
     },

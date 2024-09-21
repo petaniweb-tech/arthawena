@@ -3,11 +3,10 @@ import IcWeGrow from "@/assets/icons/sustainability/ic-we-grow.webp";
 import IcWeEvolve from "@/assets/icons/sustainability/ic-we-evolve.webp";
 import IcWeCare from "@/assets/icons/sustainability/ic-we-care.webp";
 
-
-export const TitlePosition = Object.freeze({
-  LEFT: "left",
-  RIGHT: "right",
-});
+export type CsrImageType = {
+  type: string;
+  url: string;
+};
 
 export const heroSustainType = [
   {
@@ -37,4 +36,12 @@ export type GoalType = {
   title: string;
   imageUrl: string;
   description?: any[];
+}
+
+export type CsrType = {
+  title: string;
+  titleColor: string;
+  subtitle: string; 
+  description: any[];
+  images: CsrImageType[];
 }

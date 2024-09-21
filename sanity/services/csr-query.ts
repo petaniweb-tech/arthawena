@@ -1,9 +1,15 @@
 export const csrQuery = `*[_type == "csr"]{
     _id,
     title,
-    titleColor,
+    "titleColor": titleColor.hex,
     subtitle,
     description,
-    "imageUrl": image.asset->url,
+    images[]{
+        _type == "image" => {
+          "type": "image",
+          "url": asset->url
+        },
+      },
     position
-  }`;
+  } | order(position asc)`;
+  
