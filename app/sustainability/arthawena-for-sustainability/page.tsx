@@ -31,18 +31,19 @@ export default function ArthawenaForSustainability() {
       {/* <-- === Breadcrumb End === --> */}
 
       {/* <-- === Hero Section === --> */}
-      <div className="relative h-screen pt-content-padding-2xl">
+      <div className="relative h-auto pt-[210px] pb-32 lg:pt-[300px] mb-20 lg:pb-44">
         {/* Hero background image */}
         <Image
           src={HeroBackground}
           alt="Hero Background"
           layout="fill"
           objectFit="cover"
+          className="h-full object-cover object-center"
           objectPosition="center"
           priority
         />
         {/* Content overlay */}
-        <div className="relative z-10 flex flex-col items-center justify-center h-full space-y-10 text-white">
+        <div className="relative z-10 inset-0 flex flex-col items-center justify-center h-full space-y-12 lg:space-y-28 text-white">
           {heroSustainType.map((section, index) => (
             <HeroItem
               key={index}
