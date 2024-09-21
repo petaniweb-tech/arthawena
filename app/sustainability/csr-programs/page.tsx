@@ -12,12 +12,8 @@ import { csrQuery } from "@/sanity/services/csr-query";
 import portableTextComponents from "@/components/atoms/portable-text";
 import { PortableText } from "next-sanity";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/effect-creative";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import SwiperNavigation from "@/components/atoms/swiper-navigation";
 import { useEffect, useState } from "react";
 
 export default function CsrPrograms() {
@@ -53,7 +49,7 @@ export default function CsrPrograms() {
           </h1>
 
           {/* Description */}
-          <p className="text-[15px] font-light lg:text-center lg:text-[17px] text-charcoal mb-8">
+          <p className="text-[15px] leading-relaxed lg:font-light lg:text-center lg:text-[17px] text-charcoal mb-8 text-opacity-90">
             We believe in taking action to create a positive impact on the{" "}
             <br className="hidden lg:block" />
             communities and world around us. Through CSR initiatives, we strive{" "}
@@ -134,18 +130,18 @@ export default function CsrPrograms() {
           <div key={index} className="mb-10">
             {/* Title */}
             <h2
-              className="text-4xl font-aeonik-regular lg:font-aeonik-medium lg:text-center lg:text-5xl mb-4 lg:mb-7"
+              className="text-3xl font-aeonik-medium lg:text-center lg:text-5xl mb-4 lg:mb-7"
               style={{ color: csr.titleColor }}
             >
               {csr.title}
             </h2>
 
             {/* Subtitle */}
-            <p className="text-charcoal text-opacity-80 lg:text-center text-[15px] lg:text-[17px] font-medium mb-10 lg:mb-24 tracking-wider">
+            <p className="text-charcoal text-opacity-80 lg:text-center text-[15px] lg:text-[17px] font-semibold mb-10 lg:mb-32 tracking-wider">
               {csr.subtitle}
             </p>
 
-            <div className="flex flex-col lg:flex-row lg:items-center w-full lg:h-fit lg:gap-20">
+            <div className="flex flex-col lg:flex-row lg:items-center w-full lg:h-fit lg:gap-28">
               {/* Image */}
               {csr.images != null && (
                 <Swiper
@@ -157,7 +153,7 @@ export default function CsrPrograms() {
                     disableOnInteraction: false,
                     waitForTransition: true,
                   }}
-                  className="h-[280px] w-full lg:w-[50%] lg:h-[250px] object-cover object-center rounded-xl mb-10 lg:mb-0"
+                  className="h-[280px] w-full lg:w-[60%] 2xl:w-[70%] lg:h-[280px] 2xl:h-[300px] object-cover object-center rounded-xl mb-10 lg:mb-0"
                 >
                   {csr.images?.map((image: CsrImageType, imgIndex: number) => (
                     <SwiperSlide
@@ -179,7 +175,7 @@ export default function CsrPrograms() {
 
               {/* Description */}
               <div
-                className={`text-charcoal text-opacity-80 whitespace-pre-line mb-14 lg:mb-0 lg:w-full ${csr.images == null ? "lg:px-64" : ""}`}
+                className={`text-charcoal text-[15px] leading-relaxed text-opacity-80 whitespace-pre-line mb-14 lg:mb-0 lg:w-full ${csr.images == null ? "lg:px-64" : ""}`}
               >
                 <PortableText
                   value={csr.description}
