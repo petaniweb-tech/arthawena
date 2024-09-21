@@ -81,10 +81,10 @@ export default function Contact() {
             />
           </div>
 
-          <div className="absolute inset-0 bg-gradient-to-b from-white to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-transparent z-10"></div>
 
           <div className="relative z-20 max-w-lg w-full px-content-padding-sm pt-content-padding-top-sm lg:pt-content-padding-top-lg 2xl:pt-content-padding-top-2xl">
-            <h1 className="font-aeonik-medium lg:text-center text-5xl text-primary mb-10 lg:mb-20">
+            <h1 className="font-aeonik-medium lg:text-center text-[50px] text-primary mb-10 lg:mb-20">
               Contact
             </h1>
 
@@ -98,7 +98,7 @@ export default function Contact() {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-charcoal">
+                      <FormLabel className="text-charcoal text-opacity-80">
                         Your Name <span className="text-red-500">*</span>
                       </FormLabel>
                       <FormControl>
@@ -118,7 +118,7 @@ export default function Contact() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-charcoal">
+                      <FormLabel className="text-charcoal text-opacity-80">
                         Email<span className="text-red-500">*</span>
                       </FormLabel>
                       <FormControl>
@@ -138,7 +138,7 @@ export default function Contact() {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-charcoal">
+                      <FormLabel className="text-charcoal text-opacity-80">
                         Telephone <span className="text-red-500">*</span>
                       </FormLabel>
                       <FormControl>
@@ -158,7 +158,7 @@ export default function Contact() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-charcoal">
+                      <FormLabel className="text-charcoal text-opacity-80">
                         Message <span className="text-red-500">*</span>
                       </FormLabel>
                       <FormControl>
@@ -179,7 +179,7 @@ export default function Contact() {
                 />
 
                 <Button
-                  className="bg-primary hover:bg-primary rounded-sm px-4"
+                  className="bg-primary lg:hover:bg-[#EF5625] duration-300 ease-in-out rounded-sm px-6 lg:px-5"
                   type="submit"
                 >
                   Submit
@@ -191,15 +191,19 @@ export default function Contact() {
 
         <div className="flex items-start justify-evenly w-full bg-primary-gradient text-white lg:py-32 py-11 px-content-padding-sm">
           <div className="lg:flex flex-col lg:flex-row lg:items-center items-start justify-evenly lg:justify-center lg:w-fit lg:gap-32 2xl:gap-48">
-            <div className="w-full lg:w-fit">
-              <h2 className="font-semibold mb-4">PLANT MALANG</h2>
-              <p>
-                Jl Raya Kartanegara No.85, Ngambon,{" "}
-                <br className="hidden lg:block" />
-                Girimoyo, Kec. Karangploso, <br className="hidden lg:block" />
-                Malang, Jawa Timur 65152
-              </p>
-              <div className="flex items-center mt-4 lg:mt-12">
+            <div className="w-full lg:w-fit flex flex-col lg:gap-4">
+              <div>
+                <h2 className="font-semibold mb-6 tracking-wider text-white text-base lg:text-[17px]">
+                  PLANT MALANG
+                </h2>
+                <p className="text-white text-[15px] lg:text-[17px] leading-relaxed">
+                  Jl Raya Kartanegara No.85, Ngambon,{" "}
+                  <br className="hidden lg:block" />
+                  Girimoyo, Kec. Karangploso, <br className="hidden lg:block" />
+                  Malang, Jawa Timur 65152
+                </p>
+              </div>
+              <div className="flex items-center mt-7 lg:mt-12">
                 <Image
                   src={IcPhone}
                   alt="phone icon"
@@ -208,18 +212,22 @@ export default function Contact() {
                 <span>(0341) 468500</span>
               </div>
             </div>
-            <div className="w-full lg:w-fit mt-20 lg:mt-0">
-              <h2 className="font-semibold mb-4 lg:mt-0">PLANT TANGERANG</h2>
-              <p>
-                JL Raya serang Km. 12, Kampung Cirewed{" "}
-                <br className="hidden lg:block" />
-                RT.3 RW.2, Desa Sukadamai, Cikupa,{" "}
-                <br className="hidden lg:block" />
-                Sukadamai, Kec. Cikupa, Tangerang,{" "}
-                <br className="hidden lg:block" />
-                Banten 15710
-              </p>
-              <div className="flex items-center mt-4 lg:mt-6">
+            <div className="w-full lg:w-fit mt-20 lg:mt-0 flex flex-col lg:gap-4">
+              <div>
+                <h2 className="font-semibold text-white tracking-wider text-base lg:text-[17px] mb-6 lg:mt-0">
+                  PLANT TANGERANG
+                </h2>
+                <p className="text-white text-[15px] lg:text-[17px] leading-relaxed">
+                  JL Raya serang Km. 12, Kampung Cirewed{" "}
+                  <br className="hidden lg:block" />
+                  RT.3 RW.2, Desa Sukadamai, Cikupa,{" "}
+                  <br className="hidden lg:block" />
+                  Sukadamai, Kec. Cikupa, Tangerang,{" "}
+                  <br className="hidden lg:block" />
+                  Banten 15710
+                </p>
+              </div>
+              <div className="flex items-center mt-7 lg:mt-6">
                 <Image
                   src={IcPhone}
                   alt="phone icon"

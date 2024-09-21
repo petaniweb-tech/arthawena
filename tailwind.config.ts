@@ -43,7 +43,8 @@ const config = {
         charcoal: "#2D2C2C",
       },
       backgroundImage: {
-        "primary-gradient": "linear-gradient(to right, #F0872E, #E25E1A)",
+        "primary-gradient":
+          "linear-gradient(to bottom right, #EE7B36, #E35A2B, #DF4D26)",
         "green-gradient": "linear-gradient(to right, #A3CF44, #6ABF31)",
         "blue-gradient": "linear-gradient(to right, #2B55B2, #7D7FB8)",
         "yellow-gradient": "linear-gradient(to right, #E3B524, #E6D624)",
