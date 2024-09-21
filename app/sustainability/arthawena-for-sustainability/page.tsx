@@ -1,6 +1,8 @@
+import Image from "next/image";
+import Link from "next/link";
+
 // Import Components //
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
-import Image from "next/image";
 import HeroBackground from "@/assets/images/sustainability/img-sustainability-background.webp";
 
 // Import Icons
@@ -183,12 +185,12 @@ export default function ArthawenaForSustainability() {
 
               {/* Button */}
               <div className="mt-8 lg:mt-10 mb-14 lg:mb-[70px]">
-                <a
-                  href="#!"
+                <Link
+                  href="/careers/culture"
                   className="text-[15px] tracking-wider inline-block font-medium text-primary border border-primary py-1 px-4 rounded-full"
                 >
                   READ OUR CULTURE
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -252,12 +254,12 @@ export default function ArthawenaForSustainability() {
 
             {/* Button */}
             <div className="text-start mt-8 lg:mt-10 mb-16 lg:mb-24">
-              <a
-                href="#!"
+              <Link
+                href="/sustainability/csr-programs"
                 className="text-[15px] tracking-wider inline-block font-medium text-primary border border-orange-500 py-1 px-4 rounded-full"
               >
                 READ CSR PROGRAMS
-              </a>
+              </Link>
             </div>
           </div>
         </div>
