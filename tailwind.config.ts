@@ -48,8 +48,10 @@ const config = {
         "blue-gradient": "linear-gradient(to right, #2B55B2, #7D7FB8)",
         "yellow-gradient": "linear-gradient(to right, #E3B524, #E6D624)",
 
-        "who-we-are-mobile": "url('../assets/images/home/bg-mobile.webp')",
-        "who-we-are-desktop": "url('../assets/images/home/bg-desktop.webp')",
+        "who-we-are-mobile":
+          "url('../assets/images/home/who-we-are-mobile.webp')",
+        "who-we-are-desktop":
+          "url('../assets/images/home/who-we-are-desktop.webp')",
       },
       keyframes: {
         "accordion-down": {
