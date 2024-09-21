@@ -189,29 +189,44 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="w-full md:flex items-start justify-evenly bg-primary-gradient text-white lg:py-20 py-11 px-content-padding-sm">
-          <div className="">
-            <h2 className="font-semibold mb-4">PLANT MALANG</h2>
-            <p>Jalan Raya Kartanegara No.85, Ngambon,</p>
-            <p>Girimayo, Kec. Karang Ploso, Malang,</p>
-            <p>Jawa Timur 65152</p>
-            <br className="hidden md:block" />
-            <div className="flex items-center mt-4">
-              <Image src={IcPhone} alt="phone icon" className="mr-3 h-6 w-6" />
-              <span>(0341) 468500</span>
+        <div className="flex items-start justify-evenly w-full bg-primary-gradient text-white lg:py-32 py-11 px-content-padding-sm">
+          <div className="lg:flex flex-col lg:flex-row lg:items-center items-start justify-evenly lg:justify-center lg:w-fit lg:gap-32 2xl:gap-48">
+            <div className="w-full lg:w-fit">
+              <h2 className="font-semibold mb-4">PLANT MALANG</h2>
+              <p>
+                Jl Raya Kartanegara No.85, Ngambon,{" "}
+                <br className="hidden lg:block" />
+                Girimoyo, Kec. Karangploso, <br className="hidden lg:block" />
+                Malang, Jawa Timur 65152
+              </p>
+              <div className="flex items-center mt-4 lg:mt-12">
+                <Image
+                  src={IcPhone}
+                  alt="phone icon"
+                  className="mr-3 h-6 w-6"
+                />
+                <span>(0341) 468500</span>
+              </div>
             </div>
-          </div>
-          <div>
-            <h2 className="font-semibold mb-4 mt-14 lg:mt-0">
-              PLANT TANGERANG
-            </h2>
-            <p>JI. Raya serang Km. 12, Kampung Cirewed</p>
-            <p>RT.3 RW.2, Desa Sukadamai, Cikupa,</p>
-            <p>Sukadamai, Kec. Cikupa, Tangerang,</p>
-            <p>Banten 15710</p>
-            <div className="flex items-center mt-4">
-              <Image src={IcPhone} alt="phone icon" className="mr-3 h-6 w-6" />
-              <span>(021) 5960599</span>
+            <div className="w-full lg:w-fit mt-20 lg:mt-0">
+              <h2 className="font-semibold mb-4 lg:mt-0">PLANT TANGERANG</h2>
+              <p>
+                JL Raya serang Km. 12, Kampung Cirewed{" "}
+                <br className="hidden lg:block" />
+                RT.3 RW.2, Desa Sukadamai, Cikupa,{" "}
+                <br className="hidden lg:block" />
+                Sukadamai, Kec. Cikupa, Tangerang,{" "}
+                <br className="hidden lg:block" />
+                Banten 15710
+              </p>
+              <div className="flex items-center mt-4 lg:mt-6">
+                <Image
+                  src={IcPhone}
+                  alt="phone icon"
+                  className="mr-3 h-6 w-6"
+                />
+                <span>(021) 5960599</span>
+              </div>
             </div>
           </div>
         </div>
