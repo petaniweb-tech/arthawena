@@ -28,7 +28,7 @@ export default function ArthawenaForSustainability() {
       {/* <-- === Breadcrumb End === --> */}
 
       {/* <-- === Hero Section === --> */}
-      <div className="relative h-screen lg:h-auto pt-[210px] pb-14 lg:pt-[300px] mb-20 lg:pb-44">
+      <div className="relative h-auto pt-[246px] pb-32 lg:pt-[300px] lg:pb-44">
         {/* Hero background image */}
         <Image
           src={HeroBackground}
