@@ -77,7 +77,7 @@ export default function HeroCarousel() {
           videoRef.current.currentTime = 1;
         }
 
-        timeoutRef.current = setTimeout(swapSlideNext, 7000);
+        timeoutRef.current = setTimeout(swapSlideNext, 3000);
 
         setCurrent(swiper.realIndex + 1);
       }}
