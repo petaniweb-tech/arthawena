@@ -25,7 +25,7 @@ export default function ShowcaseCarousel() {
       modules={[Autoplay, EffectCreative]}
       loop={true}
       autoplay={{
-        delay: 7000,
+        delay: 3000,
         disableOnInteraction: false,
         waitForTransition: true,
       }}
