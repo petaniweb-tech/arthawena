@@ -52,12 +52,11 @@ export default function Culture() {
 
           <div className="lg:bg-background lg:pb-[30px] lg:pl-[140px] 2xl:pl-[160px] lg:pr-20">
             <p className="text-[15px] lg:text-[17px] lg:leading-relaxed lg:font-light w-fit text-charcoal">
-              We prioritize building a supportive and skilled community.
+              We prioritize building a supportive and skilled community.{" "}
               <br className="hidden lg:block" />
               Our team members are our greatest asset and we invest in their{" "}
               <br className="hidden lg:block" />
               training and education to provide the best services possible.
-              <br className="hidden lg:block" />
             </p>
           </div>
         </div>
