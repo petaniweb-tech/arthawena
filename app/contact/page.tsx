@@ -197,7 +197,7 @@ export default function Contact() {
                   PLANT MALANG
                 </h2>
                 <p className="text-white text-[15px] lg:text-[17px] leading-relaxed">
-                  Jl Raya Kartanegara No.85, Ngambon,{" "}
+                  Jalan Raya Kartanegara No.85, Ngambon,{" "}
                   <br className="hidden lg:block" />
                   Girimoyo, Kec. Karangploso, <br className="hidden lg:block" />
                   Malang, Jawa Timur 65152
@@ -218,7 +218,7 @@ export default function Contact() {
                   PLANT TANGERANG
                 </h2>
                 <p className="text-white text-[15px] lg:text-[17px] leading-relaxed">
-                  JL Raya serang Km. 12, Kampung Cirewed{" "}
+                  Jalan Raya serang Km. 12, Kampung Cirewed{" "}
                   <br className="hidden lg:block" />
                   RT.3 RW.2, Desa Sukadamai, Cikupa,{" "}
                   <br className="hidden lg:block" />
