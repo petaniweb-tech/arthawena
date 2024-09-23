@@ -77,8 +77,10 @@ export default function CsrPrograms() {
             <Image
               src={ImageBackground}
               alt="Map Background"
-              width={1024}
-              height={1980}
+              width={2000}
+              height={2000}
+              quality={100}
+              priority={true}
               className="h-auto pt-10 pb-10 scale-150 lg:scale-125 translate-x-7 lg:translate-x-32  lg:pt-16 w-full object-cover object-center"
             />
 
@@ -86,7 +88,7 @@ export default function CsrPrograms() {
           </div>
 
           {/* Legend for Sponsors */}
-          <div className="absolute -bottom-10 right-5 lg:-bottom-20 lg:right-20 lg:p-4 p-2 drop-shadow-md w-fit bg-white">
+          <div className="absolute -bottom-14 right-5 lg:-bottom-20 lg:right-20 lg:p-4 p-2 drop-shadow-md w-fit bg-white">
             <ul className="text-left space-y-1 lg:space-y-3 text-[7px] lg:text-sm">
               <li className="flex items-center">
                 <span className="block w-2 h-2 lg:w-3 lg:h-3  bg-[#57B948] rounded-full" />
@@ -101,7 +103,7 @@ export default function CsrPrograms() {
               <li className="flex items-center">
                 <span className="block w-2 h-2 lg:w-3 lg:h-3 bg-[#2B55B2]  rounded-full" />
                 <span className="mx-2">:</span>
-                <span>Oxfam Foundation</span>
+                <span>Charis Foundation</span>
               </li>
               <li className="flex items-center">
                 <span className="block w-2 h-2 lg:w-3 lg:h-3 bg-[#F2E823] rounded-full" />
@@ -130,7 +132,7 @@ export default function CsrPrograms() {
           <div key={index} className="mb-10">
             {/* Title */}
             <h2
-              className="text-3xl font-aeonik-medium lg:text-center lg:text-5xl mb-4 lg:mb-7"
+              className="text-3xl font-aeonik-medium lg:text-center lg:text-5xl 2xl:text-[50px] mb-4 lg:mb-7"
               style={{ color: csr.titleColor }}
             >
               {csr.title}
@@ -141,7 +143,7 @@ export default function CsrPrograms() {
               {csr.subtitle}
             </p>
 
-            <div className="flex flex-col lg:flex-row lg:items-center w-full lg:h-fit lg:gap-28">
+            <div className="flex flex-col lg:flex-row lg:items-center w-full lg:h-fit lg:gap-28 2xl:gap-36">
               {/* Image */}
               {csr.images != null && (
                 <Swiper
@@ -153,7 +155,7 @@ export default function CsrPrograms() {
                     disableOnInteraction: false,
                     waitForTransition: true,
                   }}
-                  className="h-[280px] w-full lg:w-[60%] 2xl:w-[70%] lg:h-[280px] 2xl:h-[300px] object-cover object-center rounded-xl mb-10 lg:mb-0"
+                  className="h-[280px] w-full lg:w-[60%] lg:h-[280px] 2xl:h-[360px] object-cover object-center rounded-xl mb-10 lg:mb-0"
                 >
                   {csr.images?.map((image: CsrImageType, imgIndex: number) => (
                     <SwiperSlide
@@ -175,7 +177,7 @@ export default function CsrPrograms() {
 
               {/* Description */}
               <div
-                className={`text-charcoal text-[15px] leading-relaxed text-opacity-80 whitespace-pre-line mb-14 lg:mb-0 lg:w-full ${csr.images == null ? "lg:px-64" : ""}`}
+                className={`text-charcoal text-[15px] 2xl:text-base leading-relaxed text-opacity-80 whitespace-pre-line mb-14 lg:mb-0 lg:w-full ${csr.images == null ? "lg:px-64" : ""}`}
               >
                 <PortableText
                   value={csr.description}
