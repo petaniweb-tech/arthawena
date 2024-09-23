@@ -1,6 +1,7 @@
 import { defineField, defineType } from "sanity";
 import { PackageIcon } from "@sanity/icons";
 import { ValidationContext } from "@sanity/types";
+import { positionValidation } from "../lib/position-validation";
 
 export const ProductType = defineType({
   name: "product",
@@ -14,36 +15,9 @@ export const ProductType = defineType({
       type: "number",
       description: "The position of content",
       validation: (Rule: any) =>
-        Rule.positive().custom(
-          async (value: number, context: ValidationContext) => {
-            try {
-              if (!value) return true;
-
-              const { document, getClient } = context;
-
-              const client = getClient({ apiVersion: "vX" });
-              if (!client) throw new Error("Sanity client is not available");
-
-              const documentID = document?._id;
-              if (!documentID) throw new Error("Document not found!");
-
-              const query = `!defined(*[_type == "product" && !(_id in [$id, $draftID]) && position == $position][0]._id)`;
-              const isUnique = await client.fetch(query, {
-                position: value,
-                id: documentID?.replace("drafts.", "") || documentID,
-                draftID: documentID,
-              });
-
-              if (isUnique) {
-                return true;
-              }
-
-              throw new Error("Position must be unique");
-            } catch (error: any) {
-              return error.message;
-            }
-          }
-        ),
+        Rule.positive().custom((value: number, context: ValidationContext) => {
+          return positionValidation("product", value, context);
+        }),
     }),
     defineField({
       name: "title",
