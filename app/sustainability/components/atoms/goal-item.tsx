@@ -40,7 +40,7 @@ const GoalItem = ({ title, description, imageUrl, index }: GoalItemProps) => {
         <Image
           src={imageUrl}
           alt="2030 Goals"
-          className="rounded-lg object-cover object-center w-full h-full"
+          className="rounded-lg object-cover object-center w-full h-[250px] lg:h-full"
           width={600}
           height={600}
           priority={true}
