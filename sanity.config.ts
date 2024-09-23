@@ -20,7 +20,7 @@ export default defineConfig({
   document: {
     newDocumentOptions: (prev, { currentUser, creationContext }) => {
       const { type, schemaType } = creationContext;
-      if (type === "structure" && ["banners", "join-us", "goals"].includes(schemaType)) {
+      if (type === "structure" && ["banners", "join-us"].includes(schemaType)) {
         return [];
       }
 
