@@ -70,14 +70,14 @@ export default function Footer() {
         {/* <-- === Footer Mobile End === --> */}
 
         {/* <-- === Footer Desktop Start === --> */}
-        <section className="hidden lg:flex flex-col w-full gap-[90px]">
-          <div className="flex w-full items-center justify-center gap-16">
+        <section className="hidden lg:flex flex-col w-full gap-[62px]">
+          <div className="flex w-full items-end justify-center gap-16">
             <Link href="/">
               <Image
                 src={logosymbol}
                 alt="Arthawena Logo"
                 priority={true}
-                className="w-44 h-auto"
+                className="w-28 h-auto"
               />
             </Link>
 
@@ -88,7 +88,7 @@ export default function Footer() {
                     arthawena.com
                   </p>
                 </Link>
-                <h4 className="text-4xl leading-tight text-white font-aeonik-medium">
+                <h4 className="text-4xl leading-tight text-white font-aeonik-medium tracking-wide">
                   Arthawena, The Reliable Partner
                   <br />
                   You Can Trust.
