@@ -81,14 +81,14 @@ export default function CsrPrograms() {
               height={2000}
               quality={100}
               priority={true}
-              className="h-auto pt-10 pb-10 scale-150 lg:scale-125 translate-x-7 lg:translate-x-32  lg:pt-16 w-full object-cover object-center"
+              className="h-auto pt-10 pb-10 lg:pb-32 scale-150 lg:scale-125 translate-x-7 lg:translate-x-32  lg:pt-16 w-full object-cover object-center"
             />
 
             <div className="absolute inset-0 bg-gradient-to-b from-background to-transparent z-10 opacity-70"></div>
           </div>
 
           {/* Legend for Sponsors */}
-          <div className="absolute -bottom-14 right-5 lg:-bottom-20 lg:right-20 lg:p-4 p-2 drop-shadow-md w-fit bg-white">
+          <div className="absolute -bottom-14 right-5 lg:-bottom-0 lg:right-20 lg:p-4 p-2 drop-shadow-md w-fit bg-white">
             <ul className="text-left space-y-1 lg:space-y-3 text-[7px] lg:text-sm">
               <li className="flex items-center">
                 <span className="block w-2 h-2 lg:w-3 lg:h-3  bg-[#57B948] rounded-full" />
