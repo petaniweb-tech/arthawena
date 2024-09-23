@@ -11,6 +11,7 @@ interface VideoPlayerProps {
   videoRef?: React.RefObject<HTMLVideoElement>;
   isVideoPlay?: boolean;
   muted?: boolean;
+  onManualPause?: () => void;
 }
 
 export default function VideoPlayer({
@@ -18,6 +19,7 @@ export default function VideoPlayer({
   videoRef,
   isVideoPlay = false,
   muted = true,
+  onManualPause,
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(isVideoPlay);
   const [isMuted, setIsMuted] = useState(muted);
@@ -32,7 +34,12 @@ export default function VideoPlayer({
         finalVideoRef.current.pause();
         clearTimeout(timerRef.current as NodeJS.Timeout);
         setFadeOut(false);
+
+        if (onManualPause) {
+          onManualPause();
+        }
       } else {
+        finalVideoRef.current.currentTime = 1;
         finalVideoRef.current.play();
         finalVideoRef.current.muted = false;
         setIsMuted(false);
