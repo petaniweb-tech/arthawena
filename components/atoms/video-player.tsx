@@ -12,6 +12,7 @@ interface VideoPlayerProps {
   isVideoPlay?: boolean;
   muted?: boolean;
   onManualPause?: () => void;
+  onVideoEnd?: () => void;
 }
 
 export default function VideoPlayer({
@@ -20,10 +21,13 @@ export default function VideoPlayer({
   isVideoPlay = false,
   muted = true,
   onManualPause,
+  onVideoEnd,
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(isVideoPlay);
   const [isMuted, setIsMuted] = useState(muted);
   const [fadeOut, setFadeOut] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const internalVideoRef = useRef<HTMLVideoElement>(null);
   const finalVideoRef = videoRef || internalVideoRef;
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -34,15 +38,28 @@ export default function VideoPlayer({
         finalVideoRef.current.pause();
         clearTimeout(timerRef.current as NodeJS.Timeout);
         setFadeOut(false);
+        setIsPaused(true);
 
         if (onManualPause) {
           onManualPause();
         }
       } else {
-        finalVideoRef.current.currentTime = 1;
+        // If it's the first play, start from second 1
+        if (!hasStarted) {
+          finalVideoRef.current.currentTime = 1;
+          setHasStarted(true); // Mark the video as having been started
+        } else if (isPaused) {
+          // If resuming after pause, ensure video plays till the end
+          finalVideoRef.current.onended = () => {
+            if (onVideoEnd) {
+              onVideoEnd(); // Call the onVideoEnd callback when video ends
+            }
+          };
+        }
         finalVideoRef.current.play();
         finalVideoRef.current.muted = false;
         setIsMuted(false);
+        setIsPaused(false);
 
         clearTimeout(timerRef.current as NodeJS.Timeout);
         timerRef.current = setTimeout(() => {
@@ -57,8 +74,15 @@ export default function VideoPlayer({
   useEffect(() => {
     if (finalVideoRef.current) {
       finalVideoRef.current.muted = isMuted;
+
+      // Attach onended event to move to the next slide when video ends
+      finalVideoRef.current.onended = () => {
+        if (onVideoEnd) {
+          onVideoEnd(); // Call the onVideoEnd callback when video ends
+        }
+      };
     }
-  }, [isMuted, finalVideoRef]);
+  }, [isMuted, finalVideoRef, onVideoEnd]);
 
   useEffect(() => {
     setIsPlaying(isVideoPlay);
