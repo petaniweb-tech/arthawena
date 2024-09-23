@@ -6,9 +6,8 @@ import Image from "next/image";
 
 // Import Swiper Components //
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
-import { Autoplay, EffectCreative } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/effect-creative";
 
 // Importing Data //
 import { client } from "@/sanity/lib/client";
@@ -30,6 +29,7 @@ export default function HeroCarousel() {
   const [isPlayVideo, setIsPlayVideo] = useState<boolean>(false);
   const videoRefs = useRef<React.RefObject<HTMLVideoElement>[]>([]);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const nextSlideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +53,17 @@ export default function HeroCarousel() {
     swiperRef?.current?.swiper?.slideNext();
   };
 
+  const handleManualPause = () => {
+    if (nextSlideTimeoutRef.current) {
+      clearTimeout(nextSlideTimeoutRef.current);
+    }
+
+    // Set a 3-second timer to go to the next slide
+    nextSlideTimeoutRef.current = setTimeout(() => {
+      swapSlideNext();
+    }, 3000);
+  };
+
   if (!banners.length) {
     return null;
   }
@@ -74,7 +85,7 @@ export default function HeroCarousel() {
 
         const videoRef = videoRefs.current[swiper.realIndex];
         if (videoRef?.current) {
-          videoRef.current.currentTime = 1;
+          videoRef.current.currentTime = 9;
         }
 
         timeoutRef.current = setTimeout(swapSlideNext, 3000);
@@ -123,6 +134,7 @@ export default function HeroCarousel() {
                   isVideoPlay={isPlayVideo}
                   muted={true}
                   videoRef={videoRefs.current[index]}
+                  onManualPause={handleManualPause}
                 />
               ) : (
                 <Image
