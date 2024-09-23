@@ -24,8 +24,8 @@ export default async function Home() {
       {/* <-- ==== Who We Are Start ==== --> */}
       <section className="bg-who-we-are-mobile lg:bg-who-we-are-desktop bg-cover block lg:flex lg:items-center lg:justify-between w-full px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl pt-16 lg:pt-36 pb-12 lg:pb-40">
         <div className="flex flex-col gap-7 lg:gap-9 lg:w-[45%]">
-          <h6 className="text-[19px] lg:text-[26px] text-white">WHO WE ARE</h6>
-          <h4 className="text-[28px] lg:text-[46px] text-white font-aeonik-medium leading-tight lg:leading-[1.4]">
+          <h6 className="text-[19px] lg:text-[26px] text-white">WHO ARE WE</h6>
+          <h4 className="text-[28px] lg:text-[46px] text-white font-aeonik-medium leading-tight tracking-wider lg:leading-[1.4]">
             THE MOST RELIABLE TIN CAN SUPPLIER IN INDONESIA
           </h4>
 
