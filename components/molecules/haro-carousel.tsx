@@ -30,6 +30,7 @@ export default function HeroCarousel() {
   const videoRefs = useRef<React.RefObject<HTMLVideoElement>[]>([]);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const nextSlideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isPaused, setIsPaused] = useState(false); // Track paused video state
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,10 +59,60 @@ export default function HeroCarousel() {
       clearTimeout(nextSlideTimeoutRef.current);
     }
 
-    // Set a 3-second timer to go to the next slide
+    // Only move to the next slide if the video isn't resumed
     nextSlideTimeoutRef.current = setTimeout(() => {
-      swapSlideNext();
+      if (!isPaused) {
+        swapSlideNext();
+      }
     }, 3000);
+  };
+
+  const handleVideoEnd = () => {
+    swapSlideNext();
+  };
+
+  const handlePlayVideo = (videoRef: React.RefObject<HTMLVideoElement>) => {
+    if (videoRef?.current) {
+      videoRef.current.play().then(() => {
+        setIsPlayVideo(true);
+        videoRef.current!.onended = handleVideoEnd; // Ensure video plays till the end
+      });
+    }
+  };
+
+  const handleResumeVideo = (videoRef: React.RefObject<HTMLVideoElement>) => {
+    if (videoRef?.current) {
+      if (nextSlideTimeoutRef.current) {
+        clearTimeout(nextSlideTimeoutRef.current); // Clear the pause timeout if resuming
+      }
+      videoRef.current
+        .play()
+        .then(() => {
+          setIsPlayVideo(true);
+          setIsPaused(false); // Mark video as resumed
+          // Ensure video plays until the end after resuming
+          videoRef.current!.onended = handleVideoEnd;
+        })
+        .catch((err) => console.error("Error resuming video:", err));
+    }
+  };
+
+  const handleClick = (swiper: any) => {
+    const videoRef = videoRefs.current[swiper.realIndex];
+    if (videoRef?.current) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+
+      if (isPaused) {
+        // Resume the paused video
+        setIsPaused(false);
+        handleResumeVideo(videoRef);
+      } else {
+        // Play the video for the first time
+        handlePlayVideo(videoRef);
+      }
+    }
   };
 
   if (!banners.length) {
@@ -85,31 +136,14 @@ export default function HeroCarousel() {
 
         const videoRef = videoRefs.current[swiper.realIndex];
         if (videoRef?.current) {
-          videoRef.current.currentTime = 9;
+          videoRef.current.currentTime = 9; // Show thumbnail at 9 seconds
         }
 
         timeoutRef.current = setTimeout(swapSlideNext, 3000);
 
         setCurrent(swiper.realIndex + 1);
       }}
-      onClick={(swiper) => {
-        const videoRef = videoRefs.current[swiper.realIndex];
-        if (videoRef?.current) {
-          if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-          }
-
-          videoRef.current
-            .play()
-            .then(() => {
-              if (videoRef.current) {
-                setIsPlayVideo(true);
-                videoRef.current.onended = () => swapSlideNext();
-              }
-            })
-            .catch((err) => console.error("Video playback failed", err));
-        }
-      }}
+      onClick={handleClick}
       className="w-full h-screen"
     >
       <SwiperNavigation />
@@ -134,7 +168,11 @@ export default function HeroCarousel() {
                   isVideoPlay={isPlayVideo}
                   muted={true}
                   videoRef={videoRefs.current[index]}
-                  onManualPause={handleManualPause}
+                  onManualPause={() => {
+                    setIsPaused(true); // Track the paused state
+                    handleManualPause();
+                  }}
+                  onVideoEnd={handleVideoEnd}
                 />
               ) : (
                 <Image
@@ -149,7 +187,7 @@ export default function HeroCarousel() {
               )}
 
               <div
-                className="absolute flex justify-center w-full px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl items-end pb-10 lg:pb-[70px]"
+                className="absolute flex justify-center w-full px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl items-end pb-8 lg:pb-[36px]"
                 style={{
                   height: "fit-content",
                   alignSelf: "flex-end",
