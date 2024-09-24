@@ -44,6 +44,7 @@ export default function VideoPlayer({
           onManualPause();
         }
       } else {
+        finalVideoRef.current.currentTime = 1;
         // If it's the first play, start from second 1
         if (!hasStarted) {
           finalVideoRef.current.currentTime = 1;
