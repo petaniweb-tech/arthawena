@@ -26,11 +26,14 @@ export default function HeroCarousel() {
   const swiperRef = useRef<SwiperRef>(null);
   const [banners, setBanners] = useState<BannerItem[]>([]);
   const [current, setCurrent] = useState(1);
-  const [isPlayVideo, setIsPlayVideo] = useState<boolean>(false);
+  const [isPlayingVideo, setIsPlayingVideo] = useState<boolean>(false);
   const videoRefs = useRef<React.RefObject<HTMLVideoElement>[]>([]);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const nextSlideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [isPaused, setIsPaused] = useState(false); // Track paused video state
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState<number | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,65 +57,68 @@ export default function HeroCarousel() {
     swiperRef?.current?.swiper?.slideNext();
   };
 
-  const handleManualPause = () => {
-    if (nextSlideTimeoutRef.current) {
-      clearTimeout(nextSlideTimeoutRef.current);
-    }
-
-    // Only move to the next slide if the video isn't resumed
-    nextSlideTimeoutRef.current = setTimeout(() => {
-      if (!isPaused) {
-        swapSlideNext();
-      }
-    }, 3000);
-  };
-
   const handleVideoEnd = () => {
+    setIsPlayingVideo(false);
     swapSlideNext();
   };
 
-  const handlePlayVideo = (videoRef: React.RefObject<HTMLVideoElement>) => {
-    if (videoRef?.current) {
-      videoRef.current.play().then(() => {
-        setIsPlayVideo(true);
-        videoRef.current!.onended = handleVideoEnd; // Ensure video plays till the end
-      });
-    }
-  };
-
-  const handleResumeVideo = (videoRef: React.RefObject<HTMLVideoElement>) => {
-    if (videoRef?.current) {
-      if (nextSlideTimeoutRef.current) {
-        clearTimeout(nextSlideTimeoutRef.current); // Clear the pause timeout if resuming
-      }
-      videoRef.current
-        .play()
-        .then(() => {
-          setIsPlayVideo(true);
-          setIsPaused(false); // Mark video as resumed
-          // Ensure video plays until the end after resuming
-          videoRef.current!.onended = handleVideoEnd;
-        })
-        .catch((err) => console.error("Error resuming video:", err));
-    }
-  };
-
-  const handleClick = (swiper: any) => {
-    const videoRef = videoRefs.current[swiper.realIndex];
+  const handleVideoClick = (index: number) => {
+    const videoRef = videoRefs.current[index];
     if (videoRef?.current) {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current);
+      }
 
-      if (isPaused) {
-        // Resume the paused video
-        setIsPaused(false);
-        handleResumeVideo(videoRef);
+      if (isPlayingVideo && !isPaused) {
+        // Pause the video
+        videoRef.current.pause();
+        setIsPaused(true);
+        setIsPlayingVideo(false);
+        pauseTimeoutRef.current = setTimeout(() => {
+          swapSlideNext();
+        }, 3000);
       } else {
-        // Play the video for the first time
-        handlePlayVideo(videoRef);
+        // Play or resume the video
+        if (!isPlayingVideo || (isPlayingVideo && isPaused)) {
+          if (currentVideoIndex !== index) {
+            // First time playing this video
+            videoRef.current.currentTime = 1;
+            setCurrentVideoIndex(index);
+          }
+          videoRef.current.muted = false; // Ensure the video is not muted when playing
+          videoRef.current.play();
+          setIsPaused(false);
+          setIsPlayingVideo(true);
+        }
       }
     }
+  };
+
+  const handleSlideChange = (swiper: any) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+    }
+
+    setIsPlayingVideo(false);
+    setIsPaused(false);
+    muteAllVideos();
+
+    const videoRef = videoRefs.current[swiper.realIndex];
+    if (videoRef?.current) {
+      videoRef.current.currentTime = 9; // Show thumbnail at 9 seconds
+      videoRef.current.muted = true; // Mute the video when showing thumbnail
+    }
+
+    timeoutRef.current = setTimeout(swapSlideNext, 3000);
+
+    setCurrent(swiper.realIndex + 1);
+    setCurrentVideoIndex(null);
   };
 
   if (!banners.length) {
@@ -126,24 +132,7 @@ export default function HeroCarousel() {
       grabCursor={false}
       modules={[Autoplay]}
       loop={true}
-      onSlideChange={(swiper) => {
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-        }
-
-        setIsPlayVideo(false);
-        muteAllVideos();
-
-        const videoRef = videoRefs.current[swiper.realIndex];
-        if (videoRef?.current) {
-          videoRef.current.currentTime = 9; // Show thumbnail at 9 seconds
-        }
-
-        timeoutRef.current = setTimeout(swapSlideNext, 3000);
-
-        setCurrent(swiper.realIndex + 1);
-      }}
-      onClick={handleClick}
+      onSlideChange={handleSlideChange}
       className="w-full h-screen"
     >
       <SwiperNavigation />
@@ -165,14 +154,11 @@ export default function HeroCarousel() {
               {banner.type === "video" ? (
                 <VideoPlayer
                   videoSrc={banner.url}
-                  isVideoPlay={isPlayVideo}
-                  muted={true}
                   videoRef={videoRefs.current[index]}
-                  onManualPause={() => {
-                    setIsPaused(true); // Track the paused state
-                    handleManualPause();
-                  }}
-                  onVideoEnd={handleVideoEnd}
+                  isPlaying={isPlayingVideo && currentVideoIndex === index}
+                  isMuted={!isPlayingVideo} // Mute only when not playing
+                  onVideoClick={() => handleVideoClick(index)}
+                  onVideoEnded={handleVideoEnd}
                 />
               ) : (
                 <Image
