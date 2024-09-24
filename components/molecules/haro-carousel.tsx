@@ -75,7 +75,7 @@ export default function HeroCarousel() {
     if (videoRef?.current) {
       videoRef.current.play().then(() => {
         setIsPlayVideo(true);
-        videoRef.current!.onended = handleVideoEnd; // Ensure video plays till the end
+        if (videoRef.current) videoRef.current!.onended = handleVideoEnd; // Ensure video plays till the end
       });
     }
   };
@@ -91,7 +91,7 @@ export default function HeroCarousel() {
           setIsPlayVideo(true);
           setIsPaused(false); // Mark video as resumed
           // Ensure video plays until the end after resuming
-          videoRef.current!.onended = handleVideoEnd;
+          if (videoRef.current) videoRef.current.onended = handleVideoEnd;
         })
         .catch((err) => console.error("Error resuming video:", err));
     }
