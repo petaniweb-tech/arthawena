@@ -11,7 +11,6 @@ interface VideoPlayerProps {
   videoRef: React.RefObject<HTMLVideoElement>;
   isPlaying: boolean;
   isMuted: boolean;
-  currentTime: number;
   onVideoClick: () => void;
   onVideoEnded: () => void;
 }
@@ -21,7 +20,6 @@ export default function VideoPlayer({
   videoRef,
   isPlaying,
   isMuted,
-  currentTime,
   onVideoClick,
   onVideoEnded,
 }: VideoPlayerProps) {

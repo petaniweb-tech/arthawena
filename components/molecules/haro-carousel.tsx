@@ -157,7 +157,6 @@ export default function HeroCarousel() {
                   videoRef={videoRefs.current[index]}
                   isPlaying={isPlayingVideo && currentVideoIndex === index}
                   isMuted={!isPlayingVideo} // Mute only when not playing
-                  currentTime={9}
                   onVideoClick={() => handleVideoClick(index)}
                   onVideoEnded={handleVideoEnd}
                 />
