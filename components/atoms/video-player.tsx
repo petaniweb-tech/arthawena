@@ -11,6 +11,7 @@ interface VideoPlayerProps {
   videoRef: React.RefObject<HTMLVideoElement>;
   isPlaying: boolean;
   isMuted: boolean;
+  poster?: string;
   onVideoClick: () => void;
   onVideoEnded: () => void;
 }
@@ -20,6 +21,7 @@ export default function VideoPlayer({
   videoRef,
   isPlaying,
   isMuted,
+  poster,
   onVideoClick,
   onVideoEnded,
 }: VideoPlayerProps) {
@@ -36,7 +38,9 @@ export default function VideoPlayer({
         preload="metadata"
         playsInline
         className="object-cover object-center h-full w-full"
+        poster={poster}
         onEnded={onVideoEnded}
+        onClick={onVideoClick}
       >
         <source src={videoSrc} type="video/webm" />
       </video>

@@ -20,6 +20,7 @@ import SwiperNavigation from "../atoms/swiper-navigation";
 interface BannerItem {
   type: string;
   url: string;
+  thumbnail?: string;
 }
 
 export default function HeroCarousel() {
@@ -109,10 +110,16 @@ export default function HeroCarousel() {
     setIsPaused(false);
     muteAllVideos();
 
+    // modify this //
+    const banner = banners[swiper.realIndex];
     const videoRef = videoRefs.current[swiper.realIndex];
-    if (videoRef?.current) {
-      videoRef.current.currentTime = 9; // Show thumbnail at 9 seconds
-      videoRef.current.muted = true; // Mute the video when showing thumbnail
+
+    if (banner.type === "video" && videoRef?.current) {
+      videoRef.current.poster = banner.thumbnail || "";
+      videoRef.current.pause();
+      videoRef.current.load();
+
+      videoRef.current.muted = true;
     }
 
     timeoutRef.current = setTimeout(swapSlideNext, 3000);
@@ -157,6 +164,7 @@ export default function HeroCarousel() {
                   videoRef={videoRefs.current[index]}
                   isPlaying={isPlayingVideo && currentVideoIndex === index}
                   isMuted={!isPlayingVideo} // Mute only when not playing
+                  poster={banner.thumbnail}
                   onVideoClick={() => handleVideoClick(index)}
                   onVideoEnded={handleVideoEnd}
                 />
