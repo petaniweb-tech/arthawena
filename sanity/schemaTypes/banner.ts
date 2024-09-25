@@ -29,6 +29,17 @@ export const BannerType = defineType({
           options: {
             accept: "video/*", // Allows both image and video files
           },
+          fields: [
+            {
+              name: "thumbnail",
+              title: "Thumbnail",
+              type: "image",
+              hidden: ({ parent }) => !parent?.asset,
+              options: {
+                hotspot: true,
+              },
+            },
+          ],
         },
       ],
     }),
