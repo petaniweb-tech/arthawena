@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import React from "react";
+import Image, { StaticImageData } from "next/image";
 import { cn } from "@/lib/utils";
 
 // Import Assets //
 import play from "@/assets/icons/play.svg";
 import pause from "@/assets/icons/pause.svg";
-import fallbackImage from "@/assets/images/fallback-image.webp";
 
 interface VideoPlayerProps {
   videoSrc: string;
   videoRef: React.RefObject<HTMLVideoElement>;
   isPlaying: boolean;
   isMuted: boolean;
-  poster?: string;
+  showPoster: boolean;
+  poster?: string | StaticImageData;
   onVideoClick: () => void;
   onVideoEnded: () => void;
 }
@@ -22,33 +22,17 @@ export default function VideoPlayer({
   videoRef,
   isPlaying,
   isMuted,
+  showPoster,
   poster,
   onVideoClick,
   onVideoEnded,
 }: VideoPlayerProps) {
-  const [key, setKey] = useState(0);
-  const [posterLoaded, setPosterLoaded] = useState(false);
-  const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
-
-  useEffect(() => {
-    setKey((prevKey) => prevKey + 1);
-    setPosterLoaded(false);
-    setHasStartedPlaying(false);
-  }, [poster]);
-
-  useEffect(() => {
-    if (isPlaying) {
-      setHasStartedPlaying(true);
-    }
-  }, [isPlaying]);
-
   return (
     <main
       onClick={onVideoClick}
       className="flex items-center w-full h-screen justify-center origin-center relative"
     >
       <video
-        key={key}
         ref={videoRef}
         muted={isMuted}
         loop={false}
@@ -62,24 +46,14 @@ export default function VideoPlayer({
         <source src={videoSrc} type="video/webm" />
       </video>
 
-      {!hasStartedPlaying && (
+      {showPoster && poster && (
         <div className="absolute inset-0">
           <Image
-            src={poster || fallbackImage}
+            src={poster}
             alt="Video thumbnail"
             layout="fill"
             objectFit="cover"
-            onLoad={() => setPosterLoaded(true)}
-            onError={() => setPosterLoaded(false)}
           />
-          {!posterLoaded && (
-            <Image
-              src={fallbackImage}
-              alt="Fallback thumbnail"
-              layout="fill"
-              objectFit="cover"
-            />
-          )}
         </div>
       )}
 
