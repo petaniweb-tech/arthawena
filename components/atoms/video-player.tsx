@@ -28,12 +28,19 @@ export default function VideoPlayer({
 }: VideoPlayerProps) {
   const [key, setKey] = useState(0);
   const [posterLoaded, setPosterLoaded] = useState(false);
+  const [hasStartedPlaying, setHasStartedPlaying] = useState(false);
 
   useEffect(() => {
-    // Force re-render of video element when poster changes
     setKey((prevKey) => prevKey + 1);
     setPosterLoaded(false);
+    setHasStartedPlaying(false);
   }, [poster]);
+
+  useEffect(() => {
+    if (isPlaying) {
+      setHasStartedPlaying(true);
+    }
+  }, [isPlaying]);
 
   return (
     <main
@@ -55,7 +62,7 @@ export default function VideoPlayer({
         <source src={videoSrc} type="video/webm" />
       </video>
 
-      {!isPlaying && (
+      {!hasStartedPlaying && (
         <div className="absolute inset-0">
           <Image
             src={poster || fallbackImage}
