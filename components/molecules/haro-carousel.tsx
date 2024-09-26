@@ -110,7 +110,13 @@ export default function HeroCarousel() {
     setIsPaused(false);
     muteAllVideos();
 
-    // modify this //
+    // Mute and reset all videos
+    videoRefs.current.forEach((videoRef) => {
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
+    });
+
     const banner = banners[swiper.realIndex];
     const videoRef = videoRefs.current[swiper.realIndex];
 
@@ -141,6 +147,16 @@ export default function HeroCarousel() {
       loop={true}
       onSlideChange={handleSlideChange}
       className="w-full h-screen"
+      touchStartPreventDefault={false}
+      allowTouchMove={true}
+      onTouchStart={() => {
+        // Pause all videos as soon as a swipe starts
+        videoRefs.current.forEach((videoRef) => {
+          if (videoRef.current) {
+            videoRef.current.pause();
+          }
+        });
+      }}
     >
       <SwiperNavigation />
       {banners.map((banner, index) => {
