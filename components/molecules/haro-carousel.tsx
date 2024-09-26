@@ -45,6 +45,9 @@ export default function HeroCarousel() {
     fetchData();
   }, []);
 
+  const isMobile =
+    typeof window !== "undefined" && /Mobi|Android/i.test(navigator.userAgent);
+
   const muteAllVideos = () => {
     videoRefs.current.forEach((videoRef) => {
       if (videoRef.current) {
@@ -150,12 +153,13 @@ export default function HeroCarousel() {
       touchStartPreventDefault={false}
       allowTouchMove={true}
       onTouchStart={() => {
-        // Pause all videos as soon as a swipe starts
-        videoRefs.current.forEach((videoRef) => {
-          if (videoRef.current) {
-            videoRef.current.pause();
-          }
-        });
+        if (isMobile) {
+          videoRefs.current.forEach((videoRef) => {
+            if (videoRef.current) {
+              videoRef.current.pause();
+            }
+          });
+        }
       }}
     >
       <SwiperNavigation />
