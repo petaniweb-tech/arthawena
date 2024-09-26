@@ -184,7 +184,7 @@ export default function HeroCarousel() {
                   videoRef={videoRefs.current[index]}
                   isPlaying={isPlayingVideo && currentVideoIndex === index}
                   isMuted={!isPlayingVideo} // Mute only when not playing
-                  poster={banner.thumbnail}
+                  poster={banner.thumbnail} // Make sure this property exists in your BannerItem interface
                   onVideoClick={() => handleVideoClick(index)}
                   onVideoEnded={handleVideoEnd}
                 />

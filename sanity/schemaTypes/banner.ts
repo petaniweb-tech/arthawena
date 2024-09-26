@@ -38,6 +38,7 @@ export const BannerType = defineType({
               options: {
                 hotspot: true,
               },
+              validation: (Rule) => Rule.required(),
             },
           ],
         },
