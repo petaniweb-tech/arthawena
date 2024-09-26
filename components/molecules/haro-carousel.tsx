@@ -3,23 +3,21 @@
 import * as React from "react";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-
-// Import Swiper Components //
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-// Importing Data //
 import { client } from "@/sanity/lib/client";
 import { bannerQuery } from "@/sanity/services/banner-query";
 
-// Import Components //
 import VideoPlayer from "../atoms/video-player";
 import SwiperNavigation from "../atoms/swiper-navigation";
+import fallbackImage from "@/assets/images/fallback-image.webp";
 
 interface BannerItem {
   type: string;
   url: string;
+  thumbnail?: string;
 }
 
 export default function HeroCarousel() {
@@ -34,11 +32,13 @@ export default function HeroCarousel() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState<number | null>(
     null
   );
+  const [showPoster, setShowPoster] = useState<boolean[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await client.fetch(bannerQuery);
       setBanners(result[0]?.images || []);
+      setShowPoster(new Array(result[0]?.images.length).fill(true));
     };
 
     fetchData();
@@ -88,10 +88,15 @@ export default function HeroCarousel() {
             videoRef.current.currentTime = 1;
             setCurrentVideoIndex(index);
           }
-          videoRef.current.muted = false; // Ensure the video is not muted when playing
+          videoRef.current.muted = false;
           videoRef.current.play();
           setIsPaused(false);
           setIsPlayingVideo(true);
+          setShowPoster((prev) => {
+            const newShowPoster = [...prev];
+            newShowPoster[index] = false;
+            return newShowPoster;
+          });
         }
       }
     }
@@ -109,16 +114,33 @@ export default function HeroCarousel() {
     setIsPaused(false);
     muteAllVideos();
 
+    // Mute and reset all videos
+    videoRefs.current.forEach((videoRef) => {
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
+    });
+
+    const banner = banners[swiper.realIndex];
     const videoRef = videoRefs.current[swiper.realIndex];
-    if (videoRef?.current) {
-      videoRef.current.currentTime = 9; // Show thumbnail at 9 seconds
-      videoRef.current.muted = true; // Mute the video when showing thumbnail
+
+    if (banner.type === "video" && videoRef?.current) {
+      videoRef.current.poster = banner.thumbnail || "";
+      videoRef.current.pause();
+      videoRef.current.load();
+
+      videoRef.current.muted = true;
     }
 
     timeoutRef.current = setTimeout(swapSlideNext, 3000);
 
     setCurrent(swiper.realIndex + 1);
     setCurrentVideoIndex(null);
+    setShowPoster((prev) => {
+      const newShowPoster = [...prev];
+      newShowPoster[swiper.realIndex] = true;
+      return newShowPoster;
+    });
   };
 
   if (!banners.length) {
@@ -156,7 +178,9 @@ export default function HeroCarousel() {
                   videoSrc={banner.url}
                   videoRef={videoRefs.current[index]}
                   isPlaying={isPlayingVideo && currentVideoIndex === index}
-                  isMuted={!isPlayingVideo} // Mute only when not playing
+                  isMuted={!isPlayingVideo}
+                  showPoster={showPoster[index]}
+                  poster={banner.thumbnail || fallbackImage}
                   onVideoClick={() => handleVideoClick(index)}
                   onVideoEnded={handleVideoEnd}
                 />

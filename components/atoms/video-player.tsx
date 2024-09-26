@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { cn } from "@/lib/utils";
 
 // Import Assets //
@@ -11,6 +11,8 @@ interface VideoPlayerProps {
   videoRef: React.RefObject<HTMLVideoElement>;
   isPlaying: boolean;
   isMuted: boolean;
+  showPoster: boolean;
+  poster?: string | StaticImageData;
   onVideoClick: () => void;
   onVideoEnded: () => void;
 }
@@ -20,6 +22,8 @@ export default function VideoPlayer({
   videoRef,
   isPlaying,
   isMuted,
+  showPoster,
+  poster,
   onVideoClick,
   onVideoEnded,
 }: VideoPlayerProps) {
@@ -37,9 +41,21 @@ export default function VideoPlayer({
         playsInline
         className="object-cover object-center h-full w-full"
         onEnded={onVideoEnded}
+        onClick={onVideoClick}
       >
         <source src={videoSrc} type="video/webm" />
       </video>
+
+      {showPoster && poster && (
+        <div className="absolute inset-0">
+          <Image
+            src={poster}
+            alt="Video thumbnail"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+      )}
 
       <div className="absolute inset-0 flex items-center justify-center">
         <button
