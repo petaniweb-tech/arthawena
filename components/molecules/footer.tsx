@@ -88,10 +88,10 @@ export default function Footer() {
                     arthawena.com
                   </p>
                 </Link>
-                <h4 className="text-4xl leading-tight text-white font-aeonik-medium tracking-wide">
-                  Arthawena, The Reliable Partner
+                <h4 className="text-4xl leading-tight text-white font-aeonik-regular tracking-wide">
+                  Arthawena
                   <br />
-                  You Can Trust.
+                  <span className="text-2xl font-aeonik-regular font-thin">The Reliable Partner You Can Trust.</span>
                 </h4>
               </div>
 
@@ -109,19 +109,24 @@ export default function Footer() {
                     </div>
                   </Link>
 
+                </div>
+
+                <div className="flex flex-col gap-5">
                   <Link href="/careers/culture">
                     <div className="w-fit pb-1 border-b border-white border-opacity-60 hover:border-opacity-100 duration-300 cursor-pointer">
                       <p>CAREERS</p>
                     </div>
                   </Link>
-                </div>
 
-                <div className="flex flex-col gap-5">
                   <Link href="/sustainability/arthawena-for-sustainability">
                     <div className="w-fit pb-1 border-b border-white border-opacity-60 hover:border-opacity-100 duration-300 cursor-pointer">
                       <p>SUSTAINABILITY</p>
                     </div>
                   </Link>
+                </div>
+
+                <div className="flex flex-col gap-5">
+
 
                   <Link href="/contact">
                     <div className="w-fit pb-1 border-b border-white border-opacity-60 hover:border-opacity-100 duration-300 cursor-pointer">
