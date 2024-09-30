@@ -1,4 +1,5 @@
 // Import Components //
+import React from "react";
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
 import Image from "next/image";
 import cultureImageMobile from "@/assets/images/culture/img-culture-mobile.webp";
@@ -24,7 +25,7 @@ export default function Culture() {
       {/* <-- === Breadcrumb End === --> */}
 
       {/* <-- === Image with Text Overlay === --> */}
-      <div className="relative w-full h-screen lg:h-[500px] lg:mt-52">
+      <div className="relative w-full h-screen lg:h-[870px] lg:mt-52">
         <div>
           <Image
             src={cultureImageMobile}
@@ -44,14 +45,14 @@ export default function Culture() {
           />
         </div>
         <div className="absolute inset-0 flex flex-col justify-start lg:w-full lg:items-start h-fit bg-gradient-to-b from-white via-white via-70% to-transparent pt-content-padding-top-sm lg:pt-0 lg:bg-none lg:justify-start items-start px-content-padding-sm lg:px-0 pb-[110px]">
-          <div className="lg:bg-background lg:w-full lg:px-content-padding-lg 2xl:px-content-padding-2xl">
+          <div className="lg:bg-background lg:text-center lg:w-full lg:px-content-padding-lg 2xl:px-content-padding-2xl">
             <h1 className="font-aeonik-medium text-[50px] text-primary mb-8">
               Culture
             </h1>
           </div>
 
-          <div className="lg:bg-background lg:pb-[30px] lg:pl-[140px] 2xl:pl-[160px] lg:pr-20">
-            <p className="text-[15px] lg:text-[17px] lg:leading-relaxed lg:font-light w-fit text-charcoal">
+          <div className="lg:flex lg:bg-background lg:justify-center lg:items-center lg:w-full lg:pb-[48px] lg:pl-[140px] 2xl:pl-[160px] lg:pr-20">
+            <p className="text-[15px] lg:text-center lg:text-[17px] lg:leading-relaxed lg:font-light w-fit text-charcoal">
               We prioritize building a supportive and skilled community.{" "}
               <br className="hidden lg:block" />
               Our team members are our greatest asset and we invest in their{" "}
