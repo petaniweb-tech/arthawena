@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import DynamicBreadcrumb from "@/components/molecules/dynamic-bradcrumb";
 import Image from "next/image";
@@ -23,7 +24,7 @@ export default async function JoinUs() {
 
       {/* <-- === Image with Text Overlay === --> */}
 
-      <div className="relative w-full h-screen lg:h-[500px] lg:mt-52">
+      <div className="relative w-full h-screen lg:h-[870px] lg:mt-52">
         <Image
           src={joinUsImage}
           alt="Join Us"
@@ -33,15 +34,15 @@ export default async function JoinUs() {
           quality={100}
           className="brightness-[.85] lg:brightness-100"
         />
-        <div className="absolute inset-0 flex flex-col justify-end lg:justify-start items-start text-white px-content-padding-sm lg:px-0 pb-28">
-          <div className="lg:bg-background lg:w-full lg:px-content-padding-lg 2xl:px-content-padding-2xl">
+        <div className="absolute inset-0 flex flex-col justify-end lg:w-full lg:justify-start lg:pt-0 lg:bg-none items-start text-white px-content-padding-sm lg:px-0 pb-28">
+          <div className="lg:bg-background lg:text-center lg:w-full lg:px-content-padding-lg 2xl:px-content-padding-2xl">
             <h1 className="font-aeonik-medium text-5xl lg:text-primary mb-8">
               Join Us
             </h1>
           </div>
 
-          <div className="lg:bg-background lg:px-content-padding-lg 2xl:px-content-padding-2xl lg:pb-7 lg:pr-14">
-            <p className="text-[15px] lg:text-[17px] lg:leading-relaxed lg:font-light w-fit lg:text-charcoal">
+          <div className="lg:flex lg:bg-background lg:px-content-padding-lg 2xl:px-content-padding-2xl lg:justify-center lg:items-center lg:w-full lg:pb-[48px]">
+            <p className="text-[15px] lg:text-center lg:text-[17px] lg:leading-relaxed lg:font-light w-fit lg:text-charcoal">
               Arthawena as a growing national company, realizes that human
               resources <br className="hidden lg:block" />
               play an important role in developing PT. Arthawenasakti Gemilang,
