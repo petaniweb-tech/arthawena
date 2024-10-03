@@ -78,31 +78,31 @@ export default async function Home() {
 
       {/* <-- ==== Company Values Start ==== --> */}
       <section className="mt-20 lg:mt-48 w-full block px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-11 lg:gap-16">
-          <div className="block w-fit h-fit lg:w-full lg:h-full">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-11">
+          <div className="block w-fit h-fit ">
             <Image
               src={sustainable}
               alt="Sustainable Company"
               priority={true}
-              className="w-52 h-auto lg:w-full lg:h-full"
+              className="w-52 h-auto lg:w-72"
             />
           </div>
 
-          <div className="block w-fit h-fit lg:w-full lg:h-full">
+          <div className="block w-fit h-fit ">
             <Image
               src={employees}
               alt="Sustainable Company"
               priority={true}
-              className="w-52 h-auto lg:w-full lg:h-full"
+              className="w-52 h-auto lg:w-72"
             />
           </div>
 
-          <div className="block w-fit h-fit lg:w-full lg:h-full">
+          <div className="block w-fit h-fit ">
             <Image
               src={plants}
               alt="Sustainable Company"
               priority={true}
-              className="w-52 h-auto lg:w-full lg:h-full"
+              className="w-52 h-auto lg:w-72"
             />
           </div>
         </div>
