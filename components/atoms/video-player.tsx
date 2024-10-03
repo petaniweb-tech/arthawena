@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
+import React from "react";
+import Image, { StaticImageData } from "next/image";
 import { cn } from "@/lib/utils";
 
 // Import Assets //
@@ -8,87 +8,61 @@ import pause from "@/assets/icons/pause.svg";
 
 interface VideoPlayerProps {
   videoSrc: string;
-  videoRef?: React.RefObject<HTMLVideoElement>;
-  isVideoPlay?: boolean;
-  muted?: boolean;
-  onManualPause?: () => void;
+  videoRef: React.RefObject<HTMLVideoElement>;
+  isPlaying: boolean;
+  isMuted: boolean;
+  showPoster: boolean;
+  poster?: string | StaticImageData;
+  onVideoClick: () => void;
+  onVideoEnded: () => void;
 }
 
 export default function VideoPlayer({
   videoSrc,
   videoRef,
-  isVideoPlay = false,
-  muted = true,
-  onManualPause,
+  isPlaying,
+  isMuted,
+  showPoster,
+  poster,
+  onVideoClick,
+  onVideoEnded,
 }: VideoPlayerProps) {
-  const [isPlaying, setIsPlaying] = useState(isVideoPlay);
-  const [isMuted, setIsMuted] = useState(muted);
-  const [fadeOut, setFadeOut] = useState(false);
-  const internalVideoRef = useRef<HTMLVideoElement>(null);
-  const finalVideoRef = videoRef || internalVideoRef;
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const handleVideoClick = () => {
-    if (finalVideoRef.current) {
-      if (isPlaying) {
-        finalVideoRef.current.pause();
-        clearTimeout(timerRef.current as NodeJS.Timeout);
-        setFadeOut(false);
-
-        if (onManualPause) {
-          onManualPause();
-        }
-      } else {
-        finalVideoRef.current.currentTime = 1;
-        finalVideoRef.current.play();
-        finalVideoRef.current.muted = false;
-        setIsMuted(false);
-
-        clearTimeout(timerRef.current as NodeJS.Timeout);
-        timerRef.current = setTimeout(() => {
-          setFadeOut(true);
-        }, 1500);
-      }
-
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  useEffect(() => {
-    if (finalVideoRef.current) {
-      finalVideoRef.current.muted = isMuted;
-    }
-  }, [isMuted, finalVideoRef]);
-
-  useEffect(() => {
-    setIsPlaying(isVideoPlay);
-    setFadeOut(false);
-  }, [isVideoPlay]);
-
   return (
     <main
-      onClick={handleVideoClick}
+      onClick={onVideoClick}
       className="flex items-center w-full h-screen justify-center origin-center relative"
     >
       <video
-        ref={finalVideoRef}
-        autoPlay={false}
+        ref={videoRef}
         muted={isMuted}
         loop={false}
         controls={false}
         preload="metadata"
         playsInline
         className="object-cover object-center h-full w-full"
+        onEnded={onVideoEnded}
+        onClick={onVideoClick}
       >
         <source src={videoSrc} type="video/webm" />
       </video>
 
+      {showPoster && poster && (
+        <div className="absolute inset-0">
+          <Image
+            src={poster}
+            alt="Video thumbnail"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+      )}
+
       <div className="absolute inset-0 flex items-center justify-center">
         <button
-          onClick={handleVideoClick}
+          onClick={onVideoClick}
           className={cn(
             "flex items-center justify-center p-9 rounded-full bg-white bg-opacity-10 transition-opacity duration-500",
-            fadeOut ? "opacity-0" : "opacity-100"
+            isPlaying ? "opacity-0" : "opacity-100"
           )}
         >
           <Image

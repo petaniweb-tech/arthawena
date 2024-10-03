@@ -24,8 +24,8 @@ export default async function Home() {
       {/* <-- ==== Who We Are Start ==== --> */}
       <section className="bg-who-we-are-mobile lg:bg-who-we-are-desktop bg-cover block lg:flex lg:items-center lg:justify-between w-full px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl pt-16 lg:pt-36 pb-12 lg:pb-40">
         <div className="flex flex-col gap-7 lg:gap-9 lg:w-[45%]">
-          <h6 className="text-[19px] lg:text-[26px] text-white">WHO WE ARE</h6>
-          <h4 className="text-[28px] lg:text-[46px] text-white font-aeonik-medium leading-tight lg:leading-[1.4]">
+          <h6 className="text-[19px] lg:text-[26px] text-white">WHO ARE WE</h6>
+          <h4 className="text-[28px] lg:text-[46px] text-white font-aeonik-medium leading-tight tracking-wider lg:leading-[1.4]">
             THE MOST RELIABLE TIN CAN SUPPLIER IN INDONESIA
           </h4>
 
@@ -78,31 +78,31 @@ export default async function Home() {
 
       {/* <-- ==== Company Values Start ==== --> */}
       <section className="mt-20 lg:mt-48 w-full block px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-11 lg:gap-16">
-          <div className="block w-fit h-fit lg:w-full lg:h-full">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-11">
+          <div className="block w-fit h-fit ">
             <Image
               src={sustainable}
               alt="Sustainable Company"
               priority={true}
-              className="w-52 h-auto lg:w-full lg:h-full"
+              className="w-52 h-auto lg:w-72"
             />
           </div>
 
-          <div className="block w-fit h-fit lg:w-full lg:h-full">
+          <div className="block w-fit h-fit ">
             <Image
               src={employees}
               alt="Sustainable Company"
               priority={true}
-              className="w-52 h-auto lg:w-full lg:h-full"
+              className="w-52 h-auto lg:w-72"
             />
           </div>
 
-          <div className="block w-fit h-fit lg:w-full lg:h-full">
+          <div className="block w-fit h-fit ">
             <Image
               src={plants}
               alt="Sustainable Company"
               priority={true}
-              className="w-52 h-auto lg:w-full lg:h-full"
+              className="w-52 h-auto lg:w-72"
             />
           </div>
         </div>

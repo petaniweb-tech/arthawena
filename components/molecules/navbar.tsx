@@ -84,7 +84,7 @@ function Navbar() {
               src={logo}
               alt="Arthawena Logo"
               priority={true}
-              className="w-auto h-10"
+              className="w-auto h-11"
             />
           </Link>
 
@@ -178,7 +178,7 @@ function Navbar() {
       {/* <-- ==== Navbar Desktop Start ==== --> */}
       <nav
         className={cn(
-          "hidden lg:flex fixed top-0 left-0 right-0 items-center justify-between z-[99] w-screen overflow-hidden py-[22px] bg-white px-content-padding-lg 2xl:px-content-padding-2xl transition-all duration-200",
+          "hidden lg:flex fixed top-0 left-0 right-0 items-center justify-between z-[99] w-screen overflow-hidden py-6 bg-white px-content-padding-lg 2xl:px-content-padding-2xl transition-all duration-200",
           scrolled ? "bg-opacity-70 backdrop-blur-md" : "bg-opacity-100"
         )}
       >
@@ -187,7 +187,7 @@ function Navbar() {
             src={logo}
             alt="Arthawena Logo"
             priority={true}
-            className="w-auto h-[42px]"
+            className="w-auto h-12"
           />
         </Link>
 

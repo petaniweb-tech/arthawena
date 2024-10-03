@@ -3,38 +3,42 @@
 import * as React from "react";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-
-// Import Swiper Components //
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 
-// Importing Data //
 import { client } from "@/sanity/lib/client";
 import { bannerQuery } from "@/sanity/services/banner-query";
 
-// Import Components //
 import VideoPlayer from "../atoms/video-player";
 import SwiperNavigation from "../atoms/swiper-navigation";
+import fallbackImage from "@/assets/images/fallback-image.webp";
 
 interface BannerItem {
   type: string;
   url: string;
+  thumbnail?: string;
 }
 
 export default function HeroCarousel() {
   const swiperRef = useRef<SwiperRef>(null);
   const [banners, setBanners] = useState<BannerItem[]>([]);
   const [current, setCurrent] = useState(1);
-  const [isPlayVideo, setIsPlayVideo] = useState<boolean>(false);
+  const [isPlayingVideo, setIsPlayingVideo] = useState<boolean>(false);
   const videoRefs = useRef<React.RefObject<HTMLVideoElement>[]>([]);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const nextSlideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState<number | null>(
+    null
+  );
+  const [showPoster, setShowPoster] = useState<boolean[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await client.fetch(bannerQuery);
       setBanners(result[0]?.images || []);
+      setShowPoster(new Array(result[0]?.images.length).fill(true));
     };
 
     fetchData();
@@ -53,15 +57,90 @@ export default function HeroCarousel() {
     swiperRef?.current?.swiper?.slideNext();
   };
 
-  const handleManualPause = () => {
-    if (nextSlideTimeoutRef.current) {
-      clearTimeout(nextSlideTimeoutRef.current);
+  const handleVideoEnd = () => {
+    setIsPlayingVideo(false);
+    swapSlideNext();
+  };
+
+  const handleVideoClick = (index: number) => {
+    const videoRef = videoRefs.current[index];
+    if (videoRef?.current) {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current);
+      }
+
+      if (isPlayingVideo && !isPaused) {
+        // Pause the video
+        videoRef.current.pause();
+        setIsPaused(true);
+        setIsPlayingVideo(false);
+        pauseTimeoutRef.current = setTimeout(() => {
+          swapSlideNext();
+        }, 3000);
+      } else {
+        // Play or resume the video
+        if (!isPlayingVideo || (isPlayingVideo && isPaused)) {
+          if (currentVideoIndex !== index) {
+            // First time playing this video
+            videoRef.current.currentTime = 1;
+            setCurrentVideoIndex(index);
+          }
+          videoRef.current.muted = false;
+          videoRef.current.play();
+          setIsPaused(false);
+          setIsPlayingVideo(true);
+          setShowPoster((prev) => {
+            const newShowPoster = [...prev];
+            newShowPoster[index] = false;
+            return newShowPoster;
+          });
+        }
+      }
+    }
+  };
+
+  const handleSlideChange = (swiper: any) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
     }
 
-    // Set a 3-second timer to go to the next slide
-    nextSlideTimeoutRef.current = setTimeout(() => {
-      swapSlideNext();
-    }, 3000);
+    setIsPlayingVideo(false);
+    setIsPaused(false);
+    muteAllVideos();
+
+    // Mute and reset all videos
+    videoRefs.current.forEach((videoRef) => {
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
+    });
+
+    const banner = banners[swiper.realIndex];
+    const videoRef = videoRefs.current[swiper.realIndex];
+
+    if (banner.type === "video" && videoRef?.current) {
+      videoRef.current.poster = banner.thumbnail || "";
+      videoRef.current.pause();
+      videoRef.current.load();
+
+      videoRef.current.muted = true;
+    }
+
+    timeoutRef.current = setTimeout(swapSlideNext, 3000);
+
+    setCurrent(swiper.realIndex + 1);
+    setCurrentVideoIndex(null);
+    setShowPoster((prev) => {
+      const newShowPoster = [...prev];
+      newShowPoster[swiper.realIndex] = true;
+      return newShowPoster;
+    });
   };
 
   if (!banners.length) {
@@ -75,41 +154,7 @@ export default function HeroCarousel() {
       grabCursor={false}
       modules={[Autoplay]}
       loop={true}
-      onSlideChange={(swiper) => {
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-        }
-
-        setIsPlayVideo(false);
-        muteAllVideos();
-
-        const videoRef = videoRefs.current[swiper.realIndex];
-        if (videoRef?.current) {
-          videoRef.current.currentTime = 9;
-        }
-
-        timeoutRef.current = setTimeout(swapSlideNext, 3000);
-
-        setCurrent(swiper.realIndex + 1);
-      }}
-      onClick={(swiper) => {
-        const videoRef = videoRefs.current[swiper.realIndex];
-        if (videoRef?.current) {
-          if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-          }
-
-          videoRef.current
-            .play()
-            .then(() => {
-              if (videoRef.current) {
-                setIsPlayVideo(true);
-                videoRef.current.onended = () => swapSlideNext();
-              }
-            })
-            .catch((err) => console.error("Video playback failed", err));
-        }
-      }}
+      onSlideChange={handleSlideChange}
       className="w-full h-screen"
     >
       <SwiperNavigation />
@@ -131,10 +176,13 @@ export default function HeroCarousel() {
               {banner.type === "video" ? (
                 <VideoPlayer
                   videoSrc={banner.url}
-                  isVideoPlay={isPlayVideo}
-                  muted={true}
                   videoRef={videoRefs.current[index]}
-                  onManualPause={handleManualPause}
+                  isPlaying={isPlayingVideo && currentVideoIndex === index}
+                  isMuted={!isPlayingVideo}
+                  showPoster={showPoster[index]}
+                  poster={banner.thumbnail || fallbackImage}
+                  onVideoClick={() => handleVideoClick(index)}
+                  onVideoEnded={handleVideoEnd}
                 />
               ) : (
                 <Image
@@ -149,7 +197,7 @@ export default function HeroCarousel() {
               )}
 
               <div
-                className="absolute flex justify-center w-full px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl items-end pb-10 lg:pb-[70px]"
+                className="absolute flex justify-center w-full px-content-padding-sm lg:px-content-padding-lg 2xl:px-content-padding-2xl items-end pb-8 lg:pb-[36px]"
                 style={{
                   height: "fit-content",
                   alignSelf: "flex-end",

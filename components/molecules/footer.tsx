@@ -4,6 +4,7 @@ import Image from "next/image";
 // Import Assets //
 import logo from "@/assets/images/img-white-logo.png";
 import logosymbol from "@/assets/images/img-white-logo-symbol.png";
+import React from "react";
 
 export default function Footer() {
   return (
@@ -56,7 +57,7 @@ export default function Footer() {
 
           <div className="flex flex-col w-full mt-20 gap-[18px] lg:hidden">
             <p className="text-sm text-white font-medium">arthawena.com</p>
-            <h4 className="text-[22px] text-white font-aeonik-medium">
+            <h4 className="text-[22px] text-white font-aeonik-medium tracking-[.042em]">
               Arthawena, The Reliable Partner You Can Trust.
             </h4>
           </div>

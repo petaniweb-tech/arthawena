@@ -15,6 +15,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { useEffect, useState } from "react";
+import React from "react";
 
 export default function CsrPrograms() {
   const [csrData, setCsrData] = useState<CsrType[]>([]);

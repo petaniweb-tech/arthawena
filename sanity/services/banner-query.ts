@@ -8,7 +8,8 @@ export const bannerQuery = `
       },
       _type == "file" => {
         "type": "video",
-        "url": asset->url
+        "url": asset->url,
+        "thumbnail": thumbnail.asset->url
       }
     }
   }
