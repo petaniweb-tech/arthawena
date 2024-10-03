@@ -51,7 +51,7 @@ export default function Culture() {
             </h1>
           </div>
 
-          <div className="lg:flex lg:bg-background lg:justify-center lg:items-center lg:w-full lg:pb-[48px] lg:pl-[140px] 2xl:pl-[160px] lg:pr-20">
+          <div className="lg:flex lg:bg-background lg:justify-center lg:items-center lg:w-full lg:pb-[48px]">
             <p className="text-[15px] lg:text-center lg:text-[17px] lg:leading-relaxed lg:font-light w-fit text-charcoal">
               We prioritize building a supportive and skilled community.{" "}
               <br className="hidden lg:block" />
