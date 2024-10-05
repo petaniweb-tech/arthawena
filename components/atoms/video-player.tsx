@@ -71,40 +71,23 @@ export default function VideoPlayer({
       onClick={onVideoClick}
       className="flex items-center w-full h-screen justify-center origin-center relative"
     >
-      {isSmallScreen ? (
-        // Apply animation only on small screens (<1024px)
-        <motion.video
-          ref={videoRef}
-          muted={isMuted}
-          loop={false}
-          controls={false}
-          preload="metadata"
-          playsInline
-          className="object-cover object-center h-full w-full"
-          onEnded={onVideoEnded}
-          onClick={onVideoClick}
-          // Apply the variants based on whether the video is playing or paused
-          variants={mobileVideoVariants}
-          animate={isPlaying ? "played" : "paused"}
-        >
-          <source src={videoSrc} type="video/webm" />
-        </motion.video>
-      ) : (
-        // Normal video without animation on larger screens (>=1024px)
-        <video
-          ref={videoRef}
-          muted={isMuted}
-          loop={false}
-          controls={false}
-          preload="metadata"
-          playsInline
-          className="object-cover object-center h-full w-full"
-          onEnded={onVideoEnded}
-          onClick={onVideoClick}
-        >
-          <source src={videoSrc} type="video/webm" />
-        </video>
-      )}
+      <motion.video
+        ref={videoRef}
+        muted={isMuted}
+        loop={false}
+        controls={false}
+        preload="metadata"
+        playsInline
+        width="100vh"
+        height="auto"
+        className="object-cover object-center h-full w-full"
+        onEnded={onVideoEnded}
+        onClick={onVideoClick}
+        animate={isSmallScreen ? (isPlaying ? "played" : "paused") : ""}
+        variants={isSmallScreen ? mobileVideoVariants : {}}
+      >
+        <source src={videoSrc} type="video/mp4" />
+      </motion.video>
 
       {showPoster && poster && (
         <div className="absolute inset-0">
