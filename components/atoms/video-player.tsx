@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image, { StaticImageData } from "next/image";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 // Import Assets //
 import play from "@/assets/icons/play.svg";
@@ -27,24 +30,81 @@ export default function VideoPlayer({
   onVideoClick,
   onVideoEnded,
 }: VideoPlayerProps) {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  // Define screen size for small devices
+  const smallScreenThreshold = 1024;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < smallScreenThreshold);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const mobileVideoVariants = {
+    played: {
+      width: "100vw",
+      height: "auto",
+      transition: {
+        duration: 0.9,
+        ease: "easeInOut",
+      },
+    },
+    paused: {
+      width: "100vw",
+      height: "100vh",
+      transition: {
+        duration: 0.8,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
     <main
       onClick={onVideoClick}
       className="flex items-center w-full h-screen justify-center origin-center relative"
     >
-      <video
-        ref={videoRef}
-        muted={isMuted}
-        loop={false}
-        controls={false}
-        preload="metadata"
-        playsInline
-        className="object-cover object-center h-full w-full"
-        onEnded={onVideoEnded}
-        onClick={onVideoClick}
-      >
-        <source src={videoSrc} type="video/webm" />
-      </video>
+      {isSmallScreen ? (
+        // Apply animation only on small screens (<1024px)
+        <motion.video
+          ref={videoRef}
+          muted={isMuted}
+          loop={false}
+          controls={false}
+          preload="metadata"
+          playsInline
+          className="object-cover object-center h-full w-full"
+          onEnded={onVideoEnded}
+          onClick={onVideoClick}
+          // Apply the variants based on whether the video is playing or paused
+          variants={mobileVideoVariants}
+          animate={isPlaying ? "played" : "paused"}
+        >
+          <source src={videoSrc} type="video/webm" />
+        </motion.video>
+      ) : (
+        // Normal video without animation on larger screens (>=1024px)
+        <video
+          ref={videoRef}
+          muted={isMuted}
+          loop={false}
+          controls={false}
+          preload="metadata"
+          playsInline
+          className="object-cover object-center h-full w-full"
+          onEnded={onVideoEnded}
+          onClick={onVideoClick}
+        >
+          <source src={videoSrc} type="video/webm" />
+        </video>
+      )}
 
       {showPoster && poster && (
         <div className="absolute inset-0">
