@@ -26,7 +26,7 @@ export default async function Home() {
         <div className="flex flex-col gap-7 lg:gap-9 lg:w-[45%]">
           <h6 className="text-[19px] lg:text-[26px] text-white">WHO ARE WE</h6>
           <h4 className="text-[28px] lg:text-[46px] text-white font-aeonik-medium leading-tight tracking-wider lg:leading-[1.4]">
-            THE MOST RELIABLE TIN CAN SUPPLIER IN INDONESIA
+            THE MOST RELIABLE CAN SUPPLIER IN INDONESIA
           </h4>
 
           <div className="flex items-center w-fit text-xs lg:text-[17px] tracking-wider font-semibold lg:font-medium text-white justify-center py-[6px] lg:pt-3 lg:pb-[14px] px-5 lg:px-6 rounded-full bg-white bg-opacity-10 lg:bg-opacity-0 border border-white border-opacity-40 lg:border-opacity-65 mt-2 lg:mt-4">
