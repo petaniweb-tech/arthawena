@@ -16,7 +16,7 @@ import locationdesktop from "@/assets/images/home/location-desktop.webp";
 
 export default async function Home() {
   return (
-    <main>
+    <main className="lg:block lg:pt-[100px] lg:bg-transparent">
       <section className="w-full h-screen block lg:h-auto">
         <HeroCarousel />
       </section>
