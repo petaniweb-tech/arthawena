@@ -69,7 +69,7 @@ export default function VideoPlayer({
   return (
     <main
       onClick={onVideoClick}
-      className="flex items-center w-full h-screen justify-center origin-center relative"
+      className="flex items-center w-full h-screen lg:h-auto lg:aspect-video justify-center origin-center relative"
     >
       {isSmallScreen ? (
         // Apply animation only on small screens (<1024px)
@@ -113,6 +113,7 @@ export default function VideoPlayer({
             alt="Video thumbnail"
             layout="fill"
             objectFit="cover"
+            className="object-cover object-center lg:aspect-video"
           />
         </div>
       )}

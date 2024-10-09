@@ -79,7 +79,7 @@ export default function HeroCarousel() {
         setIsPlayingVideo(false);
         pauseTimeoutRef.current = setTimeout(() => {
           swapSlideNext();
-        }, 3000);
+        }, 6000);
       } else {
         // Play or resume the video
         if (!isPlayingVideo || (isPlayingVideo && isPaused)) {
@@ -155,7 +155,7 @@ export default function HeroCarousel() {
       modules={[Autoplay]}
       loop={true}
       onSlideChange={handleSlideChange}
-      className="w-full h-screen"
+      className="w-full h-screen lg:h-full lg:-z-50 lg:aspect-video lg:object-cover"
     >
       <SwiperNavigation />
       {banners.map((banner, index) => {
@@ -192,7 +192,7 @@ export default function HeroCarousel() {
                   sizes="100vw"
                   width={100}
                   height={100}
-                  className="w-full h-screen object-cover object-center"
+                  className="w-full h-screen lg:h-auto object-cover object-center"
                 />
               )}
 
