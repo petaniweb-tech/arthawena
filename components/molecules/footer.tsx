@@ -32,11 +32,17 @@ export default function Footer() {
 
             <Link href="/our-business/our-product">
               <div className="w-fit pb-1 border-b border-white border-opacity-70">
-                <p>OUR BUSINESS</p>
+                <p>OUR PRODUCT</p>
               </div>
             </Link>
 
-            <Link href="/careers/culture">
+            <Link href="/our-business/technology">
+              <div className="w-fit pb-1 border-b border-white border-opacity-70">
+                <p>TECHNOLOGY</p>
+              </div>
+            </Link>
+
+            <Link href="/careers/join-us">
               <div className="w-fit pb-1 border-b border-white border-opacity-70">
                 <p>CAREERS</p>
               </div>
@@ -108,26 +114,32 @@ export default function Footer() {
 
                   <Link href="/our-business/our-product">
                     <div className="w-fit pb-1 border-b border-white border-opacity-60 hover:border-opacity-100 duration-300 cursor-pointer">
-                      <p>OUR BUSINESS</p>
+                      <p>OUR PRODUCT</p>
                     </div>
                   </Link>
                 </div>
 
                 <div className="flex flex-col gap-5">
-                  <Link href="/careers/culture">
+                  <Link href="/our-business/technology">
+                    <div className="w-fit pb-1 border-b border-white border-opacity-60 hover:border-opacity-100 duration-300 cursor-pointer">
+                      <p>TECHNOLOGY</p>
+                    </div>
+                  </Link>
+
+                  <Link href="/careers/join-us">
                     <div className="w-fit pb-1 border-b border-white border-opacity-60 hover:border-opacity-100 duration-300 cursor-pointer">
                       <p>CAREERS</p>
                     </div>
                   </Link>
+                </div>
 
+                <div className="flex flex-col gap-5">
                   <Link href="/sustainability/arthawena-for-sustainability">
                     <div className="w-fit pb-1 border-b border-white border-opacity-60 hover:border-opacity-100 duration-300 cursor-pointer">
                       <p>SUSTAINABILITY</p>
                     </div>
                   </Link>
-                </div>
 
-                <div className="flex flex-col gap-5">
                   <Link href="/contact">
                     <div className="w-fit pb-1 border-b border-white border-opacity-60 hover:border-opacity-100 duration-300 cursor-pointer">
                       <p>CONTACT</p>

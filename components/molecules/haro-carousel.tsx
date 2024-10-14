@@ -79,7 +79,7 @@ export default function HeroCarousel() {
         setIsPlayingVideo(false);
         pauseTimeoutRef.current = setTimeout(() => {
           swapSlideNext();
-        }, 3000);
+        }, 6000);
       } else {
         // Play or resume the video
         if (!isPlayingVideo || (isPlayingVideo && isPaused)) {
