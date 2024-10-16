@@ -10,7 +10,7 @@ type ContactFormInputs = z.infer<typeof ContactFormSchema>;
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 const emailFrom = process.env.EMAIL_FROM!!;
-const emailTo = [process.env.PETANIWEB_EMAIL!!];
+const emailTo = ["tech@petaniweb.com", process.env.PETANIWEB_EMAIL!!];
 
 export async function sendEmail(data: ContactFormInputs) {
   const result = ContactFormSchema.safeParse(data);
