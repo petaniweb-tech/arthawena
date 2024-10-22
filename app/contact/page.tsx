@@ -29,58 +29,44 @@ export default function Contact() {
   const form = useForm<z.infer<typeof ContactFormSchema>>({
     resolver: zodResolver(ContactFormSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
     },
   });
 
   const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
-  const [lastSubmitTime, setLastSubmitTime] = useState<number | null>(null);
 
   async function onSubmit(values: z.infer<typeof ContactFormSchema>) {
-    console.log(values);
-    // const currentTime = Date.now();
-
-    // if (lastSubmitTime && currentTime - lastSubmitTime < 300000) {
-    //   toast({
-    //     title: "Please wait",
-    //     description: "You have already submitted the form. Please wait 5 minutes before submitting again.",
-    //   });
-    //   return;
-    // }
-
     if (!recaptchaValue) {
       toast({
         title: "Please complete the reCAPTCHA",
       });
       return;
     }
-    form.reset();
 
-    // try {
-    //   const result = await sendEmail(values);
-    //   if (result?.success) {
-    //     toast({
-    //       title: "Success",
-    //       description:
-    //         "Thank you for contacting us. We will get back to you as soon as possible.",
-    //     });
-    //     form.reset();
-    //     setLastSubmitTime(currentTime);
-    //   } else {
-    //     toast({
-    //       title: "Failed",
-    //       description: "Failed to send email",
-    //     });
-    //   }
-    // } catch (error) {
-    //   toast({
-    //     title: "Error",
-    //     description: "An error occurred while sending email",
-    //   });
-    // }
+    try {
+      const result = await sendEmail(values);
+      if (result?.success) {
+        toast({
+          title: "Success",
+          description:
+            "Thank you for contacting us. We will get back to you as soon as possible.",
+        });
+        form.reset();
+      } else {
+        toast({
+          title: "Failed",
+          description: "Failed to send email",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An error occurred while sending email",
+      });
+    }
   }
 
   return (
