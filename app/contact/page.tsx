@@ -28,6 +28,12 @@ export default function Contact() {
   const { toast } = useToast();
   const form = useForm<z.infer<typeof ContactFormSchema>>({
     resolver: zodResolver(ContactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+    },
   });
 
   const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
@@ -40,17 +46,25 @@ export default function Contact() {
       return;
     }
 
-    var result = await sendEmail(values);
-    if (result?.success) {
+    try {
+      const result = await sendEmail(values);
+      if (result?.success) {
+        toast({
+          title: "Success",
+          description:
+            "Thank you for contacting us. We will get back to you as soon as possible.",
+        });
+        form.reset();
+      } else {
+        toast({
+          title: "Failed",
+          description: "Failed to send email",
+        });
+      }
+    } catch (error) {
       toast({
-        title: "Success",
-        description:
-          "Thank you for contacting us. We will get back to you as soon as possible.",
-      });
-    } else {
-      toast({
-        title: "Failed",
-        description: "Failed to send email",
+        title: "Error",
+        description: "An error occurred while sending email",
       });
     }
   }
